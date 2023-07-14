@@ -13,8 +13,10 @@ from transformers import (
     TrainingArguments,
 )
 from peft.tuners.lora import LoraLayer
-
 from trl import SFTTrainer
+
+from huggingface_hub import login
+login("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")
 
 
 # Define and parse arguments.
