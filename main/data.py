@@ -8,9 +8,7 @@ def create_and_format(data_folder):
     with open(os.path.join(data_folder, 'arxiv_papers.html'), 'r') as file:
         data = file.read()
 
-    soup = BeautifulSoup(data, 'html.parser')
-    tbody = soup.find('tbody')
-    rows = tbody.find_all('tr')
+    rows = BeautifulSoup(data, 'html.parser').find('tbody').find_all('tr')
     abstracts = []
 
     for row in tqdm(rows):
@@ -18,9 +16,7 @@ def create_and_format(data_folder):
 
         formatted_text = f"### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis: {abstract}"
 
-        json_data = {
-            "text": formatted_text
-        }
+        json_data = {"text": formatted_text}
 
         abstracts.append(json_data)
 

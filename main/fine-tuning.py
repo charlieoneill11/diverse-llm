@@ -206,3 +206,4 @@ for name, module in trainer.model.named_modules():
                 module = module.to(torch.bfloat16)
 
 trainer.train()
+trainer.push_to_hub("charlieoneill/falcon-abstracts")
