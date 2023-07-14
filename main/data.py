@@ -3,7 +3,7 @@ import os
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
-def create_json(data_folder):
+def create_and_format(data_folder):
     # Open the HTML file
     with open(os.path.join(data_folder, 'arxiv_papers.html'), 'r') as file:
         data = file.read()
@@ -14,12 +14,12 @@ def create_json(data_folder):
     abstracts = []
 
     for row in tqdm(rows):
-
         abstract = row.find_all('td')[4].text
 
+        formatted_text = f"### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis: {abstract}"
+
         json_data = {
-            "prompt": "Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.",
-            "completion": abstract
+            "text": formatted_text
         }
 
         abstracts.append(json_data)
@@ -28,4 +28,4 @@ def create_json(data_folder):
         json.dump(abstracts, json_file, indent=4)
 
 if __name__ == "__main__":
-    create_json('../data')
+    create_and_format('../data')
