@@ -18,7 +18,7 @@ def create_json(data_folder):
         abstract = row.find_all('td')[4].text
 
         json_data = {
-            "prompt": "Generate a scientific hypothesis about astronomy in the style of an Arxiv paper:",
+            "prompt": "Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.",
             "completion": abstract
         }
 
@@ -28,4 +28,4 @@ def create_json(data_folder):
         json.dump(abstracts, json_file, indent=4)
 
 if __name__ == "__main__":
-    create_json('data')
+    create_json('../data')
