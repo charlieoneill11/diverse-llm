@@ -73,17 +73,12 @@ def generate_examples(model, tokenizer, prompt, neg_prompts, num_examples, devic
         prompt_tensor = {k: v.to(device) for k, v in prompt_tensor.items()}
         neg_prompts_tensor = [prompt.to(device) for prompt in neg_prompts_tensor]
 
-        output = model.generate(
-            input_ids=prompt_tensor['input_ids'],
-            attention_mask=prompt_tensor['attention_mask'],
-            max_new_tokens=125,
-            logits_processor=LogitsProcessorList([
-                CFGLogits(1.5, neg_prompt, model) for neg_prompt in neg_prompts_tensor,
-                TemperatureLogitsWarper(0.8),
-                TopPLogitsWarper(0.95),
-            ]),
-            do_sample=True,
-        )
+        logits_processor=LogitsProcessorList([CFGLogits(1.5, neg_prompt, model) for neg_prompt in neg_prompts_tensor,TemperatureLogitsWarper(0.8), TopPLogitsWarper(0.95)])
+
+        output = model.generate(input_ids=prompt_tensor['input_ids'], 
+                                attention_mask=prompt_tensor['attention_mask'], max_new_tokens=125,
+                                logits_processor=LogitsProcessorList([CFGLogits(1.5, neg_prompt, model) for neg_prompt in neg_prompts_tensor,TemperatureLogitsWarper(0.8), TopPLogitsWarper(0.95)]),
+                                do_sample=True)
 
         generated_example = tokenizer.decode(output[0])
         generated_examples.append(generated_example)
