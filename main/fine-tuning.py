@@ -102,7 +102,7 @@ class ScriptArguments:
             "help": "Group sequences into batches with same length. Saves memory and speeds up training considerably."
         },
     )
-    save_steps: int = field(default=10, metadata={"help": "Save checkpoint every X updates steps."})
+    save_steps: int = field(default=500, metadata={"help": "Save checkpoint every X updates steps."})
     logging_steps: int = field(default=10, metadata={"help": "Log every X updates steps."})
 
 
@@ -155,6 +155,7 @@ def create_and_prepare_model(args):
 
 training_arguments = TrainingArguments(
     output_dir="./results",
+    push_to_hub=True,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     optim=script_args.optim,
