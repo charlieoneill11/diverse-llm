@@ -14,9 +14,11 @@ qsub: waiting for job 90747602.gadi-pbs to start
 qsub: job 90747602.gadi-pbs ready
 ```
 
-We now need to load the required packages. I've created a conda environment called `diverse-llm` that has everything you need. To activate it, run
+We now need to load the required packages. I've created a conda environment called `diverse-llm` that has everything you need. To activate it, we need to let the interactive node find our conda binary, and then activate our actual environment:
 
 ```
+module use /g/data/hh5/public/modules
+module load conda/analysis3-22.01
 conda activate /scratch/dg97/cn1951/diverse-llm
 ```
 
