@@ -59,34 +59,34 @@ class CFGLogits(LogitsProcessor):
         if self.rescale_factor == 1:
             return out
         return self.rescale_factor * out + (1 - self.rescale_factor) * scores
+    
+class ContrastiveDecoding(LogitsProcessor):
+    r"""Logits processor for Contrastive Decoding (CD). The processor computes a reweighting of the logits based on the difference between the fine-tuned and the base model logits, parameterized by the `gamma` value. 
 
-def generate_examples(model, tokenizer, prompt, neg_prompts, num_examples, device='cuda:0'):
-    model.to(device)
-    generated_examples = []
+    Args:
+        gamma (float):
+            The value of gamma for contrastive decoding. A larger gamma downweights token probabilities from the base model more and hence places more emphasis on the domain distribution.
+        base_model:
+            The base (untrained) model used for contrastive decoding. The base model is only trained on a generic language modeling task.
+        fine_tuned_model:
+            The fine-tuned model used for contrastive decoding. The fine-tuned model is aware of the nuances and specifics of the target domain due to its fine-tuning.
+    """
 
-    for _ in range(num_examples):
-        # Generate a new example
-        prompt_tensor = tokenizer(prompt, return_tensors='pt')
-        neg_prompts_tensor = [tokenizer(neg_prompt, return_tensors='pt')['input_ids'] for neg_prompt in neg_prompts]
+    def __init__(self, gamma, base_model, fine_tuned_model):
+        self.gamma = gamma
+        self.base_model = base_model
+        self.fine_tuned_model = fine_tuned_model
+
+    def __call__(self, input_ids, scores):
+        scores = F.log_softmax(scores, dim=-1)
         
-        # Ensure everything is on the right device
-        prompt_tensor = {k: v.to(device) for k, v in prompt_tensor.items()}
-        neg_prompts_tensor = [prompt.to(device) for prompt in neg_prompts_tensor]
+        base_out = self.base_model(input_ids, use_cache=True)
+        base_logits = F.log_softmax(base_out.logits[0][-1:], dim=-1)
 
-        #logits_processor = LogitsProcessorList([CFGLogits(1.5, neg_prompt, model) for neg_prompt in neg_prompts_tensor,TemperatureLogitsWarper(0.8), TopPLogitsWarper(0.95)])
+        ft_out = self.fine_tuned_model(input_ids, use_cache=True)
+        ft_logits = F.log_softmax(ft_out.logits[0][-1:], dim=-1)
 
-        # output = model.generate(input_ids=prompt_tensor['input_ids'], 
-        #                         attention_mask=prompt_tensor['attention_mask'], max_new_tokens=125,
-        #                         logits_processor=LogitsProcessorList([CFGLogits(1.5, neg_prompt, model) for neg_prompt in neg_prompts_tensor,TemperatureLogitsWarper(0.8), TopPLogitsWarper(0.95)]),
-        #                         do_sample=True)
-        output = [1.0]
-
-        generated_example = tokenizer.decode(output[0])
-        generated_examples.append(generated_example)
-
-        # Add generated example to the set of negative prompts
-        neg_prompts.append(generated_example)
-
-    return generated_examples
+        out = ft_logits - self.gamma * base_logits
+        return out
 
 

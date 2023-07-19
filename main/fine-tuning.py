@@ -154,7 +154,7 @@ def create_and_prepare_model(args):
 
 
 training_arguments = TrainingArguments(
-    output_dir="./results",
+    output_dir="../results",
     push_to_hub=True,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
