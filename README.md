@@ -14,6 +14,12 @@ qsub: waiting for job 90747602.gadi-pbs to start
 qsub: job 90747602.gadi-pbs ready
 ```
 
+We now need to load the required packages. I've created a conda environment called `diverse-llm` that has everything you need. To activate it, run
+
+```
+conda activate /scratch/dg97/cn1951/diverse-llm
+```
+
 To complete the job, simply type `exit` and run:
 
 ```
