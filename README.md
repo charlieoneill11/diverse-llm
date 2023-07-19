@@ -13,3 +13,12 @@ after which it will say something like
 qsub: waiting for job 90747602.gadi-pbs to start
 qsub: job 90747602.gadi-pbs ready
 ```
+
+To complete the job, simply type `exit` and run:
+
+```
+[cn1951@gadi-gpu-rsaa-0001 main]$ exit
+logout
+
+qsub: job 90747602.gadi-pbs completed
+```
