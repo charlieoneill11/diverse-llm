@@ -5,7 +5,7 @@ Improving the diversity of large language models.
 The following is a recipe for fine-tuning a model on an interactive compute node on Gadi.
 
 ```
-qsub -P dg97 -I -lwalltime=06:00:00,ncpus=56,ngpus=4,mem=380GB,jobfs=200GB,wd -qgpursaa
+qsub -P dg97 -I -lwalltime=06:00:00,ncpus=56,ngpus=4,mem=380GB,jobfs=200GB,storage=scratch/dg97+gdata/dg97+scratch/hh5+gdata/hh5,wd -qgpursaa
 ```
 after which it will say something like 
 
