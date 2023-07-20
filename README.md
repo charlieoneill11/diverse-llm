@@ -6,6 +6,7 @@ The following is a recipe for fine-tuning a model on an interactive compute node
 
 ```
 qsub -P dg97 -I -lwalltime=06:00:00,ncpus=56,ngpus=4,mem=380GB,jobfs=200GB,storage=scratch/dg97+gdata/dg97+scratch/hh5+gdata/hh5,wd -qgpursaa
+qsub -P y89 -I -lwalltime=06:00:00,jobfs=150GB,ncpus=48,ngpus=4,mem=380GB,jobfs=200GB,storage=scratch/y89+gdata/y89+scratch/hh5+gdata/hh5,wd -qgpuvolta
 ```
 after which it will say something like 
 
