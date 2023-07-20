@@ -18,6 +18,9 @@ from trl import SFTTrainer
 # from huggingface_hub import login
 # login("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")
 
+import os
+os.environ["WANDB_MODE"]="offline"
+
 
 # Define and parse arguments.
 
@@ -41,13 +44,13 @@ class ScriptArguments:
     lora_r: Optional[int] = field(default=64)
     max_seq_length: Optional[int] = field(default=512)
     model_name: Optional[str] = field(
-        default="tiiuae/falcon-7b",
+        default="/g/data/y89/cn1951/falcon-7b",
         metadata={
             "help": "The model that you want to train from the Hugging Face hub. E.g. gpt2, gpt2-xl, bert, etc."
         },
     )
     dataset_name: Optional[str] = field(
-        default="../data/abstracts.json",
+        default="../data/hypotheses.json",
         metadata={"help": "The preference dataset to use."},
     )
     use_4bit: Optional[bool] = field(
@@ -94,7 +97,7 @@ class ScriptArguments:
         default="constant",
         metadata={"help": "Learning rate schedule. Constant a bit better than cosine, and has advantage for analysis"},
     )
-    max_steps: int = field(default=10000, metadata={"help": "How many optimizer update steps to take"})
+    max_steps: int = field(default=1000, metadata={"help": "How many optimizer update steps to take"})
     warmup_ratio: float = field(default=0.03, metadata={"help": "Fraction of steps to do a warmup for"})
     group_by_length: bool = field(
         default=True,
@@ -129,10 +132,8 @@ def create_and_prepare_model(args):
 
     device_map = {"": 0}
 
-    local_model_path = "/scratch/dg97/cn1951/falcon-7b"
-
     model = AutoModelForCausalLM.from_pretrained(
-        local_model_path, quantization_config=bnb_config, device_map=device_map, trust_remote_code=True
+        script_args.model_name, quantization_config=bnb_config, device_map="auto", trust_remote_code=True
     )
 
     peft_config = LoraConfig(
@@ -156,7 +157,7 @@ def create_and_prepare_model(args):
 
 
 training_arguments = TrainingArguments(
-    output_dir="../results",
+    output_dir="../models",
     # push_to_hub=False,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
@@ -211,4 +212,4 @@ for name, module in trainer.model.named_modules():
                 module = module.to(torch.bfloat16)
 
 trainer.train()
-trainer.save_model(f"/scratch/dg97/cn1951/falcon-7b-abstracts")
+trainer.save_model(f"/g/data/y89/cn1951/falcon-7b-hypotheses-tiny")
