@@ -1,7 +1,12 @@
 from transformers import AutoModel
 from transformers import AutoModelForCausalLM
+from huggingface_hub import snapshot_download
 from peft import PeftModel
 import torch
+
+def download_model_from_hub(repo_id: str, local_dir: str, cache_dir: str):
+    snapshot_download(repo_id=repo_id, local_dir=local_dir, cache_dir=cache_dir)
+
 
 def upload_model_to_hub(path_to_model_folder: str, repo_name: str):
     """

@@ -15,8 +15,8 @@ from transformers import (
 from peft.tuners.lora import LoraLayer
 from trl import SFTTrainer
 
-from huggingface_hub import login
-login("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")
+# from huggingface_hub import login
+# login("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")
 
 
 # Define and parse arguments.
@@ -129,8 +129,10 @@ def create_and_prepare_model(args):
 
     device_map = {"": 0}
 
+    local_model_path = "/scratch/dg97/cn1951/falcon-7b"
+
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name, quantization_config=bnb_config, device_map=device_map, trust_remote_code=True
+        local_model_path, quantization_config=bnb_config, device_map=device_map, trust_remote_code=True
     )
 
     peft_config = LoraConfig(
@@ -155,7 +157,7 @@ def create_and_prepare_model(args):
 
 training_arguments = TrainingArguments(
     output_dir="../results",
-    push_to_hub=True,
+    # push_to_hub=False,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
     optim=script_args.optim,
@@ -209,4 +211,4 @@ for name, module in trainer.model.named_modules():
                 module = module.to(torch.bfloat16)
 
 trainer.train()
-trainer.push_to_hub("charlieoneill/falcon-abstracts")
+trainer.save_model(f"/scratch/dg97/cn1951/falcon-7b-abstracts")

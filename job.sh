@@ -3,9 +3,9 @@
 #PBS -l ncpus=24
 #PBS -l mem=10GB
 #PBS -l jobfs=10GB
-#PBS -q gpursaa
-#PBS -P dg97
-#PBS -l walltime=00:05:00
+#PBS -q normal
+#PBS -P 
+#PBS -l walltime=00:01:00
 #PBS -l storage=gdata/dg97+scratch/dg97
 #PBS -l wd
   

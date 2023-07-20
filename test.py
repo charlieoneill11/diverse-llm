@@ -1,6 +1,6 @@
 import numpy as np
-
-import numpy as np
+from huggingface_hub import snapshot_download
+from datasets import disable_caching
 
 def generate_and_invert_matrix(size):
     # Generate a random matrix
@@ -20,7 +20,11 @@ def generate_and_invert_matrix(size):
     except np.linalg.LinAlgError:
         # Matrix is not invertible
         return False
+    
+
 
 
 if __name__ == "__main__":
-    generate_and_invert_matrix(size=10)
+    #generate_and_invert_matrix(size=10) 
+    directory = "/g/data/y89/cn1951"
+    snapshot_download(repo_id="universeTBD/falcon-7b-abstracts-tiny", local_dir=directory+"/falcon-7b-abstracts-tiny", cache_dir=directory)
