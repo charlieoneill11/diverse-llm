@@ -1,0 +1,4 @@
+main/__pycache__
+main/.ipynb_checkpoints
+main/wandb
+models

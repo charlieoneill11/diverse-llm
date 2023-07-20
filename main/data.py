@@ -39,18 +39,6 @@ def create_and_format_abstracts(data_folder):
 
 ### HYPOTHESES DATASET ###
 
-# Define the prompt
-prompt = 'Extract the scientific hypothesis presented in this abstract: \
-          "We search for evidence of dark matter in the Milky Way by utilizing the \
-          stellar number density distribution and kinematics measured by the Sloan\
-           Digital Sky Survey (SDSS) to heliocentric distances exceeding ~10 kpc. We\
-           nemploy the cylindrically symmetric form of Jeans equations and focus on the\
-           morphology of the resulting acceleration maps, rather than the normalization of\
-           the total mass as done in previous, mostly local, studies. Jeans equations are\
-           first applied to a mock catalog based on a cosmologically derived N-body + SPH\
-           simulation, and the known acceleration (gradient of gravitational potential) is successfully recovered. The same simulation is also used to quantify the impact\\nof dark matter on the total acceleration. We use Galfast, a code designed to\\nquantitatively reproduce SDSS measurements and selection effects, to generate a\\nsynthetic stellar catalog. We apply Jeans equations to this catalog and produce\\ntwo-dimensional maps of stellar acceleration. These maps reveal that in a\\nNewtonian framework, the implied gravitational potential cannot be explained by\\nvisible matter alone. The acceleration experienced by stars at galactocentric\\ndistances of ~20 kpc is three times larger than what can be explained by purely\\nvisible matter. The application of an analytic method for estimating the dark\\nmatter halo axis ratio to SDSS data implies an oblate halo with q_DM = 0.47 +/-\\n0.14 within the same distance range. These techniques can be used to map the\\ndark matter halo to much larger distances from the Galactic center using\\nupcoming deep optical surveys, such as LSST." Present the hypothesis in one sentence in the form of a question that the paper aims to answer. Answer in the form of HYPOTHESIS: ...\
-           HYPOTHESIS:'
-
 # Define a function that uses chat completion to extract the hypothesis
 def extract_hypothesis(abstract):
     
@@ -67,26 +55,7 @@ def extract_hypothesis(abstract):
     # Return the hypothesis
     return completion.choices[0].message.content+'?'
 
-# Create a function that batches the above over the whole dataset
-# We should only look at everything that comes after Hypothesis:
-
-def batch_extract_hypothesis(data):
-  
-  print(f'Extracting hypotheses from {len(data)} abstracts...')
-  
-  # Initialise a list to store the extracted hypotheses
-  hypotheses = []
-
-  # Loop over the data
-  for i in tqdm(range(len(data))):
-      
-      # Extract the hypothesis
-      hypothesis = extract_hypothesis(data[i]['text'].split('Hypothesis: ')[1])
-      
-      # Append to the list
-      hypotheses.append(hypothesis)
-
-  return hypotheses
+# now i need to write a function that batches the above over the whole dataset
 
 def create_and_format_hypotheses(data_folder, offset=0):
     print(f'Creating and formatting hypotheses...')
