@@ -10,10 +10,14 @@ from transformers import (LogitsProcessor, LogitsProcessorList,
 from transformers.generation import LogitNormalization
 
 import torch.nn.functional as F
+from scipy.spatial import ConvexHull
+from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 import numpy as np
 import torch
+import yaml
 import os
+import openai
 
 from utils import format_output
 from main import ContrastiveDecoding
@@ -71,6 +75,71 @@ class InferencePipeline:
                     file.write(example + "\n")
         
         return dataset
+    
+class EvaluationPipeline:
+
+    def __init__(self, synthetic_dataset: np.array, real_dataset: np.array):
+        config = yaml.safe_load(open("../config.yaml", "r"))
+        self.synthetic_dataset = synthetic_dataset
+        self.real_dataset = real_dataset
+        self.deployment_name= config['openai_deployment_embeddings']
+        openai.api_key = config['openai_api_key']
+        openai.api_base = config['openai_api_base']
+        openai.api_type = 'azure'
+        openai.api_version = '2023-05-15'
+        # TODO: tokenizer for normalised n-grams
+        # TODO: convex hull calculator for diversity
+        # TODO: KL divergence calculator
+        # TODO: cosine similarity score with real dataset
+
+    @staticmethod
+    def embed_example(self, example: str):
+        response = openai.Embedding.create(
+            engine=self.deployment_name,
+            input=example,
+        )
+        return response['data'][0]['embedding']
+    
+    def embed_dataset(self, dataset) -> np.array:
+        embeddings = []
+        for example in tqdm(dataset):
+            embeddings.append(self.embed_example(example))
+        return np.array(embeddings)
+    
+    ### TRADITIONAL METRICS ###
+
+    def normalised_ngrams(self) -> float:
+        pass
+
+    def convex_hull_area(self) -> float:
+        """
+        Calculate the area of the convex hull of the embeddings of the generated examples.
+        """
+        embeddings = self.embed_dataset(self.synthetic_dataset)
+        hull = ConvexHull(embeddings)
+        if len(embeddings[0]) == 2: return hull.area
+        elif len(embeddings[0]) > 2: return hull.volume
+        else: raise ValueError("Points must have at least two dimensions.")
+
+    def kl_divergence(self):
+        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+        real_embeddings = self.embed_dataset(self.real_dataset)
+        pass
+
+    def cosine_similarity(self, centroid: bool = False):
+        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+        real_embeddings = self.embed_dataset(self.real_dataset)
+        if centroid:
+            similarities = cosine_similarity(np.mean(synthetic_embeddings, axis=0).reshape(1, -1), 
+                                             np.mean(real_embeddings, axis=0).reshape(1, -1))
+        else: similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
+        return np.mean(similarities)
+    
+    ### NOVEL METRICS ###
+    def authenticity_auroc(self):
+        pass
+
+
     
 def contrastive_generation():
     fine_tuned_model_path = "/g/data/y89/cn1951/falcon-7b-abstracts-tiny"
