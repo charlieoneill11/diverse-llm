@@ -9,6 +9,9 @@ from transformers import (LogitsProcessor, LogitsProcessorList,
                           TypicalLogitsWarper)
 from transformers.generation import LogitNormalization
 
+from nltk.util import ngrams
+from collections import Counter
+
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
@@ -74,7 +77,7 @@ class InferencePipeline:
                 os.makedirs(self.output_dir)
 
             file_path = os.path.join(self.output_dir, f"{self.task}-{num_examples}.txt")
-            with open(file_path, "w") as file:
+            with open(file_path, "a") as file: # Change "w" to "a" here
                 for example in dataset:
                     file.write(example.split("Hypothesis: ")[1] + "\n")
         
@@ -114,6 +117,19 @@ class EvaluationPipeline:
 
     def normalised_ngrams(self) -> float:
         pass
+
+    def normalized_ngrams(tokenizer, text, n) -> float:
+        # Tokenize the text
+        tokens = tokenizer.tokenize(text)
+        
+        # Generate n-grams from the token list
+        generated_ngrams = list(ngrams(tokens, n))
+        
+        # Count unique n-grams
+        unique_ngrams = len(set(generated_ngrams))
+        
+        # Return the normalized count of unique n-grams
+        return unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
 
     def convex_hull_area(self) -> float:
         """
