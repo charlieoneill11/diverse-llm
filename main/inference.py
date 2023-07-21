@@ -11,11 +11,14 @@ from transformers.generation import LogitNormalization
 
 from nltk.util import ngrams
 from collections import Counter
+import json
 
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
+import umap
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 from tqdm import tqdm
@@ -174,22 +177,33 @@ class EvaluationPipeline:
     
     ### TRADITIONAL METRICS ###
 
-    def normalised_ngrams(tokenizer, text, n) -> float:
+    def normalised_ngrams(self, tokenizer, n) -> float:
         """
         Calculate the normalised count of unique n-grams in a text.
         """
 
-        # Tokenize the text
-        tokens = tokenizer.tokenize(text)
-        
-        # Generate n-grams from the token list
-        generated_ngrams = list(ngrams(tokens, n))
-        
-        # Count unique n-grams
-        unique_ngrams = len(set(generated_ngrams))
+        # Concatenate the text from the synthetic dataset
+        synthetic_text = " ".join(self.synthetic_dataset)
+        real_text = " ".join(self.real_dataset)
+
+        n_grams_list = []
+
+        for text in [synthetic_text, real_text]:
+
+            # Tokenize the text
+            tokens = tokenizer.tokenize(text)
+            
+            # Generate n-grams from the token list
+            generated_ngrams = list(ngrams(tokens, n))
+            
+            # Count unique n-grams
+            unique_ngrams = len(set(generated_ngrams))
+
+            # Append to the list
+            n_grams_list.append(unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0)
         
         # Return the normalised count of unique n-grams
-        return unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
+        return {'synthetic': n_grams_list[0], 'real': n_grams_list[1]}
 
     def convex_hull_area(self, umap_dimensions: int = 2) -> float:
         """
@@ -284,5 +298,8 @@ if __name__ == "__main__":
     pipeline.set_embeddings()
     print(pipeline.cosine_similarity())
     print(pipeline.convex_hull_area())
+    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
+    print(pipeline.normalised_ngrams(tokenizer, 1))
+
     
 

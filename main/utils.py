@@ -47,6 +47,17 @@ def format_output(output):
     
     return formatted_output
 
+def format_batch(hypotheses_list):
+    formatted_hypotheses = []
+    for hypotheses in hypotheses_list:
+        for hypothesis in hypotheses:
+            # Split the generated text on '### Hypothesis:' and take the second part
+            text = hypothesis['generated_text'].split('Hypothesis: ')[1].strip()
+            # Remove excess question marks, replace them with just one
+            text = text.rstrip('?') + '?'
+            formatted_hypotheses.append(text)
+    return formatted_hypotheses
+
 def list_repositories(path):
     try:
         dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
@@ -78,3 +89,23 @@ def list_files(path):
         print(f"The path '{path}' is not a directory.")
     except PermissionError:
         print(f"Permission denied for path '{path}'.")
+
+def draw_umap(n_neighbors=15, min_dist=0.1, n_components=2, metric='euclidean', title=''):
+    fit = umap.UMAP(
+        n_neighbors=n_neighbors,
+        min_dist=min_dist,
+        n_components=n_components,
+        metric=metric
+    )
+    u = fit.fit_transform(data);
+    fig = plt.figure()
+    if n_components == 1:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:,0], range(len(u)), c=data)
+    if n_components == 2:
+        ax = fig.add_subplot(111)
+        ax.scatter(u[:,0], u[:,1], c=data)
+    if n_components == 3:
+        ax = fig.add_subplot(111, projection='3d')
+        ax.scatter(u[:,0], u[:,1], u[:,2], c=data, s=100)
+    plt.title(title, fontsize=18)
