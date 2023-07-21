@@ -11,10 +11,13 @@ from transformers.generation import LogitNormalization
 
 from nltk.util import ngrams
 from collections import Counter
+import json
 
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import StandardScaler
+import umap
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
@@ -76,7 +79,8 @@ class InferencePipeline:
             if not os.path.exists(self.output_dir):
                 os.makedirs(self.output_dir)
 
-            file_path = os.path.join(self.output_dir, f"{self.task}-{num_examples}.txt")
+            model_name = self.parent_model_path.split("/")[-1]
+            file_path = os.path.join(self.output_dir, f"{self.task}-{model_name}.txt")
             with open(file_path, "a") as file: # Change "w" to "a" here
                 for example in dataset:
                     file.write(example.split("Hypothesis: ")[1] + "\n")
@@ -85,21 +89,37 @@ class InferencePipeline:
     
 class EvaluationPipeline:
 
-    def __init__(self, synthetic_dataset: np.array, real_dataset: np.array):
-        config = yaml.safe_load(open("../config.yaml", "r"))
-        self.synthetic_dataset = synthetic_dataset
-        self.real_dataset = real_dataset
-        self.deployment_name= config['openai_deployment_embeddings']
+    def __init__(self, synthetic_dataset_path: str, real_dataset_path: str):
+        config = yaml.safe_load(open("config.yaml", "r"))
+        self.synthetic_dataset_path = synthetic_dataset_path
+        self.real_dataset_path = real_dataset_path
+        self.model = self.synthetic_dataset_path.split("/")[-1].split("hypotheses-")[-1].split(".txt")[0]
+        self.task = self.real_dataset_path.split("/")[-1].split(".")[0] #../data/hypotheses.json should return hypotheses
+        self.synthetic_dataset, self.real_dataset = self.load_datasets()
+        self.deployment_name = config['openai_deployment_embeddings']
         openai.api_key = config['openai_api_key']
         openai.api_base = config['openai_api_base']
         openai.api_type = 'azure'
         openai.api_version = '2023-05-15'
-        # TODO: tokenizer for normalised n-grams
-        # TODO: convex hull calculator for diversity
-        # TODO: KL divergence calculator
-        # TODO: cosine similarity score with real dataset
 
-    @staticmethod
+    def load_datasets(self):
+        with open(self.synthetic_dataset_path, "r") as file:
+            synthetic_dataset = np.array([line.strip() for line in file])
+        with open(self.real_dataset_path, "r") as file:
+            real_dataset = np.array([example['text'].split("Hypothesis: ")[-1] for example in json.load(file)])
+        return synthetic_dataset, real_dataset
+    
+    def set_embeddings(self, local_disk = True):
+        if local_disk:
+            self.synthetic_embeddings = np.load(f"../results/embeddings/{self.task}-{self.model}-synthetic.npy")
+            self.real_embeddings = np.load(f"../results/embeddings/{self.task}-{self.model}-real.npy")
+        else:
+            self.synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+            self.real_embeddings = self.embed_dataset(self.real_dataset)
+            # Save to ../results/embeddings with the names being the task, model and synthetic/real
+            np.save(f"../results/embeddings/{self.task}-{self.model}-synthetic.npy", self.synthetic_embeddings)
+            np.save(f"../results/embeddings/{self.task}-{self.model}-real.npy", self.real_embeddings)
+
     def embed_example(self, example: str):
         response = openai.Embedding.create(
             engine=self.deployment_name,
@@ -115,10 +135,11 @@ class EvaluationPipeline:
     
     ### TRADITIONAL METRICS ###
 
-    def normalised_ngrams(self) -> float:
-        pass
+    def normalised_ngrams(tokenizer, text, n) -> float:
+        """
+        Calculate the normalised count of unique n-grams in a text.
+        """
 
-    def normalized_ngrams(tokenizer, text, n) -> float:
         # Tokenize the text
         tokens = tokenizer.tokenize(text)
         
@@ -128,17 +149,20 @@ class EvaluationPipeline:
         # Count unique n-grams
         unique_ngrams = len(set(generated_ngrams))
         
-        # Return the normalized count of unique n-grams
+        # Return the normalised count of unique n-grams
         return unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
 
-    def convex_hull_area(self) -> float:
+    def convex_hull_area(self, umap_dimensions: int = 2) -> float:
         """
-        Calculate the area of the convex hull of the embeddings of the generated examples.
+        Calculate the area of the convex hull of the embeddings of the synthetic examples.
+        NOTE: the number of synthetic examples should be equal to the number of real examples for constant comparison.
         """
-        embeddings = self.embed_dataset(self.synthetic_dataset)
-        hull = ConvexHull(embeddings)
-        if len(embeddings[0]) == 2: return hull.area
-        elif len(embeddings[0]) > 2: return hull.volume
+        embeddings = self.synthetic_embeddings
+        embeddings = StandardScaler().fit_transform(embeddings)
+        umap_embeddings = umap.UMAP(n_components=umap_dimensions, n_neighbors=min(embeddings.shape[0]-1, 50)).fit_transform(embeddings)
+        hull = ConvexHull(umap_embeddings)
+        if len(umap_embeddings[0]) == 2: return hull.area
+        elif len(umap_embeddings[0]) > 2: return hull.volume
         else: raise ValueError("Points must have at least two dimensions.")
 
     def kl_divergence(self):
@@ -150,13 +174,15 @@ class EvaluationPipeline:
         """
         Calculate the average or centroid cosine similarity between the synthetic and real datasets.
         """
-        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
-        real_embeddings = self.embed_dataset(self.real_dataset)
+        synthetic_embeddings = self.synthetic_embeddings
+        real_embeddings = self.real_embeddings
         if centroid:
             similarities = cosine_similarity(np.mean(synthetic_embeddings, axis=0).reshape(1, -1), 
                                              np.mean(real_embeddings, axis=0).reshape(1, -1))
         else: similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
         return np.mean(similarities)
+    
+
     
     ### NOVEL METRICS ###
     def authenticity_auroc(self):
@@ -211,8 +237,13 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    task = "hypotheses"
-    inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
-                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task)
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=10, save_to_disk=True)
-    print(dataset)
+    synthetic_dataset_path = "../results/hypotheses-falcon-7b.txt"
+    real_dataset_path = "../data/hypotheses.json"
+    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+    # Clear the terminal
+    os.system("clear")
+    pipeline.set_embeddings()
+    print(pipeline.cosine_similarity())
+    print(pipeline.convex_hull_area())
+    
+
