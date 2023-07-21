@@ -212,4 +212,4 @@ for name, module in trainer.model.named_modules():
                 module = module.to(torch.bfloat16)
 
 trainer.train()
-trainer.save_model(f"/g/data/y89/cn1951/falcon-7b-hypotheses-tiny")
+#trainer.save_model(f"/g/data/y89/cn1951/falcon-7b-hypotheses-tiny")
