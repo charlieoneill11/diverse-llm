@@ -9,9 +9,15 @@ from transformers import (LogitsProcessor, LogitsProcessorList,
                           TypicalLogitsWarper)
 from transformers.generation import LogitNormalization
 
+from nltk.util import ngrams
+from collections import Counter
+
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
+import xgboost as xgb
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
 from tqdm import tqdm
 import numpy as np
 import torch
@@ -62,17 +68,18 @@ class InferencePipeline:
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False):
         dataset = []
-        for i in tqdm(range(num_examples)):
-            dataset.append(self.generate_response())
+        pipeline, tokenizer = self.create_pipeline()
+        for _ in tqdm(range(num_examples)):
+            dataset.append(self.generate_response(pipeline, tokenizer))
 
         if save_to_disk:
             if not os.path.exists(self.output_dir):
                 os.makedirs(self.output_dir)
 
             file_path = os.path.join(self.output_dir, f"{self.task}-{num_examples}.txt")
-            with open(file_path, "w") as file:
+            with open(file_path, "a") as file: # Change "w" to "a" here
                 for example in dataset:
-                    file.write(example + "\n")
+                    file.write(example.split("Hypothesis: ")[1] + "\n")
         
         return dataset
     
@@ -111,6 +118,19 @@ class EvaluationPipeline:
     def normalised_ngrams(self) -> float:
         pass
 
+    def normalized_ngrams(tokenizer, text, n) -> float:
+        # Tokenize the text
+        tokens = tokenizer.tokenize(text)
+        
+        # Generate n-grams from the token list
+        generated_ngrams = list(ngrams(tokens, n))
+        
+        # Count unique n-grams
+        unique_ngrams = len(set(generated_ngrams))
+        
+        # Return the normalized count of unique n-grams
+        return unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
+
     def convex_hull_area(self) -> float:
         """
         Calculate the area of the convex hull of the embeddings of the generated examples.
@@ -126,7 +146,10 @@ class EvaluationPipeline:
         real_embeddings = self.embed_dataset(self.real_dataset)
         pass
 
-    def cosine_similarity(self, centroid: bool = False):
+    def cosine_similarity(self, centroid: bool = False) -> float:
+        """
+        Calculate the average or centroid cosine similarity between the synthetic and real datasets.
+        """
         synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
         real_embeddings = self.embed_dataset(self.real_dataset)
         if centroid:
@@ -137,7 +160,25 @@ class EvaluationPipeline:
     
     ### NOVEL METRICS ###
     def authenticity_auroc(self):
-        pass
+        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+        real_embeddings = self.embed_dataset(self.real_dataset)
+
+        # Instantiate XGBoost model and prepare data
+        xgb_model = xgb.XGBClassifier()
+        X = np.concatenate((synthetic_embeddings, real_embeddings))
+        y = np.concatenate((np.zeros(len(synthetic_embeddings)), np.ones(len(real_embeddings))))
+
+        # Split into train test
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+        # Train the model
+        xgb_model.fit(X_train, y_train)
+
+        # Get predictions
+        y_pred = xgb_model.predict(X_test)
+
+        # Calculate AUROC
+        return roc_auc_score(y_test, y_pred)
 
 
     
