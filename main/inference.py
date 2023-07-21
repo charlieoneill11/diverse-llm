@@ -12,6 +12,9 @@ from transformers.generation import LogitNormalization
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
+import xgboost as xgb
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
 from tqdm import tqdm
 import numpy as np
 import torch
@@ -30,11 +33,11 @@ class InferencePipeline:
         self.output_dir = output_dir
         self.task = task
         self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
-        self.max_length = 500 if self.task == "abstract" else 150
+        self.max_length = 500 if self.task == "abstracts" else 150
 
     def create_pipeline(self):
         fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
-                                                                device_map="auto", trust_remote_code=True)
+                                                                device_map="auto", trust_remote_code=True, local_files_only=True)
         tokenizer = AutoTokenizer.from_pretrained(self.parent_model_path)
         pipeline = transformers.pipeline(
             "text-generation",
@@ -46,8 +49,7 @@ class InferencePipeline:
         )
         return pipeline, tokenizer
     
-    def generate_response(self):
-        pipeline, tokenizer = self.create_pipeline()
+    def generate_response(self, pipeline, tokenizer):
 
         sequences = pipeline(
             self.prompt,
@@ -56,14 +58,16 @@ class InferencePipeline:
             top_k=10,
             num_return_sequences=1,
             eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.eos_token_id
         )
 
         return format_output(sequences[0]['generated_text'])
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False):
         dataset = []
-        for i in tqdm(range(num_examples)):
-            dataset.append(self.generate_response())
+        pipeline, tokenizer = self.create_pipeline()
+        for _ in tqdm(range(num_examples)):
+            dataset.append(self.generate_response(pipeline, tokenizer))
 
         if save_to_disk:
             if not os.path.exists(self.output_dir):
@@ -72,7 +76,7 @@ class InferencePipeline:
             file_path = os.path.join(self.output_dir, f"{self.task}-{num_examples}.txt")
             with open(file_path, "w") as file:
                 for example in dataset:
-                    file.write(example + "\n")
+                    file.write(example.split("Hypothesis: ")[1] + "\n")
         
         return dataset
     
@@ -126,7 +130,10 @@ class EvaluationPipeline:
         real_embeddings = self.embed_dataset(self.real_dataset)
         pass
 
-    def cosine_similarity(self, centroid: bool = False):
+    def cosine_similarity(self, centroid: bool = False) -> float:
+        """
+        Calculate the average or centroid cosine similarity between the synthetic and real datasets.
+        """
         synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
         real_embeddings = self.embed_dataset(self.real_dataset)
         if centroid:
@@ -137,7 +144,25 @@ class EvaluationPipeline:
     
     ### NOVEL METRICS ###
     def authenticity_auroc(self):
-        pass
+        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+        real_embeddings = self.embed_dataset(self.real_dataset)
+
+        # Instantiate XGBoost model and prepare data
+        xgb_model = xgb.XGBClassifier()
+        X = np.concatenate((synthetic_embeddings, real_embeddings))
+        y = np.concatenate((np.zeros(len(synthetic_embeddings)), np.ones(len(real_embeddings))))
+
+        # Split into train test
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+        # Train the model
+        xgb_model.fit(X_train, y_train)
+
+        # Get predictions
+        y_pred = xgb_model.predict(X_test)
+
+        # Calculate AUROC
+        return roc_auc_score(y_test, y_pred)
 
 
     
@@ -170,7 +195,8 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    inf_pipe = InferencePipeline(local_model_path="/g/data/y89/cn1951/falcon-7b-abstracts-tiny",
-                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task="hypothesis")
-    hypothesis = inf_pipe.generate_response()
-    print(hypothesis)
+    task = "hypotheses"
+    inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
+                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task)
+    dataset = inf_pipe.generate_synthetic_dataset(num_examples=10, save_to_disk=True)
+    print(dataset)
