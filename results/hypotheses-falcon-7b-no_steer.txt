@@ -59,7 +59,6 @@ Can the Gaia DR1 parallax bias be quantified and eliminated from distance estima
 Can the behavior of the dominant mode in a perturbation series of an arbitrary celestial body be predicted using a finite element method and compared to analytical estimates and observations?
 Can Gaia measurements of proper motions be used to identify and study the dynamical properties of minor objects in the Milky Way, including the sub-centimeter asteroid stream surrounding the globular cluster M13 and the distant stellar stream associated with a former tidal disruption event in the outer disk?
 Did the Gaia-Sausage-Enceladus gas-rich merger induce a starburst, contributing to the chemical enrichment and creating conditions for the formation of star clusters in the local interstellar space?
-What is the most up-to-date and accurate catalogue of classical Cepheids within the Milky Way bulge and disk?
 What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer disc populations vary in terms of their heating and kinematics compared to inner disc populations?
 What are the kinematic constraints on the chemical evolution of the Galactic thin disc using open clusters as probes and what is the role of the spiral arms in the formation of the $\alpha$-enhanced objects?
 What are the kinematics and dynamics of the outer halo, and what are the possible formation scenarios for the low-mass satellite system in the outer halo of the Milky Way?
@@ -76,7 +75,6 @@ Can the dynamics of individual stars be modeled to infer constraints on the stel
 What is the origin of the dominant stellar halo component with high metallicity and retrograde kinematics in the solar neighborhood, and how is it linked to an ancient head-on collision with a large dwarf galaxy?
 What is the formation scenario of Westerlund 2 (Wd2) and can it be explained by either the disruption of a small cluster or the evaporative removal of gas from a massive proto-cluster?
 Can a new methodology consisting of high-dimensional data analysis and a particle spray code be used to identify extra-tidal stars associated with globular clusters and determine their physical parameters, including metallicity and distance?
-Is M62-VLA1 a candidate stellar-mass black hole in a star-forming galactic center?
 Is the outer halo of the Milky Way galaxy fragmented into sub-haloes due to the strong gravitational potential of the inner dark matter mass, and can cosmological simulations separate the fractions of stars originating from each sub-halo and measure the mass of the halo and the sub-halo mass function?
 What is the total mass and density profile of the Milky Way and how is it affected by the presence of a massive Large Magellanic Cloud and unbound stars?
 Can Gaia provide a better understanding of the dynamics of the Galactic disc and open clusters by measuring their orbital parameters, kinematics, and providing a detailed map of the abundance distribution?
@@ -463,7 +461,6 @@ Can the Milky Way halo be probed by studying present-day satellite galaxies and 
 What is the mass of the Milky Way's halo, and what are the constraints on its mass, from the kinematics of globular clusters determined by Gaia DR2?
 Does the massive Galactic cluster, Omega Centauri, harbor an intermediate mass black hole that experiences very little or no braking due to the surrounding gas density?
 Does the Milky Way have an uncommonly quiet merger history that leads to an essentially in-situ bulge and what are the possible explanations for the observed kinematics and chemical properties in the thick and thin disk?
-What is the mass profile of the Milky Way within a certain distance range and how accurate are the estimates?
 What are the possible progenitors, their stellar mass, and supernovae explosion energy of five CEMP-no stars, and how do their chemical abundances and velocity patterns relate to the formation scenario and post-explosion evolution process?
 Could the Galactic globular clusters be associated with the tidal debris resulting from the accretion of dwarf galaxies, and can Gaia DR2 data be used to trace this association?
 Can the use of Gaia EDR3 data with the Bayesian STREAMFINDER algorithm reveal and characterize a vast undiscovered open clusters catalog, including hundreds of thousands of the smallest and faintest objects, and provide a sub-centimetric precision and comprehensive theoretical modeling of the Galactic background light?
@@ -708,7 +705,6 @@ Can the behavior of the dominant spiral mode in a galaxy-scale simulations be ch
 Can the Gaia mission provide a detailed and accurate dynamical model of the Milky Way and shed light on the bimodal galaxy population, while also serving as a platform for future comparison with other data sets and Galactic models?
 Can the use of a neural network trained on Gaia catalogue contents and calibrated on simulated star particles to quantify the quality of a galaxy assembly procedure, and used in combination with other tools, lead to a clearer understanding of the biases present in different galaxy assembly algorithms and provide a consistent and defensible framework for evaluating assembly algorithms?
 Could the bimodal metallicity distribution function (MDF) in the Gaia catalogue be explained by the presence of two populations with different chemical compositions, namely high-$\alpha$/low-metallicity (HAM) and low-$\alpha$/high-metallicity (LAH)?
- ### Background: The Gaia mission is currently?
 Can a data-driven probabilistic method using artificial neural networks be used to identify and quantify the stellar content of old, high-quality stellar surveys, and be applied to estimate the total stellar mass and mass function in the Milky Way?
 How can the metallicity data of globular clusters be used to constrain the distance to the Galactic center, and is there any indication for a change in the constant of proportionality connecting metallicity and distance in the outermost parts of the disk?
 Do Milky Way globular clusters have past associations with the classical dwarf spheroidal galaxies or were they brought in as part of now-disrupted satellite galaxies?
@@ -949,7 +945,6 @@ What orbits are responsible for the phase-space structures observed in the Gaia 
 What is the most accurate dynamical model for the Milky Way disc stellar halo, and how does it constrain the model's parameters and cosmological parameters?
 Can Gaia provide a more complete, accurate, and precise catalog of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, allowing for better understanding of the galaxy's potential and Galactic center properties?
 Do Milky Way globular clusters have past associations with the classical dwarf spheroidal galaxies or were they brought in as part of now-disrupted satellite galaxies?
-Is SGP-S a previously undiscovered open cluster in the Galactic disk?
 Can the Galactic potential be accurately constrained using a family of parametrized distribution functions based on actions and phase-space information from individual stars, while accounting for spatial selection function and uncertainties in position-dependent effects such as natal shocks?
 Is the linear structure of 25 star-forming regions in a slab of Galactic disk a generic feature of star formation in our galaxy, and can it be explained by a model in which the regions are associated with spiral arms?
 What is the most accurate model for tracking chemical evolution in galaxies over time, taking into account delayed reactions and inhomogeneous star formation, and how do different models compare in their predictions for the present-day gas and condensed phases in galaxies?
