@@ -294,9 +294,8 @@ if __name__ == "__main__":
     task = "hypotheses"
     inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
                                  parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=256, save_to_disk=True, batch_size=64)
+    dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
     print(dataset)
-
     # # Define a list of batch sizes you want to test
     # batch_sizes = [8, 16, 32]
 
