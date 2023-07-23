@@ -345,13 +345,11 @@ def batch_timing_evaluation():
         print(f"Running for batch size {batch_size}, num examples = 64")
         dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
 
-def evaluate_model_dataset():
-    synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
-    real_dataset_path = "../data/hypotheses.json"
-    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool = True):
+    pipeline = EvaluationPipeline(task, method, model)
     # Clear the terminal
     os.system("clear")
-    pipeline.set_embeddings(local_disk=True)
+    pipeline.set_embeddings(local_disk=local_disk)
     print(pipeline.cosine_similarity())
     print(pipeline.convex_hull_area())
     tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
