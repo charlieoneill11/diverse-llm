@@ -29,27 +29,41 @@ from torch.utils.data import Dataset
 import yaml
 import os
 import openai
+from dataclasses import dataclass
 
 from utils import format_output
 from main import ContrastiveDecoding
 
-class InferencePipeline:
 
-    def __init__(self, local_model_path: str, parent_model_path: str, task: str, method: str = "no_steer", output_dir: str = "../results"):
-        self.local_model_path = local_model_path
-        self.parent_model_path = parent_model_path
-        self.output_dir = output_dir
+class PipelineBase:
+
+    def __init__(self, task, method, model):
         self.task = task
         self.method = method
-        assert self.method in ["steer", "no_steer", "base"]
-        if task == "hypotheses":
+        self.model = model
+        self.local_model_path = "/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
+        self.parent_model_path = "/g/data/y89/cn1951/{self.model}"
+        self.synthetic_dataset_path = "../results/{self.task}-{self.model}-{self.method}.txt"
+        self.real_dataset_path = "../data/{self.task}.json"
+        self.output_dir = "../results"
+        self._set_attributes()
+    
+    def _set_attributes(self):
+        if self.task == "hypotheses":
             self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
             self.split = "Hypothesis"
-        elif task == "comments":
-            self.prompt = "### Instruction: Generate a toxic social media comment.\n ### Comment:"
+            self.max_length = 100
+        elif self.task == "comments":
+            self.prompt = "### Instruction: Generate a non-toxic social media comment.\n ### Comment:"
             self.split = "Comment"
-        else: pass
-        self.max_length = 500 if self.task == "abstracts" else 100
+            self.max_length = 50
+        else:
+            pass
+
+class InferencePipeline(PipelineBase):
+
+    def __init__(self, task, method, model):
+        super().__init__(task, method, model)
 
     def create_pipeline(self):
         fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
@@ -79,12 +93,12 @@ class InferencePipeline:
 
         return format_output(sequences[0]['generated_text'])
     
-    def format_batch(self, hypotheses_list):
+    def format_batch(hypotheses_list):
         formatted_hypotheses = []
         for hypotheses in hypotheses_list:
             for hypothesis in hypotheses:
                 # Split the generated text on '### Hypothesis:' and take the second part
-                text = hypothesis['generated_text'].split(f'### {self.split}:')[1].strip()
+                text = hypothesis['generated_text'].split('### Hypothesis:')[1].strip()
                 # Remove excess question marks, replace them with just one
                 text = text.rstrip('?') + '?'
                 formatted_hypotheses.append(text)
@@ -136,14 +150,11 @@ class GenerationDataset(Dataset):
     def __getitem__(self, i):
         return self.prompt
     
-class EvaluationPipeline:
+class EvaluationPipeline(PipelineBase):
 
-    def __init__(self, synthetic_dataset_path: str, real_dataset_path: str):
+    def __init__(self, task: str, method: str, model: str):
+        super().__init__(task, method, model))
         config = yaml.safe_load(open("config.yaml", "r"))
-        self.synthetic_dataset_path = synthetic_dataset_path
-        self.real_dataset_path = real_dataset_path
-        self.model = self.synthetic_dataset_path.split("/")[-1].split("hypotheses-")[-1].split(".txt")[0]
-        self.task = self.real_dataset_path.split("/")[-1].split(".")[0] #../data/hypotheses.json should return hypotheses
         self.synthetic_dataset, self.real_dataset = self.load_datasets()
         self.deployment_name = config['openai_deployment_embeddings']
         openai.api_key = config['openai_api_key']
@@ -261,8 +272,6 @@ class EvaluationPipeline:
         else: similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
         return np.mean(similarities)
     
-
-    
     ### NOVEL METRICS ###
     def authenticity_auroc(self):
         synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
@@ -315,30 +324,36 @@ def contrastive_generation():
 
     print(tokenizer.decode(outputs[0]))
 
-if __name__ == "__main__":
-    task = "hypotheses"
-    inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
-                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
-    print(dataset)
-    # # Define a list of batch sizes you want to test
-    # batch_sizes = [8, 16, 32]
+### QUICK RUNS ###
 
-    # # Loop over batch sizes and call your function for each batch size
-    # for batch_size in batch_sizes:
-    #     print(f"Running for batch size {batch_size}, num examples = 64")
-    #     dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
+def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
+    # Create the pipeline
+    pipeline = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+    # Generate the synthetic dataset
+    pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
 
-    synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
-    real_dataset_path = "../data/hypotheses.json"
-    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+def batch_timing_evaluation():
+    inf_pipe = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+
+    # Define a list of batch sizes you want to test
+    batch_sizes = [8, 16, 32]
+
+    # Loop over batch sizes and call your function for each batch size
+    for batch_size in batch_sizes:
+        print(f"Running for batch size {batch_size}, num examples = 64")
+        dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
+
+def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool = True):
+    pipeline = EvaluationPipeline(task, method, model)
     # Clear the terminal
     os.system("clear")
-    pipeline.set_embeddings(local_disk=True)
+    pipeline.set_embeddings(local_disk=local_disk)
     print(pipeline.cosine_similarity())
     print(pipeline.convex_hull_area())
     tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
     print(pipeline.normalised_ngrams(tokenizer, 1))
 
-    
+if __name__ == "__main__":
+    create_dataset()
+
 
