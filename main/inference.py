@@ -43,6 +43,8 @@ class PipelineBase:
         self.model = model
         self.local_model_path = "/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
         self.parent_model_path = "/g/data/y89/cn1951/{self.model}"
+        self.synthetic_dataset_path = "../results/{self.task}-{self.model}-{self.method}.txt"
+        self.real_dataset_path = "../data/{self.task}.json"
         self.output_dir = "../results"
         self._set_attributes()
     
@@ -148,14 +150,11 @@ class GenerationDataset(Dataset):
     def __getitem__(self, i):
         return self.prompt
     
-class EvaluationPipeline:
+class EvaluationPipeline(PipelineBase):
 
-    def __init__(self, synthetic_dataset_path: str, real_dataset_path: str):
+    def __init__(self, task: str, method: str, model: str):
+        super().__init__(task, method, model))
         config = yaml.safe_load(open("config.yaml", "r"))
-        self.synthetic_dataset_path = synthetic_dataset_path
-        self.real_dataset_path = real_dataset_path
-        self.model = self.synthetic_dataset_path.split("/")[-1].split("hypotheses-")[-1].split(".txt")[0]
-        self.task = self.real_dataset_path.split("/")[-1].split(".")[0] #../data/hypotheses.json should return hypotheses
         self.synthetic_dataset, self.real_dataset = self.load_datasets()
         self.deployment_name = config['openai_deployment_embeddings']
         openai.api_key = config['openai_api_key']
@@ -336,7 +335,7 @@ def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int
     pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
 
 def batch_timing_evaluation():
-    pipeline = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+    inf_pipe = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
 
     # Define a list of batch sizes you want to test
     batch_sizes = [8, 16, 32]
