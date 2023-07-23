@@ -92,22 +92,16 @@ def list_files(path):
     except PermissionError:
         print(f"Permission denied for path '{path}'.")
 
-def draw_umap(n_neighbors=15, min_dist=0.1, n_components=2, metric='euclidean', title=''):
-    fit = umap.UMAP(
-        n_neighbors=n_neighbors,
-        min_dist=min_dist,
-        n_components=n_components,
-        metric=metric
-    )
-    u = fit.fit_transform(data);
-    fig = plt.figure()
-    if n_components == 1:
-        ax = fig.add_subplot(111)
-        ax.scatter(u[:,0], range(len(u)), c=data)
-    if n_components == 2:
-        ax = fig.add_subplot(111)
-        ax.scatter(u[:,0], u[:,1], c=data)
-    if n_components == 3:
-        ax = fig.add_subplot(111, projection='3d')
-        ax.scatter(u[:,0], u[:,1], u[:,2], c=data, s=100)
-    plt.title(title, fontsize=18)
+def plot_umap(embedding, hull=None):
+    real_embeddings = embedding[embedding[:, 2] == 0]
+    synthetic_embeddings = embedding[embedding[:, 2] == 1]
+
+    plt.scatter(real_embeddings[:, 0], real_embeddings[:, 1], c="blue", alpha=0.5)
+    plt.scatter(synthetic_embeddings[:, 0], synthetic_embeddings[:, 1], c="red", alpha=0.5)
+    if hull is not None:
+        hull_vertices = hull.vertices
+        plt.plot(embedding[hull_vertices, 0], embedding[hull_vertices, 1], c="green", lw=2)
+
+    plt.xlabel("TSNE dimension 1")
+    plt.ylabel("TSNE dimension 2")
+    plt.show()

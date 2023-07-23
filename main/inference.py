@@ -91,20 +91,16 @@ class InferencePipeline(PipelineBase):
 
         return format_output(sequences[0]['generated_text'])
     
-    def format_batch(self, examples_list):
-        formatted_examples = []
-        for examples in examples_list:
-            for example in examples:
-                # Split the generated text on '### {self.split}:' and take the second part
-                text = example['generated_text'].split(f'### {self.split}:')[1].strip()
-                if self.task == "hypotheses": 
-                    # Remove excess question marks, replace them with just one
-                    text = text.rstrip('?') + '?'
-                if self.task == "comments":
-                    # Make sure each new example only takes up one line
-                    text = text.replace("\n", " ")
-                formatted_examples.append(text)
-        return formatted_examples
+    def format_batch(hypotheses_list):
+        formatted_hypotheses = []
+        for hypotheses in hypotheses_list:
+            for hypothesis in hypotheses:
+                # Split the generated text on '### Hypothesis:' and take the second part
+                text = hypothesis['generated_text'].split('### Hypothesis:')[1].strip()
+                # Remove excess question marks, replace them with just one
+                text = text.rstrip('?') + '?'
+                formatted_hypotheses.append(text)
+        return formatted_hypotheses
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False, batch_size: int = 8):
         """
@@ -332,11 +328,11 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    task = "comments"
-    inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
-                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=8, save_to_disk=True, batch_size=8)
-    print(dataset)
+    # task = "hypotheses"
+    # inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
+    #                              parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
+    # dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
+    # print(dataset)
 
     # # Define a list of batch sizes you want to test
     # batch_sizes = [8, 16, 32]
