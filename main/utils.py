@@ -3,6 +3,8 @@ from transformers import AutoModelForCausalLM
 from huggingface_hub import snapshot_download
 from peft import PeftModel
 import torch
+import umap
+import matplotlib.pyplot as plt
 import os
 
 def download_model_from_hub(repo_id: str, local_dir: str, cache_dir: str):

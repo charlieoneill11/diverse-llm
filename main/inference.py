@@ -29,21 +29,39 @@ from torch.utils.data import Dataset
 import yaml
 import os
 import openai
+from dataclasses import dataclass
 
-from utils import format_output, format_batch
+from utils import format_output
 from main import ContrastiveDecoding
 
-class InferencePipeline:
 
-    def __init__(self, local_model_path: str, parent_model_path: str, task: str, method: str = "no_steer", output_dir: str = "../results"):
-        self.local_model_path = local_model_path
-        self.parent_model_path = parent_model_path
-        self.output_dir = output_dir
+class PipelineBase:
+
+    def __init__(self, task, method, model):
         self.task = task
         self.method = method
-        assert self.method in ["steer", "no_steer", "base"]
-        self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
-        self.max_length = 500 if self.task == "abstracts" else 100
+        self.model = model
+        self.local_model_path = "/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
+        self.parent_model_path = "/g/data/y89/cn1951/{self.model}"
+        self.output_dir = "../results"
+        self._set_attributes()
+    
+    def _set_attributes(self):
+        if self.task == "hypotheses":
+            self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
+            self.split = "Hypothesis"
+            self.max_length = 100
+        elif self.task == "comments":
+            self.prompt = "### Instruction: Generate a non-toxic social media comment.\n ### Comment:"
+            self.split = "Comment"
+            self.max_length = 50
+        else:
+            pass
+
+class InferencePipeline(PipelineBase):
+
+    def __init__(self, task, method, model):
+        super().__init__(task, method, model)
 
     def create_pipeline(self):
         fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
@@ -73,16 +91,20 @@ class InferencePipeline:
 
         return format_output(sequences[0]['generated_text'])
     
-    def format_batch(hypotheses_list):
-        formatted_hypotheses = []
-        for hypotheses in hypotheses_list:
-            for hypothesis in hypotheses:
-                # Split the generated text on '### Hypothesis:' and take the second part
-                text = hypothesis['generated_text'].split('### Hypothesis:')[1].strip()
-                # Remove excess question marks, replace them with just one
-                text = text.rstrip('?') + '?'
-                formatted_hypotheses.append(text)
-        return formatted_hypotheses
+    def format_batch(self, examples_list):
+        formatted_examples = []
+        for examples in examples_list:
+            for example in examples:
+                # Split the generated text on '### {self.split}:' and take the second part
+                text = example['generated_text'].split(f'### {self.split}:')[1].strip()
+                if self.task == "hypotheses": 
+                    # Remove excess question marks, replace them with just one
+                    text = text.rstrip('?') + '?'
+                if self.task == "comments":
+                    # Make sure each new example only takes up one line
+                    text = text.replace("\n", " ")
+                formatted_examples.append(text)
+        return formatted_examples
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False, batch_size: int = 8):
         """
@@ -104,7 +126,7 @@ class InferencePipeline:
                                      eos_token_id=42, pad_token_id=tokenizer.eos_token_id,
                                      batch_size=batch_size), total=len(gen_dataset)):
                 dataset.append(out)
-            dataset = format_batch(dataset)
+            dataset = self.format_batch(dataset)
 
         if save_to_disk:
             if not os.path.exists(self.output_dir):
@@ -310,11 +332,11 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    # task = "hypotheses"
-    # inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
-    #                              parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    # dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
-    # print(dataset)
+    task = "comments"
+    inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
+                                 parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
+    dataset = inf_pipe.generate_synthetic_dataset(num_examples=8, save_to_disk=True, batch_size=8)
+    print(dataset)
 
     # # Define a list of batch sizes you want to test
     # batch_sizes = [8, 16, 32]
@@ -324,16 +346,15 @@ if __name__ == "__main__":
     #     print(f"Running for batch size {batch_size}, num examples = 64")
     #     dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
 
-    synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
-    real_dataset_path = "../data/hypotheses.json"
-    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
-    # Clear the terminal
-    os.system("clear")
-    pipeline.set_embeddings(local_disk=True)
-    print(pipeline.cosine_similarity())
-    print(pipeline.convex_hull_area())
-    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
-    print(pipeline.normalised_ngrams(tokenizer, 1))
-
+    # synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
+    # real_dataset_path = "../data/hypotheses.json"
+    # pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+    # # Clear the terminal
+    # os.system("clear")
+    # pipeline.set_embeddings(local_disk=True)
+    # print(pipeline.cosine_similarity())
+    # print(pipeline.convex_hull_area())
+    # tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
+    # print(pipeline.normalised_ngrams(tokenizer, 1))
     
 
