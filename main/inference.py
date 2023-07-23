@@ -214,16 +214,35 @@ class EvaluationPipeline:
 
     def convex_hull_area(self, umap_dimensions: int = 2) -> float:
         """
-        Calculate the area of the convex hull of the embeddings of the synthetic examples.
+        Calculate the area ratio of the convex hulls of the embeddings of the synthetic and real examples.
         NOTE: the number of synthetic examples should be equal to the number of real examples for constant comparison.
         """
-        embeddings = self.synthetic_embeddings
-        embeddings = StandardScaler().fit_transform(embeddings)
-        umap_embeddings = umap.UMAP(n_components=umap_dimensions, n_neighbors=min(embeddings.shape[0]-1, 50)).fit_transform(embeddings)
-        hull = ConvexHull(umap_embeddings)
-        if len(umap_embeddings[0]) == 2: return hull.area
-        elif len(umap_embeddings[0]) > 2: return hull.volume
-        else: raise ValueError("Points must have at least two dimensions.")
+        # Combine synthetic and real embeddings for UMAP fitting
+        combined_embeddings = np.vstack((self.synthetic_embeddings, self.real_embeddings))
+
+        # Standardize the embeddings
+        combined_embeddings = StandardScaler().fit_transform(combined_embeddings)
+
+        # Reduce dimensionality with UMAP
+        umap_embeddings = umap.UMAP(n_components=umap_dimensions, n_neighbors=min(combined_embeddings.shape[0]-1, 50)).fit_transform(combined_embeddings)
+
+        # Split the UMAP embeddings back into synthetic and real
+        num_synthetic = len(self.synthetic_embeddings)
+        synthetic_umap_embeddings = umap_embeddings[:num_synthetic]
+        real_umap_embeddings = umap_embeddings[num_synthetic:]
+
+        # Compute convex hulls
+        synthetic_hull = ConvexHull(synthetic_umap_embeddings)
+        real_hull = ConvexHull(real_umap_embeddings)
+
+        # Compute and return the ratio of the areas (or volumes)
+        if len(synthetic_umap_embeddings[0]) == 2:
+            return synthetic_hull.area / real_hull.area
+        elif len(synthetic_umap_embeddings[0]) > 2:
+            return synthetic_hull.volume / real_hull.volume
+        else:
+            raise ValueError("Points must have at least two dimensions.")
+
 
     def kl_divergence(self):
         synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
@@ -297,10 +316,10 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    task = "comments"
+    task = "hypotheses"
     inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
                                  parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=True, batch_size=64)
+    dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
     print(dataset)
     # # Define a list of batch sizes you want to test
     # batch_sizes = [8, 16, 32]
@@ -310,16 +329,16 @@ if __name__ == "__main__":
     #     print(f"Running for batch size {batch_size}, num examples = 64")
     #     dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
 
-    # synthetic_dataset_path = "../results/hypotheses-falcon-7b.txt"
-    # real_dataset_path = "../data/hypotheses.json"
-    # pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
-    # # Clear the terminal
-    # os.system("clear")
-    # pipeline.set_embeddings()
-    # print(pipeline.cosine_similarity())
-    # print(pipeline.convex_hull_area())
-    # tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
-    # print(pipeline.normalised_ngrams(tokenizer, 1))
+    synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
+    real_dataset_path = "../data/hypotheses.json"
+    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+    # Clear the terminal
+    os.system("clear")
+    pipeline.set_embeddings(local_disk=True)
+    print(pipeline.cosine_similarity())
+    print(pipeline.convex_hull_area())
+    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
+    print(pipeline.normalised_ngrams(tokenizer, 1))
 
     
 
