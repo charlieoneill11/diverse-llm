@@ -1,12 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LogitsProcessorList, TemperatureLogitsWarper, TopPLogitsWarper
 import transformers
-from transformers import (GPT2Tokenizer, AutoModelForCausalLM,
-                          GPTNeoXForCausalLM, AutoTokenizer)
-from transformers import (LogitsProcessor, LogitsProcessorList,
-                          MinLengthLogitsProcessor, TemperatureLogitsWarper,
-                          TopKLogitsWarper, TopPLogitsWarper,
-                          TypicalLogitsWarper)
 from transformers.generation import LogitNormalization
 
 from nltk.util import ngrams
@@ -29,7 +23,6 @@ from torch.utils.data import Dataset
 import yaml
 import os
 import openai
-from dataclasses import dataclass
 
 from utils import format_output
 from main import ContrastiveDecoding
@@ -41,10 +34,10 @@ class PipelineBase:
         self.task = task
         self.method = method
         self.model = model
-        self.local_model_path = "/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
-        self.parent_model_path = "/g/data/y89/cn1951/{self.model}"
-        self.synthetic_dataset_path = "../results/{self.task}-{self.model}-{self.method}.txt"
-        self.real_dataset_path = "../data/{self.task}.json"
+        self.local_model_path = f"/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
+        self.parent_model_path = f"/g/data/y89/cn1951/{self.model}"
+        self.synthetic_dataset_path = f"../results/{self.task}-{self.model}-{self.method}.txt"
+        self.real_dataset_path = f"../data/{self.task}.json"
         self.output_dir = "../results"
         self._set_attributes()
     
@@ -57,6 +50,10 @@ class PipelineBase:
             self.prompt = "### Instruction: Generate a non-toxic social media comment.\n ### Comment:"
             self.split = "Comment"
             self.max_length = 50
+        elif self.task == "commonsense":
+            self.prompt = "### Instruction: Generate a multiple-choice question that relies on common-sense to answer.\n ### Multiple-choice question:"
+            self.split = "Multiple-choice question"
+            self.max_length = 75
         else:
             pass
 
@@ -93,16 +90,20 @@ class InferencePipeline(PipelineBase):
 
         return format_output(sequences[0]['generated_text'])
     
-    def format_batch(hypotheses_list):
-        formatted_hypotheses = []
-        for hypotheses in hypotheses_list:
-            for hypothesis in hypotheses:
+    def format_batch(self, examples_list):
+        formatted_examples = []
+        for examples in examples_list:
+            for example in examples:
                 # Split the generated text on '### Hypothesis:' and take the second part
-                text = hypothesis['generated_text'].split('### Hypothesis:')[1].strip()
-                # Remove excess question marks, replace them with just one
-                text = text.rstrip('?') + '?'
-                formatted_hypotheses.append(text)
-        return formatted_hypotheses
+                text = example['generated_text'].split(f'### {self.split}:')[1].strip()
+                if self.task == "hypotheses":
+                    # Remove excess question marks, replace them with just one
+                    text = text.rstrip('?') + '?'
+                elif self.task == "commonsense":
+                    # Remove everything after the E. Question ... i.e. remove F. -> onwards if it exists
+                    text = text.split("F.")[0]
+                formatted_examples.append(text)
+        return formatted_examples
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False, batch_size: int = 8):
         """
@@ -118,10 +119,15 @@ class InferencePipeline(PipelineBase):
 
         else:
             gen_dataset = GenerationDataset(num_examples=num_examples, prompt=self.prompt)
-            pipeline.tokenizer.pad_token_id = 42 # EOS token is '?'
+            if self.task == "hypotheses":
+                pipeline.tokenizer.pad_token_id = 42 # EOS token is '?'
+                end_token = 42
+            else:
+                pipeline.tokenizer.pad_token_id = tokenizer.eos_token_id
+                end_token = tokenizer.eos_token_id
             for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, 
                                      do_sample=True, top_k=10, num_return_sequences=1,
-                                     eos_token_id=42, pad_token_id=tokenizer.eos_token_id,
+                                     eos_token_id=end_token, pad_token_id=end_token,
                                      batch_size=batch_size), total=len(gen_dataset)):
                 dataset.append(out)
             dataset = self.format_batch(dataset)
@@ -153,7 +159,7 @@ class GenerationDataset(Dataset):
 class EvaluationPipeline(PipelineBase):
 
     def __init__(self, task: str, method: str, model: str):
-        super().__init__(task, method, model))
+        super().__init__(task, method, model)
         config = yaml.safe_load(open("config.yaml", "r"))
         self.synthetic_dataset, self.real_dataset = self.load_datasets()
         self.deployment_name = config['openai_deployment_embeddings']
@@ -202,7 +208,7 @@ class EvaluationPipeline(PipelineBase):
 
         # Concatenate the text from the synthetic dataset
         synthetic_text = " ".join(self.synthetic_dataset)
-        real_text = " ".join(self.real_dataset)
+        real_text = " ".join(self.real_dataset)[:len(synthetic_text)]
 
         n_grams_list = []
 
@@ -330,7 +336,7 @@ def contrastive_generation():
 
 def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
     # Create the pipeline
-    pipeline = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+    pipeline = InferencePipeline(task="commonsense", method="no_steer", model="falcon-7b")
     # Generate the synthetic dataset
     pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
 
@@ -343,7 +349,7 @@ def batch_timing_evaluation():
     # Loop over batch sizes and call your function for each batch size
     for batch_size in batch_sizes:
         print(f"Running for batch size {batch_size}, num examples = 64")
-        dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
+        _ = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
 
 def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool = True):
     pipeline = EvaluationPipeline(task, method, model)
@@ -356,7 +362,6 @@ def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool 
     print(pipeline.normalised_ngrams(tokenizer, 1))
 
 if __name__ == "__main__":
-    create_dataset()
-
+    create_dataset(num_examples=992, save_to_disk=True, batch_size=8)
     
 

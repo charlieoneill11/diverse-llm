@@ -50,7 +50,7 @@ class ScriptArguments:
         },
     )
     dataset_name: Optional[str] = field(
-        default="../data/comments.json",
+        default="../data/commonsense.json",
         metadata={"help": "The preference dataset to use."},
     )
     use_4bit: Optional[bool] = field(
@@ -157,7 +157,7 @@ def create_and_prepare_model(args):
 
 
 training_arguments = TrainingArguments(
-    output_dir="../models/comments",
+    output_dir="../models/commonsense",
     # push_to_hub=False,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
@@ -204,4 +204,3 @@ for name, module in trainer.model.named_modules():
                 module = module.to(torch.bfloat16)
 
 trainer.train()
-#trainer.save_model(f"/g/data/y89/cn1951/falcon-7b-hypotheses-tiny")
