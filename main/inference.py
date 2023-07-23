@@ -272,6 +272,8 @@ class EvaluationPipeline(PipelineBase):
         else: similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
         return np.mean(similarities)
     
+
+    
     ### NOVEL METRICS ###
     def authenticity_auroc(self):
         synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
@@ -356,4 +358,5 @@ def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool 
 if __name__ == "__main__":
     create_dataset()
 
+    
 
