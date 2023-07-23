@@ -327,30 +327,36 @@ def contrastive_generation():
 
     print(tokenizer.decode(outputs[0]))
 
+### QUICK RUNS ###
+
+def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
+    # Create the pipeline
+    pipeline = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+    # Generate the synthetic dataset
+    pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
+
+def batch_timing_evaluation():
+    pipeline = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
+
+    # Define a list of batch sizes you want to test
+    batch_sizes = [8, 16, 32]
+
+    # Loop over batch sizes and call your function for each batch size
+    for batch_size in batch_sizes:
+        print(f"Running for batch size {batch_size}, num examples = 64")
+        dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
+
+def evaluate_model_dataset():
+    synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
+    real_dataset_path = "../data/hypotheses.json"
+    pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
+    # Clear the terminal
+    os.system("clear")
+    pipeline.set_embeddings(local_disk=True)
+    print(pipeline.cosine_similarity())
+    print(pipeline.convex_hull_area())
+    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
+    print(pipeline.normalised_ngrams(tokenizer, 1))
+
 if __name__ == "__main__":
-    # task = "hypotheses"
-    # inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
-    #                              parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    # dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
-    # print(dataset)
-
-    # # Define a list of batch sizes you want to test
-    # batch_sizes = [8, 16, 32]
-
-    # # Loop over batch sizes and call your function for each batch size
-    # for batch_size in batch_sizes:
-    #     print(f"Running for batch size {batch_size}, num examples = 64")
-    #     dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
-
-    # synthetic_dataset_path = "../results/hypotheses-falcon-7b-no_steer.txt"
-    # real_dataset_path = "../data/hypotheses.json"
-    # pipeline = EvaluationPipeline(synthetic_dataset_path, real_dataset_path)
-    # # Clear the terminal
-    # os.system("clear")
-    # pipeline.set_embeddings(local_disk=True)
-    # print(pipeline.cosine_similarity())
-    # print(pipeline.convex_hull_area())
-    # tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
-    # print(pipeline.normalised_ngrams(tokenizer, 1))
-    
-
+    create_dataset()
