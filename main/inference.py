@@ -30,7 +30,7 @@ import yaml
 import os
 import openai
 
-from utils import format_output, format_batch
+from utils import format_output
 from main import ContrastiveDecoding
 
 class InferencePipeline:
@@ -42,7 +42,13 @@ class InferencePipeline:
         self.task = task
         self.method = method
         assert self.method in ["steer", "no_steer", "base"]
-        self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
+        if task == "hypotheses":
+            self.prompt = "### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:"
+            self.split = "Hypothesis"
+        elif task == "comments":
+            self.prompt = "### Instruction: Generate a toxic social media comment.\n ### Comment:"
+            self.split = "Comment"
+        else: pass
         self.max_length = 500 if self.task == "abstracts" else 100
 
     def create_pipeline(self):
@@ -73,12 +79,12 @@ class InferencePipeline:
 
         return format_output(sequences[0]['generated_text'])
     
-    def format_batch(hypotheses_list):
+    def format_batch(self, hypotheses_list):
         formatted_hypotheses = []
         for hypotheses in hypotheses_list:
             for hypothesis in hypotheses:
                 # Split the generated text on '### Hypothesis:' and take the second part
-                text = hypothesis['generated_text'].split('### Hypothesis:')[1].strip()
+                text = hypothesis['generated_text'].split(f'### {self.split}:')[1].strip()
                 # Remove excess question marks, replace them with just one
                 text = text.rstrip('?') + '?'
                 formatted_hypotheses.append(text)
@@ -104,7 +110,7 @@ class InferencePipeline:
                                      eos_token_id=42, pad_token_id=tokenizer.eos_token_id,
                                      batch_size=batch_size), total=len(gen_dataset)):
                 dataset.append(out)
-            dataset = format_batch(dataset)
+            dataset = self.format_batch(dataset)
 
         if save_to_disk:
             if not os.path.exists(self.output_dir):
@@ -291,10 +297,10 @@ def contrastive_generation():
     print(tokenizer.decode(outputs[0]))
 
 if __name__ == "__main__":
-    task = "hypotheses"
+    task = "comments"
     inf_pipe = InferencePipeline(local_model_path=f"/g/data/y89/cn1951/falcon-7b-{task}-tiny",
                                  parent_model_path="/g/data/y89/cn1951/falcon-7b", task=task, method="no_steer")
-    dataset = inf_pipe.generate_synthetic_dataset(num_examples=612, save_to_disk=True, batch_size=64)
+    dataset = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=True, batch_size=64)
     print(dataset)
     # # Define a list of batch sizes you want to test
     # batch_sizes = [8, 16, 32]

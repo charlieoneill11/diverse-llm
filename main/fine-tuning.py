@@ -50,7 +50,7 @@ class ScriptArguments:
         },
     )
     dataset_name: Optional[str] = field(
-        default="../data/hypotheses.json",
+        default="../data/comments.json",
         metadata={"help": "The preference dataset to use."},
     )
     use_4bit: Optional[bool] = field(
@@ -97,7 +97,7 @@ class ScriptArguments:
         default="constant",
         metadata={"help": "Learning rate schedule. Constant a bit better than cosine, and has advantage for analysis"},
     )
-    max_steps: int = field(default=1000, metadata={"help": "How many optimizer update steps to take"})
+    max_steps: int = field(default=2000, metadata={"help": "How many optimizer update steps to take"})
     warmup_ratio: float = field(default=0.03, metadata={"help": "Fraction of steps to do a warmup for"})
     group_by_length: bool = field(
         default=True,
@@ -105,7 +105,7 @@ class ScriptArguments:
             "help": "Group sequences into batches with same length. Saves memory and speeds up training considerably."
         },
     )
-    save_steps: int = field(default=500, metadata={"help": "Save checkpoint every X updates steps."})
+    save_steps: int = field(default=1000, metadata={"help": "Save checkpoint every X updates steps."})
     logging_steps: int = field(default=10, metadata={"help": "Log every X updates steps."})
 
 
@@ -157,7 +157,7 @@ def create_and_prepare_model(args):
 
 
 training_arguments = TrainingArguments(
-    output_dir="../models",
+    output_dir="../models/comments",
     # push_to_hub=False,
     per_device_train_batch_size=script_args.per_device_train_batch_size,
     gradient_accumulation_steps=script_args.gradient_accumulation_steps,
@@ -180,20 +180,12 @@ model.config.use_cache = False
 # Load the abstracts dataset by default
 dataset = load_dataset("json", data_files=script_args.dataset_name, split="train")
 
-def formatting_prompts_func(examples):
-    output_texts = []
-    for i in range(len(examples['prompt'])):
-        text = f"### Instruction: {examples['prompt'][i]}\n ### Hypothesis: {examples['completion'][i]}"
-        output_texts.append(text)
-    return output_texts
-
 trainer = SFTTrainer(
     model=model,
     train_dataset=dataset,
     peft_config=peft_config,
     dataset_text_field="text",
     max_seq_length=script_args.max_seq_length,
-    formatting_func=formatting_prompts_func,
     tokenizer=tokenizer,
     args=training_arguments,
     packing=script_args.packing,
