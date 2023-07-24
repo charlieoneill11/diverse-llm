@@ -6,6 +6,7 @@ from transformers.generation import LogitNormalization
 from nltk.util import ngrams
 from collections import Counter
 import json
+import random
 
 import torch.nn.functional as F
 from scipy.spatial import ConvexHull
@@ -25,7 +26,7 @@ import os
 import openai
 
 from utils import format_output
-from main import ContrastiveDecoding
+from steer import STEER
 
 
 class PipelineBase:
@@ -94,16 +95,21 @@ class InferencePipeline(PipelineBase):
         formatted_examples = []
         for examples in examples_list:
             for example in examples:
-                # Split the generated text on '### Hypothesis:' and take the second part
-                text = example['generated_text'].split(f'### {self.split}:')[1].strip()
-                if self.task == "hypotheses":
-                    # Remove excess question marks, replace them with just one
-                    text = text.rstrip('?') + '?'
-                elif self.task == "commonsense":
-                    # Remove everything after the E. Question ... i.e. remove F. -> onwards if it exists
-                    text = text.split("F.")[0]
+                text = self.format_example(example, batch=True)
                 formatted_examples.append(text)
         return formatted_examples
+    
+    def format_example(self, example, batch=False):
+        # Split the generated text on '### Hypothesis:' and take the second part
+        if batch: text = example['generated_text'].split(f'{self.split}:')[1].strip()
+        else: text = example.split(f'{self.split}:')[1].strip()
+        if self.task == "hypotheses":
+            # Remove excess question marks, replace them with just one
+            text = text.rstrip('?') + '?'
+        elif self.task == "commonsense":
+            # Remove everything after the E. Question ... i.e. remove F. -> onwards if it exists
+            text = text.split("F.")[0]
+        return text
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False, batch_size: int = 8):
         """
@@ -169,10 +175,14 @@ class EvaluationPipeline(PipelineBase):
         openai.api_version = '2023-05-15'
 
     def load_datasets(self):
-        with open(self.synthetic_dataset_path, "r") as file:
-            synthetic_dataset = np.array([line.strip() for line in file])
+        if self.task == "commonsense":
+            with open("../results/commonsense-falcon-7b-no_steer.txt") as file:
+                synthetic_dataset = np.array(["Which "+line.strip() for line in file.read().split("Which")[:-1]])
+        else:
+            with open(self.synthetic_dataset_path, "r") as file:
+                synthetic_dataset = np.array([line.strip() for line in file])
         with open(self.real_dataset_path, "r") as file:
-            real_dataset = np.array([example['text'].split("Hypothesis: ")[-1] for example in json.load(file)])
+            real_dataset = np.array([example['text'].split(f"{self.split}: ")[-1] for example in json.load(file)])
         return synthetic_dataset, real_dataset
     
     def set_embeddings(self, local_disk = True):
@@ -301,36 +311,136 @@ class EvaluationPipeline(PipelineBase):
 
         # Calculate AUROC
         return roc_auc_score(y_test, y_pred)
-
-
     
-def contrastive_generation():
-    fine_tuned_model_path = "/g/data/y89/cn1951/falcon-7b-abstracts-tiny"
+class STEERPipeline(InferencePipeline):
+
+    def __init__(self, task, method, model, gamma=0.2, eta=0.2, num_neg_prompts=5):
+        super().__init__(task, method, model)
+        self.gamma = gamma
+        self.eta = eta
+        self.num_neg_prompts = num_neg_prompts
+        self.base_model_path = self.parent_model_path
+        with open(self.real_dataset_path, "r") as file:
+            self.running_examples = list([example['text'].split(f"{self.split}: ")[-1] for example in json.load(file)])
+
+    def create_pipeline(self):
+        fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
+                                                                device_map="auto", trust_remote_code=True, local_files_only=True)
+        base_model = AutoModelForCausalLM.from_pretrained(self.base_model_path, torch_dtype=torch.bfloat16, 
+                                                          device_map="auto", trust_remote_code=True, local_files_only=True)
+        tokenizer = AutoTokenizer.from_pretrained(self.parent_model_path)
+        
+        return base_model, fine_tuned_model, tokenizer
+
+    def generate_negative_prompt(self, tokenizer):
+        neg_examples = random.sample(self.running_examples, self.num_neg_prompts)
+        neg_examples = ' '.join(neg_examples)
+        return tokenizer(neg_examples, return_tensors='pt')['input_ids'].to('cuda')
+
+    def generate_response(self, base_model, fine_tuned_model, tokenizer):
+        neg_prompt = self.generate_negative_prompt(tokenizer)
+
+        prompt_tensor = tokenizer(self.prompt, return_tensors='pt').to('cuda')
+        
+        sequences = fine_tuned_model.generate(
+            input_ids=prompt_tensor['input_ids'],
+            attention_mask=prompt_tensor['attention_mask'],
+            max_new_tokens=80,
+            eos_token_id=42,
+            pad_token_id = tokenizer.eos_token_id,
+            logits_processor=LogitsProcessorList([
+                STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
+                      uncond=neg_prompt, model=fine_tuned_model),
+            ]),
+            do_sample=True,
+            top_k=10,
+            num_return_sequences=1,
+        )
+
+        decoded_sequence = format_output(tokenizer.decode(sequences[0]))
+        self.running_examples.append(decoded_sequence)
+
+        return decoded_sequence
+    
+    def generate_synthetic_dataset(self, num_examples: int = 10, save_to_disk: bool = False, batch_size: int = 8):
+        """
+        NOTE: batch_size = 32 seems to perform the fastest.
+        """
+        dataset = []
+        base_model, fine_tuned_model, tokenizer = self.create_pipeline()
+
+        # Just do it sequentially
+        if batch_size >= 0:
+            for _ in tqdm(range(num_examples)):
+                example = self.generate_response(base_model, fine_tuned_model, tokenizer)
+                dataset.append(self.format_example(example, batch=False))
+
+        else:
+            texts = [self.prompt]*10
+            encoding = tokenizer(texts, padding=True, return_tensors='pt').to('cuda')
+            with torch.no_grad():
+                generated_ids = fine_tuned_model.generate(
+                                    input_ids=encoding['input_ids'],
+                                    attention_mask=encoding['attention_mask'],
+                                    max_new_tokens=80,
+                                    eos_token_id=42,
+                                    pad_token_id = tokenizer.eos_token_id,
+                                    logits_processor=LogitsProcessorList([
+                                        STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
+                                            uncond=neg_prompt, model=fine_tuned_model),
+                                    ]),
+                                    do_sample=True,
+                                    top_k=10,
+                                    num_return_sequences=1,
+                                )
+            generated_texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+            dataset.append(generated_texts)
+
+        if save_to_disk:
+            if not os.path.exists(self.output_dir):
+                os.makedirs(self.output_dir)
+
+            model_name = self.parent_model_path.split("/")[-1]
+            file_path = os.path.join(self.output_dir, f"{self.task}-{model_name}-{self.method}.txt")
+            with open(file_path, "a") as file:
+                for example in dataset:
+                    file.write(example + "\n")
+        
+        return dataset
+    
+def steer_generation(gamma: float = 0.2, eta = 0.2):
+    fine_tuned_model_path = "/g/data/y89/cn1951/falcon-7b-hypotheses-tiny"
     base_model_path = "/g/data/y89/cn1951/falcon-7b"
 
     tokenizer = AutoTokenizer.from_pretrained(base_model_path)
 
-    base_model = AutoModelForCausalLM.from_pretrained(base_model_path, trust_remote_code=True)
-    fine_tuned_model = AutoModelForCausalLM.from_pretrained(fine_tuned_model_path, trust_remote_code=True)
+    base_model = AutoModelForCausalLM.from_pretrained(base_model_path, torch_dtype=torch.bfloat16, 
+                                                      device_map="auto", trust_remote_code=True, local_files_only=True)
+    fine_tuned_model = AutoModelForCausalLM.from_pretrained(fine_tuned_model_path, torch_dtype=torch.bfloat16, 
+                                                            device_map="auto", trust_remote_code=True, local_files_only=True)
     
     prompt = tokenizer("### Instruction: Generate a scientific hypothesis about astronomy in the style of an Arxiv paper.\n ### Hypothesis:", return_tensors='pt')
     
-    device='cuda:0'
-    base_model.to(device)
-    fine_tuned_model.to(device)
+    # You need to define a negative prompt.
+    neg_prompt = tokenizer("What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?", return_tensors='pt')['input_ids']
+
     outputs = fine_tuned_model.generate(
-        input_ids=prompt['input_ids'].to(device),
-        attention_mask=prompt['attention_mask'].to(device),
-        max_new_tokens=125,
+        input_ids=prompt['input_ids'].to('cuda'),
+        # temperature=0.01,
+        attention_mask=prompt['attention_mask'].to('cuda'),
+        max_new_tokens=80,
+        eos_token_id=42, pad_token_id = tokenizer.eos_token_id,
         logits_processor=LogitsProcessorList([
-            ContrastiveDecoding(gamma=1.5, base_model=base_model, fine_tuned_model=fine_tuned_model),
-            TemperatureLogitsWarper(0.8),
-            TopPLogitsWarper(0.95),
+            STEER(gamma=gamma, eta=eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
+                  uncond=neg_prompt.to('cuda'), model=fine_tuned_model),
         ]),
         do_sample=True,
+        top_k=10,
+        num_return_sequences=1,
     )
 
     print(tokenizer.decode(outputs[0]))
+
 
 ### QUICK RUNS ###
 
@@ -339,17 +449,6 @@ def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int
     pipeline = InferencePipeline(task="commonsense", method="no_steer", model="falcon-7b")
     # Generate the synthetic dataset
     pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
-
-def batch_timing_evaluation():
-    inf_pipe = InferencePipeline(task="comments", method="no_steer", model="falcon-7b")
-
-    # Define a list of batch sizes you want to test
-    batch_sizes = [8, 16, 32]
-
-    # Loop over batch sizes and call your function for each batch size
-    for batch_size in batch_sizes:
-        print(f"Running for batch size {batch_size}, num examples = 64")
-        _ = inf_pipe.generate_synthetic_dataset(num_examples=64, save_to_disk=False, batch_size=batch_size)
 
 def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool = True):
     pipeline = EvaluationPipeline(task, method, model)
@@ -362,6 +461,6 @@ def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool 
     print(pipeline.normalised_ngrams(tokenizer, 1))
 
 if __name__ == "__main__":
-    create_dataset(num_examples=992, save_to_disk=True, batch_size=8)
-    
-
+    steer_pipe = STEERPipeline(task="hypotheses", method="steer", model="falcon-7b")
+    dataset = steer_pipe.generate_synthetic_dataset(num_examples=90, save_to_disk=True)
+    print(dataset)

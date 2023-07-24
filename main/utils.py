@@ -6,6 +6,10 @@ import torch
 import umap
 import matplotlib.pyplot as plt
 import os
+from huggingface_hub import create_repo
+import numpy as np
+from huggingface_hub import snapshot_download
+from datasets import disable_caching
 
 def download_model_from_hub(repo_id: str, local_dir: str, cache_dir: str):
     snapshot_download(repo_id=repo_id, local_dir=local_dir, cache_dir=cache_dir)
@@ -105,3 +109,25 @@ def plot_umap(embedding, hull=None):
     plt.xlabel("TSNE dimension 1")
     plt.ylabel("TSNE dimension 2")
     plt.show()
+
+def upload():
+    # from huggingface_hub import login
+
+    # login("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")
+
+    # Load the base Falcon-7B model
+    print("Loading base model.")
+    model = AutoModelForCausalLM.from_pretrained(
+        "/g/data/y89/cn1951/falcon-40b",
+        torch_dtype=torch.bfloat16,
+        device_map="auto",
+        trust_remote_code=True,
+    )
+    # Load our fine-tuned model
+    model = PeftModel.from_pretrained(model, f"/g/data/y89/cn1951/falcon-40b-hypotheses-tiny")
+    model = model.merge_and_unload()
+    model.save_pretrained(save_directory="/g/data/y89/cn1951/falcon-40b-hypotheses-tiny")
+
+def download():
+    directory = "/g/data/y89/cn1951"
+    snapshot_download(repo_id="EleutherAI/gpt-neo-1.3B", local_dir=directory+"/gpt-neo-1.3B", cache_dir=directory)
