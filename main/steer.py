@@ -48,21 +48,24 @@ class NegativePrompting(LogitsProcessor):
 
     def __call__(self, input_ids, scores):
         scores = F.log_softmax(scores, dim=-1)
-        # if self.eta == 0.0: return scores
+        if self.eta == 0.0: return scores
 
-        if self.out is None:
-            self.out = self.model(self.uncond, use_cache=True)
-        else:
-            self.out = self.model(
-                input_ids[:, -1:],
-                use_cache=True,
-                past_key_values=self.out.past_key_values,
-            )
+        self.out = self.model(self.uncond, use_cache=True)
+
+        # if self.out is None:
+        #     self.out = self.model(self.uncond, use_cache=True)
+        # else:
+        #     self.out = self.model(
+        #         input_ids[:, -1:],
+        #         use_cache=True,
+        #         past_key_values=self.out.past_key_values,
+        #     )
+    
         unconditional_logits = F.log_softmax(self.out.logits[0][-1:], dim=-1)
         return scores - self.eta * unconditional_logits
 
 class STEER(LogitsProcessor):
-    def __init__(self, gamma, eta, base_model, fine_tuned_model, uncond, model):
+    def __init__(self, gamma, eta, base_model, fine_tuned_model, uncond):
         self.contrastive_decoding = ContrastiveDecoding(gamma, base_model, fine_tuned_model)
         self.negative_prompting = NegativePrompting(uncond, fine_tuned_model, eta)
 
