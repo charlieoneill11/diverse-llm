@@ -387,8 +387,8 @@ class STEERPipeline(InferencePipeline):
                                     pad_token_id = tokenizer.eos_token_id,
                                     logits_processor=LogitsProcessorList([
                                         STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
-                                            uncond=neg_prompt, model=fine_tuned_model),
-                                    ]),
+                                              uncond=self.generate_negative_prompt(tokenizer), model=fine_tuned_model),
+                                        ]),
                                     do_sample=True,
                                     top_k=10,
                                     num_return_sequences=1,
@@ -462,5 +462,5 @@ def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool 
 
 if __name__ == "__main__":
     steer_pipe = STEERPipeline(task="hypotheses", method="steer", model="falcon-7b")
-    dataset = steer_pipe.generate_synthetic_dataset(num_examples=90, save_to_disk=True)
+    dataset = steer_pipe.generate_synthetic_dataset(num_examples=105, save_to_disk=True)
     print(dataset)
