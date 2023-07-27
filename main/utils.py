@@ -3,13 +3,59 @@ from transformers import AutoModelForCausalLM
 from huggingface_hub import snapshot_download
 from peft import PeftModel
 import torch
-import umap
 import matplotlib.pyplot as plt
 import os
 from huggingface_hub import create_repo
 import numpy as np
+import yaml
 from huggingface_hub import snapshot_download
-from datasets import disable_caching
+import openai
+
+from sklearn.metrics.pairwise import cosine_similarity
+from nltk.util import ngrams
+
+def normalised_ngrams(synthetic_dataset, real_dataset, tokenizer, n) -> float:
+    synthetic_text = " ".join(synthetic_dataset)
+    real_text = " ".join(real_dataset)[:len(synthetic_text)]
+
+    n_grams_list = []
+
+    for text in [synthetic_text, real_text]:
+        tokens = tokenizer.tokenize(text)
+        generated_ngrams = list(ngrams(tokens, n))
+        unique_ngrams = len(set(generated_ngrams))
+        n_grams_list.append(unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0)
+    
+    return {'synthetic': n_grams_list[0], 'real': n_grams_list[1]}
+
+
+def compute_cosine_similarity(synthetic_embeddings, real_embeddings, centroid: bool = False) -> float:
+    if centroid:
+        similarities = cosine_similarity(np.mean(synthetic_embeddings, axis=0).reshape(1, -1), 
+                                         np.mean(real_embeddings, axis=0).reshape(1, -1))
+    else: 
+        similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
+    
+    return np.mean(similarities)
+
+def save_dataset_to_disk(output_dir, dataset, task, model, method):
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    file_path = os.path.join(output_dir, f"{task}-{model}-{method}.txt")
+    with open(file_path, "a") as file:
+        for example in dataset:
+            file.write(example + "\n")
+
+def setup_openai():
+    config = yaml.safe_load(open("config.yaml", "r"))
+    deployment_name = config['openai_deployment_embeddings']
+    openai.api_key = config['openai_api_key']
+    openai.api_base = config['openai_api_base']
+    openai.api_type = 'azure'
+    openai.api_version = '2023-05-15'
+    return deployment_name
 
 def download_model_from_hub(repo_id: str, local_dir: str, cache_dir: str):
     snapshot_download(repo_id=repo_id, local_dir=local_dir, cache_dir=cache_dir)

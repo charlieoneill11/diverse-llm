@@ -1,5 +1,12 @@
 main/__pycache__
 main/.ipynb_checkpoints
 main/wandb
+results/embeddings
+data/archive
+data/commonsense
+data/jigsaw
 models
+paper
 main/config.yaml
+main/dev.py
+main/*.ipynb

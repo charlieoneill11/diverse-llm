@@ -1,39 +1,31 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
-from transformers import LogitsProcessorList, TemperatureLogitsWarper, TopPLogitsWarper
+from transformers import LogitsProcessorList
 import transformers
-from transformers.generation import LogitNormalization
 
-from nltk.util import ngrams
-from collections import Counter
 import json
 import random
-import time
-
-import torch.nn.functional as F
-from scipy.spatial import ConvexHull
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import StandardScaler
-import xgboost as xgb
-import umap
-from sklearn.model_selection import train_test_split, KFold
-from sklearn.metrics import roc_auc_score, accuracy_score
 from tqdm import tqdm
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-import yaml
-import os
+from dataclasses import dataclass
 import openai
 
-from utils import format_output
+from utils import setup_openai, normalised_ngrams, compute_cosine_similarity, save_dataset_to_disk
 from steer import STEER
+
+@dataclass
+class Experiment:
+    task: str
+    method: str
+    model: str
 
 class PipelineBase:
 
-    def __init__(self, task, method, model):
-        self.task = task
-        self.method = method
-        self.model = model
+    def __init__(self, experiment: Experiment):
+        self.task = experiment.task
+        self.method = experiment.method
+        self.model = experiment.model
         self.local_model_path = f"/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
         self.parent_model_path = f"/g/data/y89/cn1951/{self.model}"
         self.synthetic_dataset_path = f"../results/{self.task}-{self.model}-{self.method}.txt"
@@ -57,10 +49,47 @@ class PipelineBase:
         else:
             pass
 
+class InferenceTracker(PipelineBase):
+
+    def __init__(self, experiment: Experiment):
+        super().__init__(experiment)
+        self._set_embeddings()
+        self.synthetic_dataset = []
+        self.synthetic_embeddings = []
+        self.metrics = {
+            'normalised_ngrams': [],
+            'cosine_similarity': [],
+        }
+        self.deployment_name = setup_openai()
+
+    def _set_embeddings(self):
+        self.real_embeddings = np.load(f"../results/embeddings/{self.task}-{self.model}-{self.method}-real.npy")
+
+    def add_synthetic_example(self, example: str):
+        self.synthetic_dataset.append(example)
+        self.synthetic_embeddings.append(self.embed_example(example))
+        self.metrics['normalised_ngrams'].append(self.normalised_ngrams(n=3))
+        self.metrics['cosine_similarity'].append(self.cosine_similarity())
+
+    def embed_example(self, example: str):
+        response = openai.Embedding.create(
+            engine=self.deployment_name,
+            input=example,
+        )
+        return response['data'][0]['embedding']
+    
+    def cosine_similarity(self, centroid: bool = False) -> float:
+        return compute_cosine_similarity(self.synthetic_embeddings, self.real_embeddings, centroid)
+
+    def normalised_ngrams(self, n = 3) -> float:
+        tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
+        return normalised_ngrams(self.synthetic_dataset, self.real_dataset, tokenizer, n)
+
 class InferencePipeline(PipelineBase):
 
-    def __init__(self, task, method, model):
-        super().__init__(task, method, model)
+    def __init__(self, experiment: Experiment):
+        super().__init__(experiment)
+        self.inf_tracker = InferenceTracker(experiment)
 
     def create_pipeline(self):
         fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
@@ -88,7 +117,7 @@ class InferencePipeline(PipelineBase):
             pad_token_id=tokenizer.eos_token_id
         )
 
-        return format_output(sequences[0]['generated_text'])
+        return self.format_example(sequences[0]['generated_text'], batch=False)
     
     def format_batch(self, examples_list):
         formatted_examples = []
@@ -126,7 +155,9 @@ class InferencePipeline(PipelineBase):
         if batch_size == 0:
             # Just do it sequentially
             for _ in tqdm(range(num_examples)):
-                dataset.append(self.generate_response(pipeline, tokenizer))
+                example = self.generate_response(pipeline, tokenizer)
+                self.inf_tracker.add_synthetic_example(example)
+                dataset.append(example)
 
         else:
             gen_dataset = GenerationDataset(num_examples=num_examples, prompt=self.prompt)
@@ -140,18 +171,13 @@ class InferencePipeline(PipelineBase):
                                      do_sample=True, top_k=10, num_return_sequences=1,
                                      eos_token_id=end_token, pad_token_id=end_token,
                                      batch_size=batch_size), total=len(gen_dataset)):
-                dataset.append(out)
+                example = self.format_example(out, batch=False)
+                self.inf_tracker.add_synthetic_example(example)
+                dataset.append(example)
             dataset = self.format_batch(dataset)
 
         if save_to_disk:
-            if not os.path.exists(self.output_dir):
-                os.makedirs(self.output_dir)
-
-            model_name = self.parent_model_path.split("/")[-1]
-            file_path = os.path.join(self.output_dir, f"{self.task}-{model_name}-{self.method}.txt")
-            with open(file_path, "a") as file:
-                for example in dataset:
-                    file.write(example + "\n")
+            save_dataset_to_disk(self.output_dir, dataset, self.task, self.model, self.method)
         
         return dataset
     
@@ -169,8 +195,8 @@ class GenerationDataset(Dataset):
     
 class STEERPipeline(InferencePipeline):
 
-    def __init__(self, task, method, model, gamma=0.2, eta=0.2, num_neg_prompts=5):
-        super().__init__(task, method, model)
+    def __init__(self, experiment: Experiment, gamma=0.2, eta=0.2, num_neg_prompts=5):
+        super().__init__(experiment)
         self.gamma = gamma
         self.eta = eta
         self.num_neg_prompts = num_neg_prompts
@@ -210,61 +236,47 @@ class STEERPipeline(InferencePipeline):
                 STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
                       uncond=neg_prompt),
             ]),
+            renormalize_logits=True,
             do_sample=True,
             top_k=10,
             num_return_sequences=1,
         )
 
-        decoded_sequence = format_output(tokenizer.decode(sequences[0]))
+        decoded_sequence = self.format_batch(tokenizer.decode(sequences[0]), batch=False)
         self.running_examples.append(decoded_sequence)
 
         return decoded_sequence
     
-    def generate_synthetic_dataset(self, num_examples: int = 10, save_to_disk: bool = False, batch_size: int = 8):
+    def generate_synthetic_dataset(self, num_examples: int = 16, save_to_disk: bool = False, batch_size: int = 8):
         """
         NOTE: batch_size = 32 seems to perform the fastest.
         """
         dataset = []
         base_model, fine_tuned_model, tokenizer = self.create_pipeline()
 
-        # Just do it sequentially
         if batch_size == 0:
-            start = time.time()
             for _ in tqdm(range(num_examples)):
                 example = self.generate_response(base_model, fine_tuned_model, tokenizer)
-                dataset.append(self.format_example(example, batch=False))
-            end = time.time()
-            print(f"Took {end-start:.2f} seconds to generate {num_examples} with sequential inference.")
-
-        else:
-            pass
+                self.inf_tracker.add_synthetic_example(example)
+                dataset.append(example)
 
         if save_to_disk:
-            if not os.path.exists(self.output_dir):
-                os.makedirs(self.output_dir)
-
-            model_name = self.parent_model_path.split("/")[-1]
-            file_path = os.path.join(self.output_dir, f"{self.task}-{model_name}-{self.method}.txt")
-            with open(file_path, "a") as file:
-                for example in dataset:
-                    file.write(example + "\n")
+            save_dataset_to_disk(self.output_dir, dataset, self.task, self.model, self.method)
         
         return dataset
 
 
 ### QUICK RUNS ###
 
-def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
+def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
     # Create the pipeline
-    pipeline = InferencePipeline(task="comments", method="steer", model="falcon-7b")
+    pipeline = InferencePipeline(experiment=experiment)
     # Generate the synthetic dataset
     dataset = pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
     return dataset
 
 if __name__ == "__main__":
-    steer_pipe = STEERPipeline(task="hypotheses", method="steer", model="falcon-7b", gamma=0.2, eta=0.2, num_neg_prompts=10)
+    experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
+    steer_pipe = STEERPipeline(experiment=experiment, gamma=0.2, eta=0.2, num_neg_prompts=10)
     dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, save_to_disk=True)
     print(dataset)
-
-    # dataset = create_dataset(num_examples=200, save_to_disk=True, batch_size=32)
-    # print(dataset)
