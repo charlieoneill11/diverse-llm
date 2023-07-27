@@ -130,4 +130,7 @@ def upload():
 
 def download():
     directory = "/g/data/y89/cn1951"
-    snapshot_download(repo_id="EleutherAI/gpt-neo-1.3B", local_dir=directory+"/gpt-neo-1.3B", cache_dir=directory)
+    snapshot_download(repo_id="meta-llama/Llama-2-13b-hf", local_dir=directory+"/llama-13b", cache_dir=directory)
+
+if __name__ == "__main__":
+    download()

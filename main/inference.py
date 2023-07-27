@@ -15,12 +15,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
 import umap
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import train_test_split, KFold
+from sklearn.metrics import roc_auc_score, accuracy_score
 from tqdm import tqdm
 import numpy as np
 import torch
-from torch.utils.data import Dataset
 from torch.utils.data import Dataset
 import yaml
 import os
@@ -48,13 +47,13 @@ class PipelineBase:
             self.split = "Hypothesis"
             self.max_length = 100
         elif self.task == "comments":
-            self.prompt = "### Instruction: Generate a non-toxic social media comment.\n ### Comment:"
+            self.prompt = "### Instruction: Generate a toxic social media comment.\n ### Comment:"
             self.split = "Comment"
-            self.max_length = 50
+            self.max_length = 75
         elif self.task == "commonsense":
             self.prompt = "### Instruction: Generate a multiple-choice question that relies on common-sense to answer.\n ### Multiple-choice question:"
             self.split = "Multiple-choice question"
-            self.max_length = 75
+            self.max_length = 60
         else:
             pass
 
@@ -109,6 +108,12 @@ class InferencePipeline(PipelineBase):
         elif self.task == "commonsense":
             # Remove everything after the E. Question ... i.e. remove F. -> onwards if it exists
             text = text.split("F.")[0]
+            text = text.split(">")[0]
+        else:
+            # Remove all newlines, put each example on one line
+            text = text.replace("\n", " ")
+            # Put a "###" at the start and end of text
+            text = "### " + text + " ###"
         return text
     
     def generate_synthetic_dataset(self, num_examples: int = 100, save_to_disk: bool = False, batch_size: int = 8):
@@ -131,7 +136,7 @@ class InferencePipeline(PipelineBase):
             else:
                 pipeline.tokenizer.pad_token_id = tokenizer.eos_token_id
                 end_token = tokenizer.eos_token_id
-            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, 
+            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, temperature=1.5,
                                      do_sample=True, top_k=10, num_return_sequences=1,
                                      eos_token_id=end_token, pad_token_id=end_token,
                                      batch_size=batch_size), total=len(gen_dataset)):
@@ -161,156 +166,6 @@ class GenerationDataset(Dataset):
 
     def __getitem__(self, i):
         return self.prompt
-    
-class EvaluationPipeline(PipelineBase):
-
-    def __init__(self, task: str, method: str, model: str):
-        super().__init__(task, method, model)
-        config = yaml.safe_load(open("config.yaml", "r"))
-        self.synthetic_dataset, self.real_dataset = self.load_datasets()
-        self.deployment_name = config['openai_deployment_embeddings']
-        openai.api_key = config['openai_api_key']
-        openai.api_base = config['openai_api_base']
-        openai.api_type = 'azure'
-        openai.api_version = '2023-05-15'
-
-    def load_datasets(self):
-        if self.task == "commonsense":
-            with open("../results/commonsense-falcon-7b-no_steer.txt") as file:
-                synthetic_dataset = np.array(["Which "+line.strip() for line in file.read().split("Which")[:-1]])
-        else:
-            with open(self.synthetic_dataset_path, "r") as file:
-                synthetic_dataset = np.array([line.strip() for line in file])
-        with open(self.real_dataset_path, "r") as file:
-            real_dataset = np.array([example['text'].split(f"{self.split}: ")[-1] for example in json.load(file)])
-        return synthetic_dataset, real_dataset
-    
-    def set_embeddings(self, local_disk = True):
-        if local_disk:
-            self.synthetic_embeddings = np.load(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy")
-            self.real_embeddings = np.load(f"../results/embeddings/{self.task}-{self.model}-{self.method}-real.npy")
-        else:
-            self.synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
-            self.real_embeddings = self.embed_dataset(self.real_dataset)
-            # Save to ../results/embeddings with the names being the task, model and synthetic/real
-            np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy", self.synthetic_embeddings)
-            np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-real.npy", self.real_embeddings)
-
-    def embed_example(self, example: str):
-        response = openai.Embedding.create(
-            engine=self.deployment_name,
-            input=example,
-        )
-        return response['data'][0]['embedding']
-    
-    def embed_dataset(self, dataset) -> np.array:
-        embeddings = []
-        for example in tqdm(dataset):
-            embeddings.append(self.embed_example(example))
-        return np.array(embeddings)
-    
-    ### TRADITIONAL METRICS ###
-
-    def normalised_ngrams(self, tokenizer, n) -> float:
-        """
-        Calculate the normalised count of unique n-grams in a text.
-        """
-
-        # Concatenate the text from the synthetic dataset
-        synthetic_text = " ".join(self.synthetic_dataset)
-        real_text = " ".join(self.real_dataset)[:len(synthetic_text)]
-
-        n_grams_list = []
-
-        for text in [synthetic_text, real_text]:
-
-            # Tokenize the text
-            tokens = tokenizer.tokenize(text)
-            
-            # Generate n-grams from the token list
-            generated_ngrams = list(ngrams(tokens, n))
-            
-            # Count unique n-grams
-            unique_ngrams = len(set(generated_ngrams))
-
-            # Append to the list
-            n_grams_list.append(unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0)
-        
-        # Return the normalised count of unique n-grams
-        return {'synthetic': n_grams_list[0], 'real': n_grams_list[1]}
-
-    def convex_hull_area(self, umap_dimensions: int = 2) -> float:
-        """
-        Calculate the area ratio of the convex hulls of the embeddings of the synthetic and real examples.
-        NOTE: the number of synthetic examples should be equal to the number of real examples for constant comparison.
-        """
-        # Combine synthetic and real embeddings for UMAP fitting
-        combined_embeddings = np.vstack((self.synthetic_embeddings, self.real_embeddings))
-
-        # Standardize the embeddings
-        combined_embeddings = StandardScaler().fit_transform(combined_embeddings)
-
-        # Reduce dimensionality with UMAP
-        umap_embeddings = umap.UMAP(n_components=umap_dimensions, n_neighbors=min(combined_embeddings.shape[0]-1, 50)).fit_transform(combined_embeddings)
-
-        # Split the UMAP embeddings back into synthetic and real
-        num_synthetic = len(self.synthetic_embeddings)
-        synthetic_umap_embeddings = umap_embeddings[:num_synthetic]
-        real_umap_embeddings = umap_embeddings[num_synthetic:]
-
-        # Compute convex hulls
-        synthetic_hull = ConvexHull(synthetic_umap_embeddings)
-        real_hull = ConvexHull(real_umap_embeddings)
-
-        # Compute and return the ratio of the areas (or volumes)
-        if len(synthetic_umap_embeddings[0]) == 2:
-            return synthetic_hull.area / real_hull.area
-        elif len(synthetic_umap_embeddings[0]) > 2:
-            return synthetic_hull.volume / real_hull.volume
-        else:
-            raise ValueError("Points must have at least two dimensions.")
-
-
-    def kl_divergence(self):
-        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
-        real_embeddings = self.embed_dataset(self.real_dataset)
-        pass
-
-    def cosine_similarity(self, centroid: bool = False) -> float:
-        """
-        Calculate the average or centroid cosine similarity between the synthetic and real datasets.
-        """
-        synthetic_embeddings = self.synthetic_embeddings
-        real_embeddings = self.real_embeddings
-        if centroid:
-            similarities = cosine_similarity(np.mean(synthetic_embeddings, axis=0).reshape(1, -1), 
-                                             np.mean(real_embeddings, axis=0).reshape(1, -1))
-        else: similarities = cosine_similarity(synthetic_embeddings, real_embeddings)
-        return np.mean(similarities)
-    
-
-    
-    ### NOVEL METRICS ###
-    def authenticity_auroc(self):
-        synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
-        real_embeddings = self.embed_dataset(self.real_dataset)
-
-        # Instantiate XGBoost model and prepare data
-        xgb_model = xgb.XGBClassifier()
-        X = np.concatenate((synthetic_embeddings, real_embeddings))
-        y = np.concatenate((np.zeros(len(synthetic_embeddings)), np.ones(len(real_embeddings))))
-
-        # Split into train test
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-        # Train the model
-        xgb_model.fit(X_train, y_train)
-
-        # Get predictions
-        y_pred = xgb_model.predict(X_test)
-
-        # Calculate AUROC
-        return roc_auc_score(y_test, y_pred)
     
 class STEERPipeline(InferencePipeline):
 
@@ -382,52 +237,7 @@ class STEERPipeline(InferencePipeline):
             print(f"Took {end-start:.2f} seconds to generate {num_examples} with sequential inference.")
 
         else:
-            start = time.time()
-            for _ in tqdm(range(num_examples // batch_size)):
-                neg_prompt = self.generate_negative_prompt(tokenizer)
-                prompt_tensor = tokenizer(self.prompt, return_tensors='pt').to('cuda')
-                if self.task == "hypotheses": end_token = 42
-                else: end_token = tokenizer.eos_token_id
-                sequences = fine_tuned_model.generate(
-                    input_ids=prompt_tensor['input_ids'],
-                    attention_mask=prompt_tensor['attention_mask'],
-                    max_new_tokens=self.max_length,
-                    eos_token_id=end_token,
-                    pad_token_id = tokenizer.eos_token_id,
-                    logits_processor=LogitsProcessorList([
-                        STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
-                              uncond=neg_prompt),
-                    ]),
-                    do_sample=True,
-                    top_k=10,
-                    num_return_sequences=batch_size,
-                )
-
-                generated_texts = tokenizer.batch_decode(sequences, skip_special_tokens=True)
-                generated_texts = [example.split(f"{self.split}: ")[-1].split("?")[0]+"?" for example in generated_texts]
-                dataset.extend(generated_texts)
-
-                # texts = [self.prompt] * batch_size
-                # if self.task == "hypotheses": end_token = 42
-                # else: end_token = tokenizer.eos_token_id
-                # #tokenizer.pad_token_id = tokenizer.eos_token_id
-                # #tokenizer.pad_token = tokenizer.eos_token
-                # neg_prompt = self.generate_negative_prompt(tokenizer)
-                # encoding = tokenizer(texts, return_tensors='pt').to('cuda')
-                # generated_ids = fine_tuned_model.generate(input_ids=encoding['input_ids'],
-                #                                           attention_mask=encoding['attention_mask'],
-                #                                           max_new_tokens=self.max_length, do_sample=True,
-                #                                           top_k=10, num_return_sequences=1,
-                #                                           logits_processor=LogitsProcessorList([
-                #                                                 STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
-                #                                                       uncond=neg_prompt),
-                #                                           ]),
-                #                                           eos_token_id=end_token, pad_token_id=tokenizer.eos_token_id)
-                # generated_texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-                # generated_texts = [example.split(f"{self.split}: ")[-1].split("?")[0]+"?" for example in generated_texts]
-                # dataset.extend(generated_texts)
-            end = time.time()
-            print(f"Took {end-start:.2f} seconds to generate {num_examples} examples with batching.")
+            pass
 
         if save_to_disk:
             if not os.path.exists(self.output_dir):
@@ -446,23 +256,15 @@ class STEERPipeline(InferencePipeline):
 
 def create_dataset(num_examples: int, save_to_disk: bool = True, batch_size: int = 16):
     # Create the pipeline
-    pipeline = InferencePipeline(task="commonsense", method="no_steer", model="falcon-7b")
+    pipeline = InferencePipeline(task="comments", method="steer", model="falcon-7b")
     # Generate the synthetic dataset
-    pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
-
-def evaluate_model_dataset(task: str, method: str, model: str, local_disk: bool = True):
-    pipeline = EvaluationPipeline(task, method, model)
-    # Clear the terminal
-    os.system("clear")
-    pipeline.set_embeddings(local_disk=local_disk)
-    print(pipeline.cosine_similarity())
-    print(pipeline.convex_hull_area())
-    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
-    print(pipeline.normalised_ngrams(tokenizer, 1))
+    dataset = pipeline.generate_synthetic_dataset(num_examples=num_examples, save_to_disk=save_to_disk, batch_size=batch_size)
+    return dataset
 
 if __name__ == "__main__":
-    # steer_pipe = STEERPipeline(task="hypotheses", method="steer", model="falcon-7b", gamma=0.2, eta=0.2, num_neg_prompts=20)
-    # dataset = steer_pipe.generate_synthetic_dataset(num_examples=2, batch_size=2, save_to_disk=True)
-    # print(dataset)
+    steer_pipe = STEERPipeline(task="hypotheses", method="steer", model="falcon-7b", gamma=0.2, eta=0.2, num_neg_prompts=10)
+    dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, save_to_disk=True)
+    print(dataset)
 
-    evaluate_model_dataset(task="hypotheses", method="steer", model="falcon-7b", local_disk=False)
+    # dataset = create_dataset(num_examples=200, save_to_disk=True, batch_size=32)
+    # print(dataset)

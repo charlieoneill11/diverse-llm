@@ -180,12 +180,22 @@ model.config.use_cache = False
 # Load the abstracts dataset by default
 dataset = load_dataset("json", data_files=script_args.dataset_name, split="train")
 
+SPLIT = "Multiple-choice question: "
+
+def formatting_prompts_func(examples):
+    output_texts = []
+    for i in range(len(examples['prompt'])):
+        text = f"### Instruction: {examples['prompt'][i]}\n ### {SPLIT}: {examples['completion'][i]}"
+        output_texts.append(text)
+    return output_texts
+
 trainer = SFTTrainer(
     model=model,
     train_dataset=dataset,
     peft_config=peft_config,
     dataset_text_field="text",
     max_seq_length=script_args.max_seq_length,
+    formatting_func=formatting_prompts_func,
     tokenizer=tokenizer,
     args=training_arguments,
     packing=script_args.packing,

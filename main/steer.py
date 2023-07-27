@@ -50,16 +50,14 @@ class NegativePrompting(LogitsProcessor):
         scores = F.log_softmax(scores, dim=-1)
         if self.eta == 0.0: return scores
 
-        self.out = self.model(self.uncond, use_cache=True)
-
-        # if self.out is None:
-        #     self.out = self.model(self.uncond, use_cache=True)
-        # else:
-        #     self.out = self.model(
-        #         input_ids[:, -1:],
-        #         use_cache=True,
-        #         past_key_values=self.out.past_key_values,
-        #     )
+        if self.out is None:
+            self.out = self.model(self.uncond, use_cache=True)
+        else:
+            self.out = self.model(
+                input_ids[:, -1:],
+                use_cache=True,
+                past_key_values=self.out.past_key_values,
+            )
     
         unconditional_logits = F.log_softmax(self.out.logits[0][-1:], dim=-1)
         return scores - self.eta * unconditional_logits
