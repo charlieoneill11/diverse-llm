@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yaml
 import os
+import re
 import openai
 
 from inference import Experiment, PipelineBase, STEERPipeline
@@ -262,11 +263,7 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     print(f"Alpha-precision: {alpha_precision:.4f}, Beta-recall: {beta_recall:.4f}")
     print("-"*80)
 
-def generate_heatmap_datasets(n_samples_per_run: int = 10):
-    # Create the grid of gamma and eta values
-    gamma_values = np.linspace(0.0, 1.0, 4)
-    eta_values = np.linspace(0.0, 1.0, 4)
-
+def generate_heatmap_datasets(gamma_values: list, eta_values: list, n_samples_per_run: int = 10):
     # Create the experiment
     experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
 
@@ -285,19 +282,16 @@ def generate_heatmap_datasets(n_samples_per_run: int = 10):
                                                                       batch_size=0, save_to_disk=False,
                                                                       gamma=gamma, eta=eta)
 
-            # Save the generated datasets locally as JSON
+            # Save the synthetic datasets locally as txt
             if not os.path.exists("../tmp"):
                 os.mkdir("../tmp")
-            
-            with open(f"../tmp/dataset_gamma_{gamma}_eta_{eta}.json", 'w') as f:
-                print(real_dataset)
-                print(synthetic_dataset)
-                json.dump({"real_dataset": list(real_dataset), "synthetic_dataset": list(synthetic_dataset)}, f)
 
-def calculate_metrics_and_create_heatmaps():
-    # Create the grid of gamma and eta values
-    gamma_values = np.linspace(0.0, 1.0, 4)
-    eta_values = np.linspace(0.0, 1.0, 4)
+            file_path = f"../tmp/dataset_gamma_{gamma}_eta_{eta}.txt"
+            with open(file_path, 'a') as f:
+                for example in synthetic_dataset:
+                    f.write(f'{example}\n')
+
+def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, n_samples_per_run: int):
 
     # Create the heatmaps
     cosine_similarity_heatmap = np.zeros((len(gamma_values), len(eta_values)))
@@ -310,14 +304,17 @@ def calculate_metrics_and_create_heatmaps():
     # Create evaluation pipeline to handle embeddings
     eval_pipe = EvaluationPipeline(experiment=experiment)
 
+    real_dataset = eval_pipe.real_dataset
+    sampled_indices = np.random.choice(real_dataset.shape[0], n_samples_per_run, replace=False)
+    real_dataset = real_dataset[sampled_indices]
+
     for i, gamma in enumerate(gamma_values):
         for j, eta in enumerate(eta_values):
 
-            # Load the real and synthetic datasets
-            with open(f"../tmp/dataset_gamma_{gamma}_eta_{eta}.json", 'r') as f:
-                data = json.load(f)
-            real_dataset = data["real_dataset"]
-            synthetic_dataset = data["synthetic_dataset"]
+            # Load the synthetic dataset from the txt file
+            file_name = f"../tmp/dataset_gamma_{gamma}_eta_{eta}"
+            with open(file_name, 'r') as f:
+                synthetic_dataset = f.readlines()
 
             # Set embeddings
             eval_pipe.set_embeddings(local_disk=False, dataset_tuple=(real_dataset, synthetic_dataset))
