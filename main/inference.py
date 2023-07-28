@@ -89,7 +89,7 @@ class InferencePipeline(PipelineBase):
 
     def __init__(self, experiment: Experiment):
         super().__init__(experiment)
-        self.inf_tracker = InferenceTracker(experiment)
+        #self.inf_tracker = InferenceTracker(experiment)
 
     def create_pipeline(self):
         fine_tuned_model = AutoModelForCausalLM.from_pretrained(self.local_model_path, torch_dtype=torch.bfloat16, 
@@ -156,7 +156,7 @@ class InferencePipeline(PipelineBase):
             # Just do it sequentially
             for _ in tqdm(range(num_examples)):
                 example = self.generate_response(pipeline, tokenizer)
-                self.inf_tracker.add_synthetic_example(example)
+                #self.inf_tracker.add_synthetic_example(example)
                 dataset.append(example)
 
         else:
@@ -167,13 +167,13 @@ class InferencePipeline(PipelineBase):
             else:
                 pipeline.tokenizer.pad_token_id = tokenizer.eos_token_id
                 end_token = tokenizer.eos_token_id
-            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, temperature=1.5,
+            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, temperature=0.85,
                                      do_sample=True, top_k=10, num_return_sequences=1,
                                      eos_token_id=end_token, pad_token_id=end_token,
                                      batch_size=batch_size), total=len(gen_dataset)):
-                example = self.format_example(out, batch=False)
-                self.inf_tracker.add_synthetic_example(example)
-                dataset.append(example)
+                # example = self.format_example(out, batch=False)
+                # self.inf_tracker.add_synthetic_example(example)
+                dataset.append(out)
             dataset = self.format_batch(dataset)
 
         if save_to_disk:
@@ -218,7 +218,10 @@ class STEERPipeline(InferencePipeline):
         neg_examples = ' '.join(neg_examples)
         return tokenizer(neg_examples, return_tensors='pt')['input_ids'].to('cuda')
 
-    def generate_response(self, base_model, fine_tuned_model, tokenizer):
+    def generate_response(self, base_model, fine_tuned_model, tokenizer, eta, gamma):
+        if eta == -1 and gamma == -1:
+            eta = self.eta
+            gamma = self.gamma
         neg_prompt = self.generate_negative_prompt(tokenizer)
 
         prompt_tensor = tokenizer(self.prompt, return_tensors='pt').to('cuda')
@@ -233,7 +236,7 @@ class STEERPipeline(InferencePipeline):
             eos_token_id=end_token,
             pad_token_id = tokenizer.eos_token_id,
             logits_processor=LogitsProcessorList([
-                STEER(gamma=self.gamma, eta=self.eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
+                STEER(gamma=gamma, eta=eta, base_model=base_model, fine_tuned_model=fine_tuned_model, 
                       uncond=neg_prompt),
             ]),
             renormalize_logits=True,
@@ -242,12 +245,13 @@ class STEERPipeline(InferencePipeline):
             num_return_sequences=1,
         )
 
-        decoded_sequence = self.format_batch(tokenizer.decode(sequences[0]), batch=False)
+        decoded_sequence = self.format_example(tokenizer.decode(sequences[0]), batch=False)
         self.running_examples.append(decoded_sequence)
 
         return decoded_sequence
     
-    def generate_synthetic_dataset(self, num_examples: int = 16, save_to_disk: bool = False, batch_size: int = 8):
+    def generate_synthetic_dataset(self, num_examples: int = 16, save_to_disk: bool = False, batch_size: int = 8,
+                                   eta=-1, gamma=-1):
         """
         NOTE: batch_size = 32 seems to perform the fastest.
         """
@@ -256,8 +260,8 @@ class STEERPipeline(InferencePipeline):
 
         if batch_size == 0:
             for _ in tqdm(range(num_examples)):
-                example = self.generate_response(base_model, fine_tuned_model, tokenizer)
-                self.inf_tracker.add_synthetic_example(example)
+                example = self.generate_response(base_model, fine_tuned_model, tokenizer, eta, gamma)
+                #self.inf_tracker.add_synthetic_example(example)
                 dataset.append(example)
 
         if save_to_disk:
@@ -276,7 +280,6 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
-    steer_pipe = STEERPipeline(experiment=experiment, gamma=0.2, eta=0.2, num_neg_prompts=10)
-    dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, save_to_disk=True)
+    experiment = Experiment(task="hypotheses", method="no_steer", model="falcon-7b")
+    dataset = create_dataset(experiment, num_examples=500, save_to_disk=True, batch_size=8)
     print(dataset)

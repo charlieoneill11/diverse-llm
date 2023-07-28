@@ -30,7 +30,7 @@ def normalised_ngrams(synthetic_dataset, real_dataset, tokenizer, n) -> float:
 
 
 def compute_cosine_similarity(synthetic_embeddings, real_embeddings, centroid: bool = False) -> float:
-    if centroid:
+    if not centroid:
         similarities = cosine_similarity(np.mean(synthetic_embeddings, axis=0).reshape(1, -1), 
                                          np.mean(real_embeddings, axis=0).reshape(1, -1))
     else: 
@@ -164,19 +164,19 @@ def upload():
     # Load the base Falcon-7B model
     print("Loading base model.")
     model = AutoModelForCausalLM.from_pretrained(
-        "/g/data/y89/cn1951/falcon-40b",
+        "/g/data/y89/cn1951/falcon-7b",
         torch_dtype=torch.bfloat16,
         device_map="auto",
         trust_remote_code=True,
     )
     # Load our fine-tuned model
-    model = PeftModel.from_pretrained(model, f"/g/data/y89/cn1951/falcon-40b-hypotheses-tiny")
+    model = PeftModel.from_pretrained(model, f"../models/commonsense/checkpoint-1000")
     model = model.merge_and_unload()
-    model.save_pretrained(save_directory="/g/data/y89/cn1951/falcon-40b-hypotheses-tiny")
+    model.save_pretrained(save_directory="/g/data/y89/cn1951/falcon-7b-commonsense-tiny")
 
 def download():
     directory = "/g/data/y89/cn1951"
     snapshot_download(repo_id="meta-llama/Llama-2-13b-hf", local_dir=directory+"/llama-13b", cache_dir=directory)
 
 if __name__ == "__main__":
-    download()
+    upload()

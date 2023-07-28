@@ -7,12 +7,13 @@ from transformers.generation import LogitNormalization
 import torch.nn.functional as F
 
 class STEER(LogitsProcessor):
-    def __init__(self, gamma, eta, base_model, fine_tuned_model, uncond):
+    def __init__(self, gamma, eta, base_model, fine_tuned_model, uncond, batched=False):
         self.gamma = gamma
         self.eta = eta
         self.base_model = base_model
         self.fine_tuned_model = fine_tuned_model
         self.uncond = uncond
+        self.batched = batched
         self.out, self.base_out, self.ft_out = None, None, None
 
     def __call__(self, input_ids, scores):
@@ -30,14 +31,16 @@ class STEER(LogitsProcessor):
         contrastive_scores = (1 + self.gamma) * ft_logits - self.gamma * base_logits
 
         # Negative prompting
-        if self.out is None:
-            self.out = self.fine_tuned_model(self.uncond, use_cache=True)
-        else:
-            self.out = self.fine_tuned_model(
-                input_ids[:, -1:],
-                use_cache=True,
-                past_key_values=self.out.past_key_values,
-            )
+        if not self.batched:
+            if self.out is None:
+                self.out = self.fine_tuned_model(self.uncond, use_cache=True)
+            else:
+                self.out = self.fine_tuned_model(
+                    input_ids[:, -1:],
+                    use_cache=True,
+                    past_key_values=self.out.past_key_values,
+                )
+        else: self.out = self.fine_tuned_model(self.uncond, use_cache=True)
 
         unconditional_logits = F.log_softmax(self.out.logits[0][-1:], dim=-1)
 
