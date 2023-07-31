@@ -1,0 +1,28 @@
+Could hypervelocity stars be a result of supernovae occurring in binary systems in a disc of stars around Sgr A*, and could their distribution provide evidence of the disc orientation under stereogrammetry conditions?
+Can the Gaia catalogue reveal hitherto unexplored systems containing either ultra-faint stars undetected by preceding spectroscopic surveys, or objects thousands of times fainter than the limiting threshold for spectroscopic observations?
+Did metal-rich halo stars in the Solar neighbourhood form in-situ rather than being accreted from mergers?
+Was the runaway star J01020100-7122208 ejected from the disk of the Milky Way by Neptune instability?
+Was the progenitor galaxy of the Milky Way accreted as part of a Gapless merger rather than a instantaneous massiveouth accretion event?
+What are the properties and origins of ultra metal-poor stars, their relationship to Milky Way globular clusters, and what constraints can be placed on theirDistance ladder $($$$$)$?(Ars~eorum X~$($$$$)$)$ telescope survey$.
+ ### Background: Ultra metal-poor stars are chemicallyinteresting because theyoffer insightsto thebuildingblocksofthe earlyGalacticgascloudandtheirrelationsto globularclusters.$^{$$}$TheyhavebeenusedbeforetomakeDistance estim?
+Could the observed metallicity distributions in the Milky Way galaxy be explained by a perturbation in the disk undergoing phase-mixing if quantum effects in Zn shells of helium stars were properly considered?
+How sensitive is the Semi-Analytic Dynamical model by Jones et al. to different methods of constraining stellar ages, and how well does it reproduce observed vertical motions in the Milky Way stellar disk?
+What mechanisms were involved in the formation of very metal-poor stars with disk kinematics and luminosities similar to those observed for Gaia Sausage dwarf spheroidals?
+Is there evidence of rotational velocity being correlated with metallicity or Galactocentric distance in Open clusters?
+Can convolutional neural networks be used to reliably identify open clusters and dwarf spheroidals in wide-field photometric surveys such as Gaia and $\mathit{PanSteda}$?
+Does compensating for radial stellar motions throughout the Milky Way halo improve mass determinations from globular cluster kinematics and yield consistent results with globular cluster abundance determinations?
+Was the formation of binary stars in the globular cluster NGC 7519 mediated by dynamical interactions with massive satellites disrupting harmonic resonances, as proposed by analyzing gaussian likelihood distributions of stellar identifiers derived from Gaia DR2 TGAS catalogue?
+Does compensating orbital eccentricity during stellar evolution lead to tighter resonances andImprove predictive power of stellar models for solar-like oscillations?
+Is SB 796 a remnant of a white dwarf surviving a subluminous Type Ia supernova in a single exploded progenitor globular cluster?
+Did the Kepler mission detect all known binary stars and low-mass clusters in dwarf主ock{$\mathrm{Gaia}$}数据库中，并激发了关于组合体和年辐射状况的争议性讨论？
+ ### Background: Gaia发现了大量的双星SY 1和VV 1类天王星双omorph类星体的量ielle模型可以�?
+Does compensating for distortions caused by gravitational potentials improve the accuracy of dynamical simulations of stellar systems?
+Did metal-rich halo stars in the globular cluster NGC7529 evolve hotter than expected for their mass, indicating inhomogeneous heating within the cluster?
+What mechanisms besides spiral density waves can explain the flattening of overdensities observed in the solar neighborhood and proximal regions?
+Could irregular dwarf spheroidals be dynamically heated by volatile rich tidal debris and evaporative dredging, and could this heating mechanism explain observed kinematics anomalies and chemical peculiarities?
+did metal enriching debris form from asymmetric mergers in globular clusters rather than slow constantelebration of neutron stars?
+Could ultracool dwarf stars be dynamically misaligned from their tidal debris track due to encounters with stellar debris piles formed in globular clusters, and can Gaia DR2 data be used to constrain the tidal debris track and locate potential piles induced by tidal debrisalloidealscale models for globular clusters.
+ ### Background: Globular clusters are stellar debris remnants of destroyed dwarf galaxies that collided with the Milky�Galaxy over billions of years, forming distinct tidal debrisalloidealscale models?
+Could hypervelocity stars be a result of supernovae occurring within binary systems in a disc of stars around Sgr A*, and could their distributions provide evidence of the disc geometry and centrifugal force thresholds for survivorship?
+What are the distances, absolute luminosities, and abundances of variables stars in globular cluster M13 based on medium Sloan Survey grz images supplemented with Gaia-ESO survey grz images?
+Could hypervelocity stars be a result of supernovae occurring within binary systems in a disc of stars around Sgr A*, and could their distribution provide evidence of the disc geometry and sensitivity to perturbations?

@@ -28,6 +28,20 @@ def normalised_ngrams(synthetic_dataset, real_dataset, tokenizer, n) -> float:
     
     return {'synthetic': n_grams_list[0], 'real': n_grams_list[1]}
 
+def diversity(synthetic_dataset, real_dataset, tokenizer) -> dict:
+    diversity_list = []
+
+    for dataset in ["synthetic_dataset", "real_dataset"]:
+        norm_values_product = 1.0
+        key = "synthetic" if dataset == "synthetic_dataset" else "real"
+        for n in range(2, 5):
+            norm_n = normalised_ngrams(real_dataset, synthetic_dataset, tokenizer, n)[key] 
+            norm_values_product *= (1.0 - norm_n/100)
+
+        diversity_list.append(norm_values_product)
+    
+    return {'synthetic': diversity_list[0], 'real': diversity_list[1]}
+
 
 def compute_cosine_similarity(synthetic_embeddings, real_embeddings, centroid: bool = False) -> float:
     if not centroid:

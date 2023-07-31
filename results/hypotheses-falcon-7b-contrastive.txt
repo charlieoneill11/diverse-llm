@@ -1,0 +1,1001 @@
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What is the cause of the sinusoidal wiggle in the GD-1 stream, and can it be explained by a perturbation or by a self-gravitating sub-structure in the stream?
+Can the use of Gaia DR2 data with PSF-matching and proper PSF modeling provide a more accurate estimation of the population and chemical composition of open clusters, which can then be used for chemical clock calculations and the study of the dynamical evolution of the Galactic disk?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its origin?What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be attributed to a single chemical anomaly or a selection function that is not universal across different samples?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the Gaia-ESO survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate binarity and confirm the binary nature of the object, and determine its parameters, including distance, mass, and age?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics inform on possible origins?
+Can a neural network trained on Gaia catalog entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does it relate to the bimodal star formation history (SFH) and bimodal chemical enrichment scenario proposed for the bulge?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and confirm its link with the outer arm?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hypervelocity stars in the cluster, and determine the baryonic mass and mass function?
+Can the new Galaxy model, including a 3D disc, 6D spherical-symmetric overdensities, and a variety of outflows, explain the observed trends in abundance ratios and vertical velocity distributions in the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin and properties of the Orphan Stream in the Milky Way halo, as determined through chemical abundance analysis and comparison with simulation results?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the nature and origin of the two different populations of Galactic globular clusters defined by their K-band metallicity and alpha-enhancements, and how do their properties and spatial distribution provide new insights into the history and evolution of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics information provide insights into the bimodality origin and the metallicity dependence of the different production mechanisms involved in its chemical composition?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer disc populations vary in terms of their heating and kinematics compared to inner disc populations?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the new STREAMFINDER algorithm discover a large population of stellar streams surrounding the inner Galaxy, and can these structures confirm that they are predominantly metal-poor debris of inner-halo globular clusters?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate a stellar candidate from the cluster foreground, and confirm its membership to the cluster?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Does the metallicity of the progenitor of the Galactic halo \emph{Gaia}-Enceladus correlate with the metallicity of its progenitor \emph{Sequoia}, and can this relationship be used to constrain the \emph{Sequoia} $z_f$ and $z_f-?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into the formation of the bimodality?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive satellite-stripping or alternative theories to cold dark matter?
+Does the presence of a central massive black hole in the Large Magellanic Cloud contribute to the distribution of hypervelocity stars, resulting in a kinematic signature in the surrounding stellar halo, and can this be modeled using a N-body simulation and a realistic black hole model?
+What is the origin of $r$-process elements in Gaia-Enceladus and can their high [{Eu}/{Mg}] ratio be explained by $r$-process enrichment through neutron-star mergers?
+What are the different physical processes that drive the expansion of loose and compact massive star clusters, and how do they depend on initial cluster conditions and environment?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and could the stars have been enriched in silicon through a neutron-induced process?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-velocity stars in the galaxy, and provide constraints on the mass of the galaxy and the baryon mass function at Galactocentric distances of $R_{500}$ and $R_{200}$?
+Is the warp structure in the outer disc of the Milky Way a kinematic phenomenon that arises from a specific type of stochastic resonance, and is it present in both the thick and thin disc regions?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable distance indicator?
+Can the \emph{Gaia} mission be used to identify and measure the parameters of open clusters located outside the Solar neighborhood, and can these clusters be used to probe the conditions under which the Milky Way formed and evolved?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the bimodality observed in the LAMOST DR3 radial velocity sample and the Gaia DR1 metallicity sample?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event, as revealed by an analysis of APOGEE-DR14 metallicity data and comparison with simulations?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the chemistry and dynamical properties of Open Clusters?
+What are the different dynamical mechanisms that can explain the extended kinematic maps of Gaia DR2 data, including the radial and vertical components, in terms of out-of-equilibrium models?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the use of chemical abundances and clustering analysis in the elemental abundance space improve the feasibility of chemical tagging within the thin disk population and enable the recovery of more open clusters' members?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the bimodality observed in the RAVE survey MDF and the RAVE bimodality parameter $\beta$?
+Can the use of high-precision astrometry and machine learning methods reveal a need to update the catalogue of classical Cepheids in the Milky Way and provide a first estimate of the population of young stars in the halo?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream produced by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way and constraining the mass distribution of the baryonic component?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemical composition, spatial distribution, and kinematics compare with the thin and thick disk?
+What is the cause of the small overdensity of stars in velocity space with a specific velocity component different from the systemic velocity, found in the inner 2 kpc of the Galaxy, and what is the probability of it being a random phenomenon?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream generated by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+What are the possible origins of the formation of star clusters in our Galaxy and in Small Magellanic Cloud (SMC)? Can the analysis of chemical abundances, age structure, and orbital properties help to constrain the origin of the star clusters and determine whether they are associated with accretion events, starburst periods, or other mechanisms?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Can the Gaia DR2 parallax bias the distance scale of the Milky Way and prevent it from being accurately measured?
+Does the metallicity of the progenitor system of the Milky Way correlate with the strength of the star formation history in each descendant system?
+Is the observed kinematic substructure in the inner halo of the Milky Way galaxy a generic feature of tidal debris from older mergers, and can the properties of the stellar halo be used to map the speed distribution of the local dark-matter halo?
+What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer disc populations vary in terms of their heating and kinematics compared to inner disc populations?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the nature and origin of the low-eccentricity halo population in the Milky Way and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable metallicity indicator?
+What are the origins and characteristics of the four distinct populations of kinematically identified ultra-faint dwarf galaxies in the Milky Way, and how do they compare to an N-body simulation of a typical large galaxy?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of extreme radial velocity stars, and can it be determined through measuring their proper motions with the Hubble Space Telescope?
+What is the nature and origin of the two distinct populations of high-velocity stars in the Galaxy, and how do they relate to the past history of the Milky Way and ejection events?
+Is the observed kinematic substructure in the inner halo of the Milky Way galaxy a generic feature of tidal debris from older mergers, and can the properties of the stellar halo be used to map the sensitivity of the galaxy's kinematics to the distribution of dark matter?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemical composition, spatial distribution, and kinematics information provide strong constraints on the bimodality origin scenarios?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Is the formation of extra-tidal structure in globular clusters correlated with their orbital parameters and does the presence of an extended envelope indicate tidal erosion?
+What is the origin of the \emph{r}-process elements in the Galactic thin disk and thick disk, and how do their patterns and concentrations provide new insights into the heating and chemical enrichment history of the Galaxy?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+Can the Gaia mission's science objectives be achieved using a hypothetical dataset constructed from a combination of simulations and observational errors?
+What are the kinematical properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through spectroscopic and photometric analyses?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and history of the Milky Way?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Is there a common origin for the low-mass globular clusters in the Milky Way, and can it be determined using metallicity and elemental abundance information from Gaia DR2?
+What is the age and origin of the Galactic globular cluster NGC 6362 and how does the discovery of new sub-mm and mm overdensities within the cluster and the analysis of existing datasets help to constrain the possible origins of the cluster?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative scenarios to cold dark matter?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the anisotropic shock wave propagation in the Galaxy?
+Is there evidence of a correlation between the velocity distribution of stars and dark matter at the solar circle and the scale height of the Milky Way's disk, and can this correlation be used to constrain the galaxy's gravitational potential?
+Can the Gaia mission's science objectives be achieved using a hypothetical dataset containing mock Gaia fields of view, and can the constraints on the mission's science objectives gained from this analysis be applied to actual Gaia data?
+What is the nature of the X-ray emitting plasma in the old open cluster M67 and how does it relate to the observed variability in X-ray luminosity and spectral energy distribution?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their patterns and abundances relate to the factors that affect their production?
+What is the origin of extreme radial velocity stars, and can it be determined through measuring their proper motions with the Hubble Space Telescope?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high-velocity stars in the Milky Way, and how do they relate to the bimodal metallicity distribution function observed in the same diagram?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can a linear regression model be used to derive a relationship between the two quantities?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can a neural network trained on Gaia catalog entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do they relate to the \emph{r}-process history of the Milky Way?
+What is the age of the Galactic globular cluster NGC 1261 and how does it compare to previous estimates?
+Can a novel approach of consistently populating star particles with stars and generating a theoretical catalogue of mock stars accurately compare predictions from cosmological simulations with observations of open clusters?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $Z\text{-}\alpha$ diagram of Open Clusters and how does it relate to the bimodality in the chemical abundances, particularly the $\textit{C/N}$ ratio?
+Can the use of Gaia EDR3 data with the new version of the GALAH survey instrument allow for the derivation of accurate stellar parameters, distances, and extinctions for millions of stars, which can then be used for studies on the structure and evolution of the Milky Way, including the measurement of the misalignment between the disk stars and the halo stars and the?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of extreme radial velocity stars, and can it be determined through measuring their proper motions with the Hubble Space Telescope?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer thin and thick disc populations vary in terms of their heating and kinematics?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream associated with NGC 362, and can the chemodynamical model for the Milky Way be used to quantify the tidal enrichment and show whether it is quantitatively consistent with observations?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the nature and origin of the low-eccentricity halo population in the Milky Way and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event?
+What is the origin of the anomalous abundance ratios observed in a unique sub-sample of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning algorithm provide accurate spectro-photometric distance estimates for millions of stars and reveal interesting substructure and patterns in the halo, the thin and thick disks, and the distant stellar populations?
+What is the nature, photometry, spectroscopy, and structure of the additional 7700 objects and 638 newly discovered star clusters and alike objects listed in the Galactic star clusters, associations and candidates catalog?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance distributions?
+What is the origin of "young" [$\alpha$/Fe]-enhanced stars with stellar ages younger than 6.0 Gyr and [$\alpha$/Fe] ratios greater than 0.15 dex, which are not expected from classical chemical evolution models?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia DR3 dataset be used to detect and identify member stars in the tidal stream generated by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Is the Galactic stellar warp a gravitationally induced phenomenon that affects both upper main sequence and giant populations across different ages?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Can the {\it Gaia} satellite detect the kinematic signature of the Galactic warp in the external halo globular cluster NGC 2419 and provide evidence for the existence of the {\it Gaia}-W3 stream?
+What is the nature of the two distinct populations co-existing in the globular cluster NGC 2419 and how do their chemical compositions, kinematics, and microlensing measurements relate to the puzzle of how such a cluster can be simultaneously populated by post-AGB stars and carbon-enhanced halo stars?
+Does the Milky Way have an uncommonly quiet merger history that leads to an essentially in-situ bulge and what constraints can be placed on the total merger time and the centricity of the last merger?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for open clusters and potential tidal streams, and can the proper motions obtained from these orbits be validated using reference stars and compared with the literature values?
+What are the kinematics and properties of the recently discovered Milky Way stellar overdensity, and what is the most accurate dynamical model for tracking its orbit?
+Is the observed strong flaring of the Milky Way disk consistent with it being dynamically unstable and could the true vertical velocity dispersion of the disk be much lower than the observed value of $\sigma_v \sim 0.45$ km s$^{-1}$?
+Can the Gaia DR3 dataset be used to detect and identify open clusters, including those with metallicities below −0.5 dex and distances greater than 2 kpc, and provide information on their physical parameters, bimodality, and possible tidal debris?
+Can Gaia EDR3 data identify and characterize the kinematically distinct substructure of the outermost thin disk population, specifically the Grus-Serpens-Horologium (G-S-H) overdensity, and provide evidence for the co-rotation resonance, and help to understand the origin and formation of the thick and thin disks in the Galaxy?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the use of Gaia EDR3 data with the improved methods provide a clearer picture of the structure and origin of the thin disc, particularly in the under-studied directions of the solar motion?
+Can Gaia DR3 data be used to detect and identify member stars in open clusters and constrain the young stellar mass function at distances of 1 kpc from the Sun?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how are their abundances related to the Milky Way history and the \emph{r}-process enrichment?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their variations at different metallicities and chemical abundances provide insights into the evolution of the \emph{r}-process and the "jump" in neutron-capture abundance at Z $\sim$ Z\_\mathrm{s?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant stream?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, an extremely well-studied but atypical Galactic globular cluster, using high-resolution spectroscopic and kinematical analysis?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance patterns?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning framework provide a more accurate estimation of the ages and metallicities of the stars in the Milky Way disc, and can this age and metallicity information be used to construct maps of the chemical and kinematic structure of the galaxy?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way and testing different Galactic evolution models?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Is the Galactic halo composed of two distinct parts, an inner and outer halo, and can these structures be characterized by their chemical and kinematic properties?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Does the metallicity of the progenitor systems of the Milky Way correlate with the metallicity of the globular clusters in the system, and can Gaia DR3 data be used to accurately determine the progenitor systems and identify systems with young and old progenitors?
+Can an ensemble of chemical abundances probing different nucleosynthetic channels be used to build a comprehensive understanding of the chemical and structural evolution of the Galaxy, particularly in tracing the enrichment by different nucleosynthetic sources, and can this information be separated using a Gaussian mixture model?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Is the observed strong flaring of the Milky Way disk consistent with it being dynamically heated by the repeated passage of the Large Magellanic Cloud over the midplane?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high-velocity stars in the solar neighborhood, and how do they relate to the bimodal metallicity distribution function observed in the same region of the diagram?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemical and kinematic properties, together with substructure observations, constrain the scenarios for its origin?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $z=0$ field, and how does it relate to the bimodality in the metallicity histogram, the overdensity in the number density distribution, and the clustering in the phase-space?
+What is the cause of the ridges and arches observed in the phase-space distribution of stars in the Milky Way, and what is the relationship between their planar and vertical directions?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the Gaia satellite's unique capabilities, such as its five-dimensional precision and panchromatic coverage, provide a comprehensive and accurate catalogue of French (and foreign) historical telescopes and their observed targets?
+Can the Gaia DR3 dataset be used to detect and identify member stars in the tidal stream generated by NGC 288, and can the chemical abundances of these stars be used to confirm their membership and identify possible donors?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics compare with the thin and thick disk?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to ground-based surveys?
+What is the age, distance, and intergalactic reddening of the double-spectrum galaxy NGC 2419, and what is the cause of the strong blue-ward tail in its spectrum?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through analyzing the proper motion, distance estimate, radial velocity, and kinematical information of its stars?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia data-sets, and can the method be used to study the Galactic thin and thick disk, open clusters, and hypervelocity stars?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can a neural network trained on Gaia catalogue entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a consistent set of models for its component populations?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance patterns?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia DR3 astrometric data be used to detect structures in the Galactic potential and gain confidence in the accuracy of the model?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and GALAH surveys to predict distance and chemodynamical properties?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as neutron-star mergers?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does it relate to the bimodality in the number counts, metallicity-dependent star formation rate, and chemical enrichment?
+Is there a correlation between the period and age of Mira variable stars, and can they be used to obtain accurate estimates of the metallicity and distance to their host globular clusters?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $Z$--$V_G$--W1 diagram of the Milky Way, and how is it related to the bimodality in the metallicity $Z$--$V_G$ relation derived from Gaia DR?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can Gaia DR3 data be used to detect and identify member stars in open clusters and estimate their metallicities and abundances?
+Does the metallicity of stars in the Gaia-ESO Public Spectroscopic Survey correlate with their absolute magnitude, and can it provide insights into the formation of the Milky Way's halo?
+What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer disc populations vary in terms of their heating and kinematics compared to inner disc populations?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad resonance and determine its pattern speed?
+What is the nature, photometry, spectroscopy, and structure of the additional 7700 objects and 638 newly discovered star clusters and alike objects listed in the Galactic star clusters, associations and candidates catalog?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude, and can this correlation be used as a fundamental distance indicator?
+Is the warp structure in the Milky Way a long-lived or transient phenomenon, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of neutron-star candidates and how do they relate to known anomalous metal-poor stars and heavy-element anomalies observed in globular clusters?
+Can the Gaia DR3 dataset be used to detect and identify coeval groups of stars and provide a blueprint for tracing the chemical and dynamical histories of different celestial objects in the Galaxy?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of the most metal-poor stars, and how do they relate to known chemical anomalies in the Universe?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia datasets to investigate Galactic chemical evolution?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning algorithm and photometric H-band formula accurately estimate the absolute magnitude and mass of millions of stars, and provide a tool for estimating gravitational potential and constrain the flatness of the Milky Way's dark matter halo?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the use of the Gaia mission's first data release with the new waveform-based method by Schoenrich et al. provide accurate and precise stellar ages for stars in the Milky Way and help shed light on the chemical and dynamical evolution of the galaxy?
+Can the Gaia-ESO Survey data be used to provide radial velocity measurements for TT Type II and OO Type I stars in the Milky Way bulge and disk, and trace the metallicity gradients in the outer disk?
+Can the use of Gaia EDR3 data with the VVV survey allow for the construction of a precise distance ladder for open clusters and estimate the parameters of the Galactic potential and the age of the Galaxy?
+Can a neural network trained on Gaia catalog information accurately predict missing radial velocity solutions for open clusters and help identify new open cluster candidates?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation of the galaxy's disk and the effects of satellite passage?
+Can the Gaia DR3 catalogue be used to discover new open clusters and estimate their parameters, such as age, bimodality, and kinematics, through the comparison of their TGAS catalogue entries with those obtained from the Gaia DR3 catalogue?
+Is the Galactic halo composed of two distinct parts, an inner and outer halo, and can these structures be identified using kinematics and photometric metallicities?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of extreme radial velocity stars, and can it be determined through measuring their proper motions with the Hubble Space Telescope?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does the chemical composition, spatial distribution, and structural properties of the bulge affect the interpretation of observational MDFs?
+Can the use of Gaia data with proper motion measurements provide a more accurate distance estimator for globular clusters and dwarf spheroidals compared to previous methods?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning algorithm provide accurate distance estimates for millions of stars and constrain the curvature of the Galactic disc on scales of hundreds of kilometers?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the Gaia DR3 dataset be used to detect and identify member stars in the tidal stream emanating from the globular cluster M13, which will be useful for calibrating methods of stellar age determination and confirming the cluster's metallicity?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the cause of the small overdensity of stars in velocity space with higher Galactocentric rotation velocity than the Sun, found outside of the Solar radius, which may be due to the co-rotation resonance of the Perseus spiral arm?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Does the Milky Way bar cause a tangential acceleration component in the Galactic gravitational field, and can it be characterized by the ratio of its linear to radial component?
+Can a machine learning model reliably identify extended stellar halo stars, even when their full phase-space information is not available, using data from the Gaia DR2 release?
+What is the origin of the core in the Antlia 2 galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through spectroscopic and photometric analyses?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What are the origins and characteristics of the five discrete kinematic overdensities observed in the phase-space distribution of stars in the solar neighbourhood, and how do they compare to simulations of systems with and without dynamical friction?
+Can the use of Gaia DR3 data with the new version of the Besancon Galaxy model allow for the estimation of the mass of the Milky Way and its baryonic and dark components, as well as the evaluation of the vertical velocities in the solar vicinity?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to ground-based surveys?
+Can the Gaia DR3 catalogue be used to discover new open clusters and identify substructure previously missed by Gaia DR2?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the use of the STREAMFINDER algorithm with the Gaia Data Release 2 and Early Data Release 3 catalogs, along with spectroscopic follow-up, detect and characterize a large population of stellar streams in the Milky Way, and can the use of the Gaia catalog alone identify an extensive collection of overdensities that may be associated with the structure of?
+Can the use of the STREAMFINDER algorithm with the Gaia data release 2 catalogue reveal a large number of previously undetected open clusters and provide important insights into the parameters space of open clusters, such as the metallicity distribution function and the trends in distance, age, and Galactocentric radius?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the cause of the small overdensity of stars in velocity space with higher Galactocentric rotation velocity than the Sun, found outside of the Solar radius, which may be due to the co-rotation resonance of the Perseus spiral arm?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can an ensemble of chemical abundances probing different nucleosynthetic channels be used to build a comprehensive understanding of the chemical and structural evolution of the Galaxy, particularly in tracing the enrichment by different nucleosynthetic sources, and can the abundances of s-process elements be used to constrain the star formation history of the Galaxy?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how are their patterns related to the structural and chemical properties of the disc?
+Can the use of the STREAMFINDER algorithm with the Gaia Data Release 2 and Early Data Release 3 catalogs, along with spectroscopic follow-up, detect new stellar streams and provide insight into the properties of the Galactic acceleration field on various scales?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does it relate to the bimodal star formation history (SFH) and binning of chemical space?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, scale height, and metallicity) vary as a function of the Galactocentric radius?
+Is there a correlation between stellar galactocentric velocity and planet occurrence in the Solar neighborhood?
+Can the new Gaia DR2 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the stellar halo?
+What are the origins and characteristics of the low-mass dwarf stars with distinct chemical characteristics and distinct kinematic patterns discovered in the Gaia-ESO Survey?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable distance indicator?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable indicator of their distance?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance distributions?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the use of Gaia EDR3 data with the VVV-CL1608 method provide accurate distance estimates for the variable star population in the Galactic disk, and can this information be used to construct a detailed map of the disk's structure?
+What are the kinematic and chemical properties of the Galactic thin and thick disk and how do they vary with distance and metallicity, and what are the factors affecting the formation of the thick disk?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What are the different dynamical mechanisms that can explain the extended kinematic maps of Gaia-TGAS stars in excess of 1 km s-1, and how do they relate to the radial and vertical velocities of the Milky Way's disk?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and GALAH surveys to investigate Galactic abundance trends?
+What is the age, distance, and interstellar reddening of the Galactic globular cluster NGC 6362, and what is the cause of the cluster's slight over-abundance of anomalous elements?
+Can the Gaia-ESO survey data be used to select and characterize the variable star population of the southern sky, and can they be compared with other time series databases to obtain accurate measurements of their physical parameters?
+Can the new Gaia DR3 release be used to identify and study the dynamics of stellar streams in the Milky Way, including those formed in the most recent history of the galaxy, and provide a unique and competitive alternative to the traditional approach of identifying overdensities in the phase-space and following their evolution over time?
+What is the nature of the X-ray flares in the new variable $\beta$ Arietis and can they be explained by different mechanisms, such as accretion disk instabilities or X-ray laser scenarios?
+Does the metallicity of the progenitor of the Gaia-Sausage-Enceladus system have a primordial origin and is it linked to the formation of the Milky Way's thick disk?
+Can the Gaia DR1 catalogue be used to identify and study the kinematics of different types of moving groups in the Milky Way, including those formed in a hierarchical fashion?
+Can Gaia EDR3 data be used to detect and identify member stars in the tidal stream associated with NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Can the new Gaia DR2 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the nature and origin of the two distinct populations of high-velocity stars in the Galaxy listed in the Catalog of Faint Satellite Galactic Objects?
+Can the use of Gaia DR2 data with PSF-matching and proper PSF selection methods provide a more accurate measurement of the distance to the Galactic center and its variability over time?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the origin and properties of the Orphan Stream in the Milky Way, as determined through analyzing the proper motion, distance, radial velocity, and kinematics of its stars?
+Is there a correlation between stellar galactocentric velocity and planet occurrence in the Solar neighborhood?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the bimodality observed in other samples?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance distributions?
+Is the Galactic stellar warp a gravitationally induced phenomenon that affects both upper main sequence and giant populations across different ages?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Can the use of Gaia EDR3 data with the new wavelet transform technique provide a more accurate estimation of the distance to the Sun for millions of objects, including those in the Solar neighborhood, and shed light on the structure and dynamics of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Is the observed metallicity asymmetry in the Milky Way galaxy a result of a left-right symmetry breaking in the formation of the thick disk or a combination of factors including migration, radial migration, and chemical enrichment?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the use of Gaia EDR3 data with the VVV-CL1608 photometric catalogue provide a more accurate distance estimation of the Galactic open clusters and reduce the systematic uncertainties related to the atmospheric parameters determination?
+Is the Galactic warp a gravitationally induced phenomenon that affects both the radial and vertical dynamics of the disk, and can it be identified through the signature left in the phase-space distribution of young stars?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Does the presence of binary companions play a role in the formation of planetary systems in the Milky Way, specifically in terms of the ratio of single to binary stars in the population and the distribution of their orbits?
+What are the origins of the low-mass dwarf stars with distinct orbital properties and chemical characteristics previously claimed to be candidate hypervelocity stars?
+Is there a correlation between stellar galactocentric velocity and planet occurrence in the Solar neighborhood?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation scenario?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Galactic disc, particularly at the local solar radius?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through spectroscopic and photometric analyses?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics inform on the formation and evolution of the bimodal MDF?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in local halo stars, and how does the chemical composition, age, and kinematics of stars affect the observability of the bimodality?
+What are the origins of the low-mass dwarf stars with distinct orbital properties and chemical characteristics previously claimed to be candidate hypervelocity stars?
+What new nearby white dwarf systems can be identified and characterized through trigonometric parallax measurements provided by the public good time-domain spectroscopic surveys such as 4MOST and WEAVE?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high-velocity stars in the Solar neighbourhood, and how do they relate to the bimodal metallicity distribution function and chemical peculiarity observed in the diagram?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Does the morphology of horizontal branch stars in globular clusters match the expectations from models that include selection effects and show that the dominant selection function for stars in the core is size rather than metallicity?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Does the metallicity of the progenitor of the Gaia sausage reflect the initial metallicity of the Milky Way's disc?
+What are the kinematic and chemical properties of open clusters and what is the relationship between the oldest open clusters and the oldest known stellar samples?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the age of the Milky Way's thin and thick discs and how do they vary across different stellar populations?
+What is the origin and properties of the phase mixing process in dynamically "colder" systems, and how does the lack of a well-defined azimuthal velocity component for single stars affect the measurement of the sonic-to-radial velocity ratio?
+What is the origin and characteristics of the \emph{Gaia} stream \textit{VVV-CL1609}, a newly discovered overdensity of stars in the Milky Way that may be associated with a accretion event that occurred in the past few tens of millions of years?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia data-sets, and can the method be used to study the dynamics of the Galactic disk and the effects of radial and counter-rotating motions on the chemical and dynamical properties of the?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable indicator for the distance to the globular cluster M 13?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance distributions?
+What is the origin of the anomalous abundance ratios observed in a unique sub-sample of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Does the presence of binary companions play a role in the formation and evolution of herbigherbig stars, specifically in terms of their binarity rate, and can future surveys, such as 4MOST and WEAVE, detect these systems and provide a clearer picture of the binarity rate in the inner and outer stellar disks of the Milky Way?
+Is the formation of extra-tidal structure in globular clusters correlated with their orbital properties and does the presence of an extended envelope indicate tidal erosion?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can Gaia EDR3 data identify candidate stars associated with hypervelocity stars and provide a clearer picture of the relationship between HVSs and globular clusters?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream generated by NGC 288, and can the combined use of Gaia DR3 and Gaia TGAS data be used to accurately determine the binarity and metallicity of these stars?
+Can the use of the Gaia catalogue with the APOGEE-Gaia harmonised solution for individual chemical abundances provide a more detailed picture of the thin and thick disc populations and the chemical evolution history of the Galaxy?
+Can the use of chemical abundances and clustering analysis in the elemental abundance space improve the feasibility of chemical tagging within the thin disk population and allow for the identification and study of chemically distinct substructures?
+Can Gaia EDR3 data identify and catalog open clusters and near-isochrone objects in the Milky Way, including those with low metallicities, and can the clusters and NIIs be confirmed through comparison of their parameters and chemical abundances?
+Can the use of Gaia EDR3 data with the new machine learning algorithm, Via Machinae, effectively identify and study open clusters and their surrounding regions, and provide a less-biased method of determining open cluster parameters?
+What is the origin of the core in the Antlia 2 star cluster and can it be explained by aggressive star-forming or a dynamical disruption of a stellar bimorph?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the use of high-precision astrometry and machine learning methods reveal a need to update the distribution of young stars in OB associations and lead to a revision of their historical composition?
+Does the metallicity distribution of the Galactic bulge reveal a vertical metallicity gradient indicating a boxy-square-law or a W-shaped function?
+What is the nature, origin, and properties of the low-latitude globular cluster system in the Milky Way, and how does it relate to the known globular clusters and stellar groups?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their patterns and variations at different distances from the center of the Milky Way provide new insights into the history and evolution of the Galaxy?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the nature of the X-ray flares observed in the long-term monitoring campaign of the XMM-Newton X-ray satellite observatory, and how do they compare to the expected background level?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+What are the kinematic properties of Milky Way globular clusters over time and how have they been affected by different mechanisms of destruction, and can the information content of overdensities in the spacecraft environment be used to constrain the mass of the Milky Way and the dark matter halo?
+What is the nature and origin of the two distinct populations of high-velocity stars in the Galaxy revealed by comparing the chemical compositions of "old" and "new" high-velocity stars?
+What are the different dynamical mechanisms that can explain the extended kinematic maps of $\textit{M62}$ in terms of out-of-equilibrium models?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning framework provide a more accurate estimate of the local standard of rest for a large sample of stars, compared to previous methods?
+What are the possible progenitors, their stellar mass, and supernovae explosion energy of five CEMP-no stars, and are they related to any known open clusters or supernova events?
+Can the new Galaxy model by Gallagher et al. (2019) shed light on the structure and origin of the Milky Way and the high-velocity tail of its stars, while providing a consistent and comprehensive framework for analyzing spectroscopic and photometric data?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Is the formation of extra-tidal structure in globular clusters correlated with their orbital properties and does the presence of an extended envelope indicate tidal disruption?
+Does the metallicity of the progenitor of the Helmi streams in the Milky Way halo correlate with the strength of the streaming velocity, and can this be explained by a scenario where the helium shell exploded in the precursor to a low-mass dwarf galaxy?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for poorly studied or previously unexplored Galactic globular cluster systems and determine the parameters of their potential, including the mass, shape, and kinematics, as well as the origin and evolution of different populations in these systems?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the Gaia satellite provide a more complete and accurate catalogue of open clusters in the Milky Way, including those in the outermost regions of the galaxy, and can it be used to trace the chemical and dynamical history of the outermost regions of the galaxy?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $Z$--$F_p$ plane of stars with $Z\leq 0.05$ Z$_\odot$ and $F_p\geq 25$ pc$^-$ and $Z\?
+What are the different physical processes that cause chemical inhomogeneities in the disk of the Galaxy, and how do they compare to models for the chemical evolution of the thin disk?
+What is the nature of the X-ray flares and quiescent spectra of the supermassive black hole Sgr A* in the center of our galaxy, and how do they compare among the brightest flares ever observed with different X-ray observatories?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the use of Gaia DR2 data with the H3 Stellar Spectroscopic Survey allow for the derivation of chemical abundances for millions of stars and provide a unique opportunity to study the structure and dynamical history of the Milky Way?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the origin of the anomalous abundance ratios observed in a chemically peculiar star, and can it be explained by a single extreme mass-ratio neutron-capture supernova event?
+What is the nature and origin of the two distinct populations of high-velocity stars in the solar neighbourhood, as identified through a study of their chemical abundances and kinematics?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, alpha, and beta) and metallicity distribution function (MDF) constrain the formation scenario for the bulge MDF?
+What is the age of the thin and thick disk of the Milky Way and are there any kinematic differences between the populations that could provide a way to differentiate them?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the new Gaia DR3 release be used to establish a comprehensive catalogue of Germanic mythological stars and their historical and cultural associations?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high-velocity stars in the solar neighborhood, and how do they relate to the bimodal metallicity distribution function observed in the Gaia DR2 dataset?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of metal-poor stars, and how do they relate to known anomalous abundance ratios in general?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through analyzing the proper motion, distance, radial velocity, and kinematics of its stars?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+Can Gaia DR3 data combined with metallicity and chemical abundance information be used to identify and characterize merger debris in the disc and halo, and provide insight into the history and assembly history of the Milky Way?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $T_z$ - [Mg/Fe] space, and how does it relate to the bimodality in the distribution of [Mg/Fe] values, the $\beta$-process, and the?
+What is the age and origin of the Gaia-Sausage-Enceladus dwarf galaxy and how does it relate to the Milky Way and other dwarf galaxies?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+What is the nature, photometry, spectroscopy, and structure of the additional 7700 objects and 638 newly discovered star clusters and alike objects in the sky beyond the traditional limit of the Milky Way for which no association could be traced back to the known structures of the galaxy?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can Gaia EDR3 data identify and characterize the kinematically distinct substructures in the outermost disc of the Milky Way, including the recently proposed "Outer Arm" and "Inner Arm" structures, and provide evidence for the co-rotation resonance of the Perseus arm and the co-rotation time of the Orion arm?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the nature and origin of the low-eccentricity halo population in the Milky Way and how does it relate to the high-eccentricity population dominated by the debris of a massive satellite disrupted by the Milky Way's progenitor?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Does the metallicity of the progenitor of the Galactic halo, known as the Large Magellanic Cloud (LMC), differ from the values typically quoted in the literature, and can it be explained by the known systematic uncertainties in metallicity determinations?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning algorithm provide a more accurate estimation of the age of the Milky Way, including the halo, and lead to a better understanding of the formation and evolution of the galaxy?
+Is the observed asymmetry of the tidal tails in some star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the Gaia mission's science performance after one year of observations contribute to reconstructing the history of the Milky Way?
+Is the Galactic halo composed of two distinct parts, an inner and outer halo, and can these structures be identified using kinematics and photometric metallicities?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can Gaia EDR3 data identify candidate stars associated with hypervelocity clouds and confirm the existence of an HVC in the Galactic halo?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the use of Gaia EDR3 data with the new version of the GeDRIFT algorithm provide a more accurate determination of the age distribution of the populations in the Milky Way bulge and disk, and lead to a better understanding of the formation and history of the galaxy?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Does the Milky Way have an uncommonly quiet merger history that leads to an essentially in-situ bulge and what are the significant effects that the bar can have on the surrounding disc?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the nature and origin of the different kinematic structures and overdensities observed in the tangential and radial velocity distributions of stars in the Solar neighbourhood, and how do they relate to the chemical and kinematic substructures previously identified in the Milky Way?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance distributions?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the Gaia satellite be used to identify and measure the parameters of open clusters that were previously missed by ground-based surveys, and can the obtained parameters be compared with predictions from stellar models and compared with open clusters in the Milky Way that have been studied extensively?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can Gaia DR4 data be used to detect and identify member stars in the tidal stream associated with NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Is there a possible link between the formation of extra-tidal structure and the tidal disruption of a star in the globular cluster M62, based on the comparison of Gaia DR2 data with a catalogue of known tidal structures?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for poorly studied or previously unexplored Galactic globular clusters and identify potential candidates for the accretion origin of different types of objects in the clusters?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and what factors are involved in their production?
+What is the nature of the X-ray flares observed in the first few years of the Swift mission, and how do they compare between black hole and disk sources?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the use of Gaia EDR3 data with the improved methodology provide unprecedented precision and accuracy in deriving spectro-photometric distances for the sample of $\sim 2$ million stars, allowing for reliable studies on topics such as the structure and dynamics of the Milky Way, the age-metallicity relation, the Galactic potential, and the spatial and temporal?
+Can the \textit{Cannon} data analysis pipeline reliably identify and measure the parameters of variable stars in the \textit{Gaia} Early Data Release 3 (EDR3) data?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high-velocity stars in the local stellar halo of the Milky Way?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does the chemical and kinematic substructure within the bulge contribute to the bimodality?
+Can the use of Gaia DR3 data with PSF-matching techniques provide a more accurate estimate of the young stellar population in the solar neighborhood, allowing for the measurement of key dynamical and chemical parameters and the detection of bimodal metallicity populations?
+Can the Gaia DR3 and VVVX databases be used to construct a comprehensive catalogue of variable stars in the Milky Way, including their structural and dynamical properties, and can the variables be used to trace the spiral arms and other structures?
+Can the new STREAMFINDER algorithm discover a large population of stellar streams surrounding the inner Galaxy, and can these structures confirm that they are predominantly metal-poor debris of inner-halo globular clusters?
+Can the Gaia satellite's precise distance measurements be used to test different gravitational theories and constrain the mass of the Milky Way?
+What is the nature of the different populations co-existing in the innermost regions of the Milky Way in terms of their chemical and kinematic properties, and what is the cause of the observed chemical discontinuity and counter-rotating stars?
+Can the use of Gaia EDR3 data with the new waveform generative model MADELLA provide a precise and accurate dynamical mass for the Milky Way and its halo, allowing for the first measurement of the halo mass and concentration with a single method?
+What is the cause of the sinusoidal wiggle in the GD-1 stream, and can it be explained by various perturbation scenarios such as a passing massive black hole, a close call with a dwarf galaxy, or a tidal disruption event?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection scenarios, allowing for better understanding of the galaxy's potential and Galactic center properties?
+What is the nature and origin of the two distinct populations of high-velocity stars observed in the Milky Way, and how do they relate to the known open clusters, stellar remnants, and other phenomena associated with the accretion history of the galaxy?
+What are the kinematic and chemical properties of ultra-metal-poor stars and how do they differ from their slightly more metal-rich counterparts?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event, as revealed by an analysis of APOGEE-DR14 element abundances and Gaia-DR2 kinematics data?
+Can the Gaia DR3 catalogue be used to identify and study the substructure of the debris field left behind by the tidal disruption of a star in the Galactic halo, and can this be used to gain insight into the accretion history and progenitor mass of the Milky Way?
+What are the kinematics and properties of the recently discovered Milky Way stellar cluster Gaia 1 and how likely is it to survive long term given its orbit and bimodal metallicity distribution function?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What are the origins and characteristics of the low-mass dwarf galaxies Crater II and Hercules, and how do they fit into the Milky Way's web of interactions?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for retrograde substructures in the Milky Way and provide a blueprint for future studies?
+Can the use of Gaia EDR3 data with the VVV-CL1608 photometric system identify and measure the parameters of anisotropic stellar populations, including those of different ages, in the halo and the thick disk of the Milky Way?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their patterns at different heights in the atmosphere provide new constraints on the \emph{r}-process evolution and enrichment times?
+Can the use of Gaia EDR3 data with the VVV-CL1607 photometric catalogue reveal and characterize an overdensity of young stars in the Milky Way bulge, and provide evidence for a dynamical history for the metal-rich bulge?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in local halo stars, and how does the chemical and kinematic substructure within the halo, as well as selection effects, affect the observed bimodality?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the cause of the ridges and arches observed in the phase-space distribution of stars in the Milky Way, and what is the relationship between their planar and vertical directions?
+What are the possible formation pathways for extreme horizontal branch stars in the globular cluster NGC 1261?
+Can a neural network trained with spectroscopic data from APOGEE-Gaia accurately predict an individual star's atmospheric parameters and distances, and can it be used to study the kinematics and chemistry of the outer halo?
+Can a neural network be used to accurately deduce missing line-of-sight velocities from astrometry in surveys such as Gaia and provide a more comprehensive understanding of the Milky Way's kinematic and chemical properties, even without a full phase-space model?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning framework provide a more accurate estimation of the metallicities and distances of the HyiRocket tail stars, and lead to a better understanding of the structure and origin of the Milky Way's tail systems?
+Can the Gaia mission's five-dimensional space be reduced to three by introducing a new dynamical variable that correlates with the age of the stars, and can this new variable be used to constrain the Galaxy's potential and other Galaxy models?
+Can the Gaia satellite be used to identify and measure the properties of open clusters that were previously missed by ground-based surveys, and can the combined catalogue of open clusters from Gaia and ground-based surveys be used to trace the chemical and dynamical history of the Milky Way?
+Can the use of Gaia EDR3 data with the VVV survey provide a more complete picture of the variable star population in the Milky Way bulge and disk, allowing for the derivation of parameters such as distance, age, and metallicity, while potentially constraining models of disk formation?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What are the different physical processes that cause old open clusters to shrink or expand, and how do they depend on various cluster parameters and metallicity?
+Does the metallicity of the progenitor of the Galactic globular cluster NGC 288 have a correlation with the metallicity of its descendants, and can it serve as a unique and reliable test case for chemical evolution models?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning framework provide a more accurate estimation of the metallicities and distances of millions of stars, leading to a larger sintered dataset with unprecedented precision and accuracy?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable indicator of their absolute distance?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hypervelocity stars in the galaxy, and provide constraints on the mass of the galaxy and the baryonic fraction of the Milky Way?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning framework provide accurate distance estimates for millions of stars and constrain the curvature of the halo at ranges of 10-20 kpc?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the nature of the X-ray flares and quiescent spectra of the supermassive black hole Sgr A* in the center of our galaxy, and how do they compare among the brightest flares ever observed with different X-ray observatories?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $Z$ - $Z$ - $Z$ - $Z$ - $Z$ - $Z$ - $Z$ - $Z$ - $?
+Can a neural network be used to accurately infer missing line-of-sight velocities from astrometry in surveys such as Gaia and provide a more comprehensive understanding of the Milky Way's kinematic and chemical properties, even without a full model of the galaxy?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through spectroscopic and photometric analyses?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Does the presence of a central massive black hole in the Large Magellanic Cloud contribute to the distribution of hypervelocity stars, resulting in a dipole density distribution on the sky and a tendril in density leading towards the center of the Cloud?
+Is the observed kinematic substructure in the inner halo of the Milky Way galaxy a generic feature of tidal debris from older mergers, and can the properties of the stellar halo be used to map the speed distribution of the local dark-matter halo?
+What is the origin and characteristics of the "dwarf" galaxy-like overdensity, named the Thin Disk, which is found in the Milky Way at all radial distances and corresponds to a specific metallicity and age?
+Can the Gaia-ESO survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and provide information on the binarity, dynamical evolution, and metallicity gradients in the Galactic disk?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the bimodal stellar populations and accretion history scenarios for the Milky Way?
+Can the new Gaia DR3 release be used to perform a detailed study of the Galactic potential and bring constraints on the parameters of the Milky Way, while providing a homogeneous and reproducible framework for comparison with other studies?
+Is the Galactic halo composed of two distinct parts, an inner and outer halo, and can the kinematics of red giant stars be used to identify and study them?
+Can the use of Gaia EDR3 data with the improved methodology provide unprecedented precision and accuracy in measuring distances and spectral types for an expanded sample of 26 Galactic OB groups, including identifying orphan clusters with interesting properties?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Can the Gaia mission's astrometric and spectroscopic data be used to estimate the ages and metallicities of red giant stars, and can this be used to construct an age-metallicity map of the Milky Way?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how are their patterns related to the dynamical properties of the Milky Way?
+Can Gaia DR2 data be used to detect and identify member stars in the tidal stream generated by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning algorithm provide a more accurate estimation of the distances to millions of stars, including those in the Milky Way globular clusters, and result in a smaller systematic error compared to the previous stellar catalog?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Does the morphology of horizontal branch stars in globular clusters have a galactic kinematic origin, and can it be used to trace the kinematics of the cluster?
+What is the origin of the \emph{r}-process elements ruthenium, rhodium, and technetium in the Milky Way and the outside halo, and how do their patterns in the field and in sequences within sequences provide evidence for multiple \emph{r}-process events and a diffuse \emph{r}-process history?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+Does the presence of a central massive black hole in the Large Magellanic Cloud contribute to the distribution of hypervelocity stars, resulting in a dipole density distribution on the sky and a tendril in the velocity distribution?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What are the possible origins of the formation of star clusters in our Galaxy and in Small Magellanic Cloud, and how do the chemical and kinematic properties of the clusters relate to the properties of the host dwarf galaxy or dwarf spheroidal galaxy?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates, and provide a template for investigating the metallicity and kinematics of other large stellar overdensities?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can the Gaia satellite provide a more accurate and complete catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to ground-based surveys?
+Can the use of Gaia EDR3 data with the VVV-CL1608 formula for open clusters establish a reliable method for determining distances to these objects and enable the construction of maps showing the spatial distribution of different age populations within the Galaxy?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can Gaia data be used to discover new stellar groups and members of existing groups in the southern sky, and can the identified groups be characterized with respect to their physical parameters and chemical abundances?
+What is the origin and properties of the Orphan Stream in the Milky Way, as determined through analyzing the proper motions, spectral parameters, and clustering properties of its stars?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for poorly studied or previously unexplored Galactic globular cluster candidates and determine their physical parameters and origin?
+What is the nature and origin of the different kinematic structures and overdensities observed in the Gaia DR2 data, specifically the "turbulent" structure and the "wave" structure, and how can their properties at different Galactocentric distances and heights provide insight into the heating and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does the chemical composition, age, and orbital properties of metal-rich and metal-poor components relate to their origins?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, open clusters with similar metallicity to Trumpler 23, and future globular clusters candidates?
+What is the nature and origin of the different kinematic structures and overdensities observed in the Gaia DR2 catalogue, specifically in the halo and the thick disk, and how can their properties at high Galactocentric radius provide insights into the formation of the Milky Way's halo and the evolution of its disk?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream produced by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning framework provide a precise and accurate estimation of the metallicities and distances for millions of stars and quasars, enabling the construction of large spectroscopic surveys and yielding a comprehensive catalogue of atmospheric parameters and abundances?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 DR4 data, and how does the chemical composition, age, and kinematics of the observed bimodals provide insights into the bimodality formation process and the bimodal distribution of [Mg/Fe] and?
+What is the age, distance, and metallicity of the stellar stream GD-1, and what are the characteristics of its orbit and potential encounters with dark matter subhalos, as well as any candidate overdensities and underdensities along its trace?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, a variable star in the globular cluster M4 that exhibits oscillations in radial and tangential velocities, and can the misalignment of its spin axis with respect to the rest frame of the observer be explained by a temporary perturbation of the axis of rotation due to a?
+What is the origin of the anomalous abundance ratios observed in a chemically peculiar star, and could they be explained by a supernova explosion in a helium-enhanced globular cluster?
+Does the morphology and evolution of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the use of Gaia data with proper motion measurements provide a more accurate distance estimate for globular clusters and dwarf spheroidals orbiting our Galaxy when compared to previous methods?
+Can the use of the Gaia mission's first data release along with cross-matching and proper motion measurements provide a precise and accurate dynamical mass estimate for the Milky Way and help to constrain the galaxy's gravitational potential and associated parameters?
+Can the use of Gaia DR2 data with PSF-matching techniques provide a much more detailed understanding of the structure and origin of the Milky Way's stellar halo, leading to a clearer understanding of the origins of the planet-forming raw material available to form it, and potentially providing a list of stars of interest for future spectroscopic studies?
+Can the Gaia DR3 catalogue be used to detect and identify member stars in open clusters and estimate their parameters, such as mass, age, and distance?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the dynamical mass and mass profile of the Galactic disk?
+What is the cause of the sinusoidal wiggle in the GD-1 stream, and can it be attributed to a perturbation rather than a progenitor?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can a neural network trained on Gaia catalog entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+Can a neural network trained on Gaia catalog entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's five-dimensional data cube be used to constrain the gravitational potential of the Milky Way and measure the galaxy's total mass and concentration without assuming axisymmetry or circular motion?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their patterns and characteristics at different heights in the Galaxy's disc suggest their origins?
+Is the observed asymmetry of the tidal tails in some star clusters the result of a stochastic process or due to additional dynamical processes such as kicks from the Galactic potential?
+What is the nature of the X-ray flares in the new variable 1E 3358-57 and can they be explained by various mechanisms, such as sub-critical instabilities, in-situ X-ray emitting regions, or external perturbations?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for poorly studied or previously unexplored Galactic globular cluster systems and determine the physical parameters of the clusters and the potential threats to their long-term survival?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can Gaia DR3 data combined with metallicity and chemical abundance information be used to identify and characterize merger debris in the local stellar halo, leading to the discovery of new substructures and further understanding of the origins of the halo's substructure?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, scale height, and metallicity) vary as a function of the Galactocentric radius?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+What are the possible origins of the formation of star formation regions in very young star clusters and how do they relate to the observed structures and processes in \textit{Gaia} Data Release 3?
+What is the origin of the anomalous abundance ratios observed in a very metal-poor star, and how do they relate to the star's age and nucleosynthesis scenarios?
+What is the age and metallicity difference between the Galactic globular cluster NGC 6362 and the halo globular cluster 47 Tucanae, and can the blue-shifted gamma-ray burst GRB 050908A potentially be used as a unique and reliable chronometer to determine the absolute proper motions of objects as far as 10 Gpc away?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Can a machine learning model reliably identify extended stellar halo stars, even when their full phase-space information is not available, using data from the Gaia DR2 release?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in local halo stars, and how does it relate to the bimodal alpha-enhancement pattern seen in neutron-star and black-hole mergers?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to ground-based surveys?
+Can the use of the Gaia mission's first data release along with cross-matching with other catalogues provide a complete catalogue of Italian traditional names for stars, constellations and other astronomical objects, and allow for the study of the history and diffusion of the Italian astronomical nomenclature?
+Can the use of Gaia EDR3 data with the VVV survey provide an accurate distance estimation for 1.1 million RR Lyrae stars and contribute to building a catalogue of distances with uncertainties for open clusters, which can be used to study the kinematics and structure of the Galactic disk and determine the dynamical age of open clusters?
+Is there a connection between the formation of extra-tidal structures and the evolution of systems within 2 kpc of the Galactic center over a period of 4.5 Gyr?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Is there a connection between solar motion and biodiversity variations on Earth, and can it be established using a causal approach?
+Can Gaia EDR3 data be used to detect and identify member stars of open clusters and determine their parameters, including distances, ages, and bimodal metallicities?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-edge region?
+What is the origin of extreme radial velocity stars, and can it be determined through measuring their proper motions with the Hubble Space Telescope?
+Can the use of Gaia DR2 data with the Bayesian Machine Learning framework provide a more accurate estimate of the distance to the Sun and solar metallicity, while also enabling the study of rare and intermediate-range variable stars and yielding a large statistical sample of open clusters for metallicity measurements?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Is the formation of extra-tidal structure in globular clusters correlated with their orbital properties and does the presence of an extended envelope indicate tidal erosion?
+What is the origin of "young" [$\alpha$/Fe]-enhanced stars with stellar ages younger than 6.0 Gyr and [$\alpha$/Fe] ratios greater than 0.15 dex, which are not expected from classical Galactic chemical evolution models?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the origin and properties of the Orphan Stream in the Milky Way, as determined through analyzing the proper motion, distance, radial velocity, and kinematics of its stars?
+Does the presence of a central massive black hole in the Large Magellanic Cloud contribute to the distribution of hypervelocity stars, resulting in a dipole density distribution on the sky and a tendril in the velocity distribution?
+What is the age distribution and star formation history of the halo white dwarf population and are there possible evidences of a cut-off at the faintest end of the luminosity function?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Does the metallicity distribution of the Galactic bulge reveal a vertical metallicity gradient indicating a boxy-bulge formation scenario from the vertical instability of the Galactic bar?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be primarily attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how do their patterns and characteristics at different metallicities and temperatures inform us about their production mechanisms?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its formation?
+Can the use of the STREAMFINDER algorithm with the Gaia Data Release 2 and Early Data Release 3 catalogs along with spectroscopic follow-up lead to the discovery of thousands of new stellar streams, including those associated with the known clusters and those previously unknown?
+What are the origins of the low-mass dwarf stars with distinct orbital properties and chemical characteristics previously claimed to be candidate hypervelocity stars?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate a cluster of similar stars in the heart of the Galactic bulge, and reveal the properties of the population that makes up this cluster?
+Can the new Galaxy model, consisting of a disc, spiral arms, and a thick and thin disc, explain the observed kinematics of open clusters and provide a consistent and comprehensive understanding of the open cluster population in the Galaxy?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the new Gaia data be used to construct an accurate and comprehensive catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, and to model the potential of the Milky Way and constrain the dark matter halo parameters?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the kinematics and chemical evolution models of the Galaxy?
+Is the formation of extra-tidal structure in globular clusters correlated with their orbital properties and does the presence of an extended envelope indicate tidal erosion?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its potential, and can this model be tested with single-object spectroscopic measurements and numerical simulations?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What are the kinematic properties of Milky Way globular clusters and what is the role of the potential of the Milky Way in the formation and dynamical evolution of these systems?
+Can the use of Gaia DR2 data with PSF-matching technique provide a more accurate estimation of the distance distribution function in the solar neighborhood and enable the construction of a catalogue with self-consistent parallaxes down to the foreground star cluster level?
+Is there a common pattern of mass loss by tidal disruption in globular clusters associated with dwarf spheroidal galaxies?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event, as revealed by an analysis of Gaia DR2 radial velocity measurements and spectroscopic follow-up?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the dynamical mass and age of the galaxy?
+Can the use of Gaia DR2 data with PSF-matching techniques provide a more accurate distance estimate for globular cluster NGC 2419 (M5) and result in a reduction of the cluster's metallicity and age by nearly a giga-year?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable indicator of their distance?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+Can the use of Gaia EDR3 data with the VVV survey allow for the most precise measurements of distances and colors for millions of stars, which can then be used for various studies, including determining the shape and flattening of the Galactic disk?
+Can the use of Gaia EDR3 data with the VVV-CL1607 formula for distance estimation be used to obtain accurate values for the Galactic longitude and velocity components, and can this method be validated and compared with others?
+Can Gaia EDR3 data identify and distinguish open clusters that have been accreted at the center of galaxies from any other type of cluster?
+Can the Gaia-ESO survey data be used to select and characterize the optical and near-infrared catalogs of open clusters and star clusters, and provide a unique and competitive tool for cluster studies?
+Can the Gaia mission's science performance after one year of observations contribute to reconstructing the history of the Milky Way?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, open clusters with similar metallicity to Trumpler 23, and future studies of the Galactic disk?
+What are the kinematics and chemistry gradients of nearby halo stars and how do they relate to age and metallicity?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral pattern speed variations with a high degree of confidence?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event, as revealed by an analysis of Gaia DR2 data?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how are their patterns related to the known \emph{r}-process sources?
+Can a neural network trained on Gaia catalog entries accurately distinguish between good and bad astrometric solutions based on information about nearby sources, resulting in an astrometric fidelity parameter that is an order of magnitude cleaner than any single quality flag?
+Can the Gaia DR3 and VVVX databases be used to obtain orbits for poorly studied or previously unexplored Galactic globular cluster candidates and determine their physical parameters and origin?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does the bimodality of the high-MDF peak relate to the bimodality of the chemical abundances observed there?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia data-sets, and can the method be used to investigate metallicity gradients and variations in [$\alpha$/Fe] and [O/Fe] in different regions of the Galaxy?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates, and provide a template for investigating the dynamic history and chemical evolution of the galaxy?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Does the morphology and evolution of Mira pulsation period in Oxygen-rich Miras throughout the Milky Way disk and bulge provide evidence for the inside-out and upside-down formation of the Milky Way's disk, as well as the timing and structure of bar formation and buckling?
+Is the observed strong flaring of the Milky Way disk consistent with it being dynamically heated by the repeated passage of the Sagittarius dwarf spheroidal galaxy through the midplane?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential, and can this model be used to reconstruct the past and present properties of the Milky Way and compare them with predictions from alternative models?
+Is the Galactic stellar warp a gravitationally induced phenomenon that affects both upper main sequence and giant populations across different ages?
+Can the use of Gaia EDR3 data with the VVV-CL1608 photometric catalog provide a more accurate distance estimation of the Open Cluster VVV-CL1608 and lead to a revision of its physical parameters, including a revision of its metallicity?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the age and origin of the Galactic globular cluster system and how does it compare to previous determinations?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate a subgroup of stars in the cluster that have similar orbital parameters, and determine the cluster's parameters?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Can the Gaia mission's science performance after one year of operation contribute to reconstructing the history of the Milky Way?
+Can a neural network be used to accurately infer missing line-of-sight velocities from astrometry in surveys such as Gaia and provide a more comprehensive understanding of the Milky Way's kinematic and chemical properties, even without complete phase-space information?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can the use of Gaia EDR3 data with the VVV survey allow for the derivation of distances, chemical abundances, and spatial distributions of millions of stars in the bulge and disk, while providing a consistent and precise sample of targets for upcoming spectroscopic experiments?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia data-sets, and can the method be used to study the kinematic and chemical properties of different stellar populations?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia DR2 astrometry be used to detect structures in the Galactic disc and identify spiral pattern speed differences between age components with and without a warp?
+Can the Gaia satellite provide a more accurate and continuous estimate of the distance scale from the Sun to the Galactic center, allowing for better characterization of the component populations in the bulge and disk, and providing a more accurate and comprehensive understanding of the Galaxy?
+Can a machine learning model reliably identify open clusters in Gaia data using a combination of atmospheric parameters, distances, and metallicities?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Does the Milky Way bar affect the kinematics of its satellite galaxies in the same way it does the Milky Way?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Can the new STREAMFINDER algorithm discover a large population of stellar streams surrounding the inner Galaxy, and can these structures confirm that they are predominantly metal-poor debris of inner-halo globular clusters?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, allowing for better understanding of the galaxy's potential and Galactic center and providing a test bed for Galactic dynamical models?
+Can the Gaia DR2 astrometry be used to detect structures in the Galactic potential and gain confidence in the accuracy of the model?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 radial velocity sample, and how does it relate to the bimodality observed in other sample sets?
+Can the use of Gaia EDR3 data with the new STREAMFINDER algorithm provide a more accurate and comprehensive catalogue of stellar streams in the Milky Way, including those associated with globular clusters and ultra-faint dwarf spheroidals, and provide insight into the gravitational potential of the Milky Way and the properties of its baryonic substructures?
+What is the nature of the different populations co-existing in the innermost regions of the Milky Way in terms of their chemical and kinematic properties, and what is the cause of the observed chemical discontinuity and counter-rotating stars?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemical composition, spatial distribution, and kinematics provide insight into the formation scenarios for this bimodality?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+Can a neural network approach using photometry and parallax with isochrones accurately determine the ages and metallicities of red giant stars, and can it be used to study spatial and kinematic gradients with metallicity in the Galactic bar?
+Does the presence of a central massive black hole in a large Magellanic cloud globular cluster, NGC 5128, explain the unusual velocity dispersion and metallicity distribution observed in one of the largest subsystems, NGC 4372?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Does the presence of binary companions play a role in the formation of ultra-faint dwarf galaxies in the Milky Way, and can Gaia DR2 data be used to identify and characterize these systems?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Can Gaia EDR3 data be used to detect and identify member stars in the tidal stream generated by NGC 288, and can the chemical composition of the stream stars be used to confirm the tidal origin of the stream and identify any anomalous stars?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, allowing for better understanding of the galaxy's potential and Galactic center properties?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can Gaia DR3 data be used to detect and identify member stars in the tidal stream generated by NGC 3201, which will be useful for modeling the gravitational potential of the Milky Way?
+Does the metallicity of the progenitor system of the Milky Way correlate with the strength of its star formation history, and can this be confirmed by comparing the chemical fingerprints of ultra-faint dwarf galaxies with those of the Milky Way and its progenitor systems?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the dynamical mass and progenitor mass for the cluster?
+Can the use of Gaia EDR3 data with the improved methodology provide unprecedented precision and accuracy in deriving spectro-photometric distances for millions of stars and reveal interesting structures in the halo, the outer thin disk, and the thick disk of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way based on its observed progeny galaxies, specifically the high-redshift "island universes" that are among the most extreme in terms of galaxy properties?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 data, and how does the chemical heterogeneity within the halo and in the thick disk explain the observed bimodality?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can Gaia DR2 data be used to detect and identify member stars in open clusters and determine their birthplaces in the Milky Way?
+What are the kinematic and chemical properties of the Galactic thin and thick disk and how do they vary with distance and metallicity, and what are the factors affecting the formation of the thick disk?
+What is the origin of the bimodal metallicity population in the Galactic globular cluster NGC 6397, and how do the low- and high-metallicity populations relate to the older and younger subpopulations respectively?
+Does the Milky Way bar cause a tangential acceleration component in the solar motion, and can it be measured using upcoming Gaia data releases?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through analyzing the proper motions, spectral parameters, and chemical abundances of its stars?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into the formation of the bimodal MDF and the history of the bulge?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of the most metal-poor stars, and how do they relate to known halo substructures?
+Does the metallicity of the progenitor of the Galactic halo (Gaia-Enceladus) differ from that of its descendant (Gaia-Sausage)?
+ ### Background: The Gaia-Enceladus progenitor was a massive, moderately-metal-poor star that exploded as a Type Ia supernova in the early years?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the cause of the ridges and arches observed in the phase-space distribution of stars in the Milky Way, and what is the relationship between their planar and vertical directions?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+Does the metallicity distribution of the Galactic thin disc show a correlation with the formation of solar-type stars in the disc, and can it provide evidence for the inside-out disc formation scenario?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in local halo stars, and how does the chemical and kinematic substructure within the bimodal MDF support the hypothesis that the bimodality is caused by the co-rotation resonance of an intermediate-mass black hole in the galaxy's core?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What are the origins of the low-mass dwarf stars with distinct chemical characteristics and kinematics behavior previously claimed to be candidate hypervelocity stars?
+Can the Gaia mission's science performance after a year of observing be assessed and promising methods for data analysis and modeling be identified through a systematic search for signals and systems of interest in the mission's first data release?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics compare with the thin and thick disks?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Can Gaia data be used to discover new stellar groups and members of existing ones, and can the structures detected in the space density and velocity distribution of objects in the Gaia catalogue provide insights into the formation and evolution of the Milky Way?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and GALAH surveys to investigate Galactic abundance trends?
+What are the origins of the kinematic differences observed between metal-rich and metal-poor globular clusters, and how can the observed kinematics of ultra-faint dwarf galaxies and specific globular clusters be used to constrain the mass of the Milky Way?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+Can the use of high-precision astrometry and machine learning methods reveal a need to update the distribution of young stars in OB associations and lead to a revision of their historical composition?
+What is the age, distance, and metallicity of the stellar stream GD-1, and what are the chemical abundances and kinematics of the stars that make it up, in order to better understand the formation of the thin disk and the stellar streams?
+Can the use of Gaia EDR3 data with the new wavelet transform method provide a more accurate distance estimation for the open clusters and enable the determination of parameters such as the metallicity and distance indicators for 1,526 open clusters?
+What are the different heating mechanisms and age-velocity-dispersion relations for the low and high alpha/Fe discs of the Milky Way at different Galactocentric radii, and how do outer disc populations vary in terms of their heating and kinematics compared to inner disc populations?
+What is the age distribution and star formation history of the halo white dwarf population and are there possible evidences of a cut-off at the faintest end of the luminosity function?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using a combination of data from different sources, including Gaia, 2MASS, WISE, and Astrometry.org?
+What is the age, distance, and interstellar reddening of the Galactic globular cluster NGC 5694, and what is the cause of the cluster's unusual colour and magnitude variations?
+Can a neural network be used to accurately infer missing line-of-sight velocities from astrometry in surveys such as Gaia and provide a more comprehensive understanding of the Milky Way's kinematic and chemical properties, even without complete phase-space information?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the nature of the X-ray flares in the spectra of the low-mass X-ray binary system in NGC 6500, and can they be explained by different physical processes such as X-ray spot heating, spectral hole burning, and anomalous scattering?
+What is the age and origin of the globular cluster system in the Milky Way and how does it compare to previous determinations?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population?
+What is the nature of the X-ray flares and quiescent spectra of the supermassive black hole Sgr A* in the center of our galaxy, and how do they compare among the brightest flares ever observed with different X-ray observatories?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through analyzing the proper motion, distance, radial velocity, and kinematics of its stars?
+Can a novel approach of consistently populating star particles with stars, tracing the evolution of the stellar population, allow for the construction of large, high-resolution chronicles of the galaxy that account for the initial mass function and contain information on the chemical evolution of the progenitor system?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral arm patterns in the overdensities of the giant population in the outer disc?
+What is the origin of high velocity stars that have metallicity above -0.5 dex and can they originate from the Galactic center or were they kicked up from the Galactic disk?
+Can the Gaia DR2 parallax bias the distance scale of the halo, and what are the systematic effects due to dust extinction and the selection function?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the use of Gaia EDR3 data with the improved methods provide a clearer picture of the structure and origin of the thin disc, particularly in the under-studied directions of the Sun-Chandler-VASCA and VVV surveys?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can Gaia DR2 data be used to detect and identify member stars in open clusters and provide insights into the origins of the cluster and the age of its central neutron star?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate cluster members, and determine the cluster's parameters, including Galactic abundance patterns?
+What are the origins and characteristics of the four distinct populations of kinematically distinct halo stars recently identified in the stellar halo of the Milky Way through the H3 Spectroscopic Survey?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+What is the nature and origin of the low-eccentricity halo population in the Milky Way and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of ultra-faint dwarf stars, and how do they relate to known halo substructures?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 dataset, and how does it relate to the bimodal chemical abundance distribution observed in stars of different ages?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic potential and identify them as resonances, overdensities, and kinematic substructures?
+Can the Gaia mission's five-dimensional data set provide a unique and comprehensive perspective on the structure and evolution of the Milky Way, allowing for the reconstruction of the past dynamics and offering a new standard for comparisons with simulations?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic potential and identify them as resonances, over a range of scales from tens of kpc to several kpc, and can the identified structures be used to constrain the parameters of the potential and build a comprehensive catalogue of the resonant features in the Milky Way?
+What is the origin and properties of the Orphan Stream in the Galactic halo, as determined through spectroscopic and photometric analyses?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics information provide insights into the formation and evolution of the bulge?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What are the origins of the low-mass dwarf stars with distinct orbital properties and chemical characteristics previously claimed to be candidate hypervelocity stars?
+Does the presence of binary companions play a role in the formation of stellar streams in the Milky Way?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia satellite be used to identify and study the Galactic halo population of stars that were born in globular clusters, and what constraints can be derived on the mass of the Milky Way and the pattern speed of the bar based on the identified stars?
+What is the age of the Galactic globular cluster NGC 1261 and how does it compare to previous estimates?
+What is the nature and origin of the two distinct populations of high-velocity stars observed in the solar neighborhood, and how do they relate to the chemical and kinematic substructure observed in the Milky Way's disk?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can the new STREAMFINDER algorithm discover a large population of stellar stream candidates in Gaia data, and can the method's predictions be validated through comparison with external catalogues?
+Can the use of Gaia DR3 data with the Bayesian Machine Learning algorithm provide a more accurate estimation of the age of the Milky Way and its constituent parts, including the age of the thin and thick disks, the bulge, and the halo?
+What is the nature of the X-ray flares in the soft spectrum of the Galactic X-ray background (XRB) in units of a power-law spectral model, and how do they relate to the flaring mechanisms previously proposed for X-ray flares, including spectral cooling and heating, and variability in the external pressure?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Does the metallicity of the progenitor of the Helmi streams in the Milky Way halo depend on the survival of the merger event and can it be used to constrain the initial mass function of the progenitor galaxy?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in local open clusters, and how does the chemical and dynamical properties of the different stellar populations in these clusters explain the observed bimodality in the Gaia DR2 metallicity data?
+What are the origins of the low-mass dwarf stars with distinct chemical characteristics and kinematic properties previously claimed to be candidate hypervelocity stars?
+Is the warp structure in the Milky Way a long-lived or transient feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+Can the use of Gaia EDR3 data with the new version of the GeDR3 pipeline provide a more accurate estimation of the age of the open clusters compared to the previous versions of the pipeline?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, scale height, and metallicity) vary with the metallicities and metallicity distribution functions of the stars that make it?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+What is causing the discrepancy between stellar evolution models' predictions and observational results regarding the presence and degree of sodium and aluminum overabundances in red giants, and what factors are influencing the behavior of [Na/Fe] and [Al/Fe] versus [Fe/H]?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as dynamical disruption in low-mass dwarf stars or electron-capture supernovae rather than neutron star mergers?
+Can the Gaia-ESO Survey data be used to provide a more complete picture of the thin disk population and constrain the chemodynamical evolution of the disk, as well as the stellar and environmental influences on its diversity?
+Can a neural network be used to accurately infer missing line-of-sight velocities from astrometry in surveys such as Gaia and provide a more comprehensive understanding of the Milky Way's kinematic and chemical properties, even without complete phase-space information?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a massive merger?
+Is the observed metallicity asymmetry in the Milky Way galaxy a result of a bias in the selection function of the metallicity survey rather than a signature of a chemical or kinematic disequilibrium in the disk gas?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using galaxy models and a flexible set of constraints, and provide a tool to understand and analyze galaxy formation and evolution in the context of cosmological theories?
+Can the use of chemical abundances and clustering analysis in the elemental abundance space improve the feasibility of chemical tagging within open clusters and help to identify genuine cluster members?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What are the kinematic properties of Milky Way globular clusters over time and how have they been affected by different forms of energy input from the galaxy's central supermassive black hole?
+What is the age, distance, and interstellar reddening of the stellar cluster 47 Tucanae, and what are the cluster's chemical abundances and kinematics, using optical and near-infrared data?
+What is the age and origin of the globular cluster system in the Milky Way, and how does it compare to previous determinations?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What are the different physical processes that drive the expansion of loose and compact massive star clusters, and how do they depend on initial cluster conditions and star formation efficiency?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, allowing for better understanding of the galaxy's potential and Galactic center?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and mechanism behind the lopsided perturbation in the Milky Way's disc known as the Snail and how does it relate to the strength and angular momentum of stars in the outer disc?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Does the Milky Way bar cause a tangential acceleration component and torque in the Galactic gravitational field?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+What is the age, distance, and metallicity of the stellar stream GD-1, and how do they relate to each other and to the other stellar streams studied so far?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable metallicity indicator?
+Does the presence of binary companions affect the velocity distribution and chemical composition of old red clump stars in the globular cluster M13?
+Can the Gaia-ESO Public Spectroscopic Survey provide internally consistent astrophysical parameters and elemental abundances for a large representative sample of stars and open clusters, with quantified random and systematic contributions to uncertainty estimates, and provide a legacy dataset of intrinsic value and homogenisation for future stellar surveys and Gaia's astrometric and spectroscopic follow-up?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from different spectroscopic datasets?
+Does the morphology of the Galactic potential leave a clear imprint on the properties of phase-space structures in the Galaxy, specifically the spiral structure in the radial and vertical directions?
+What is the nature and origin of the different kinematic structures that appear in the velocity distribution of stars in the Solar neighbourhood, and how can their identification and analysis provide insights into the formation and dynamical history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of the most metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does it relate to the chemical and dynamical properties of open and closed systems?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, an old and massive open cluster in the solar neighborhood, and provide insights into the chemical evolution of the thin and thick crusts?
+What is the nature of the X-ray flares and quiescent spectra of the supermassive black hole Sgr A* in the center of our galaxy, and how do they compare among the brightest flares ever observed with different X-ray observatories?
+What is the nature, origin, and properties of the unusual kinematic and chemical properties of VVV J1241$-$622$^{*}$, an intermediate mass black hole in a globular cluster?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining them?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare stellar parameters and elemental abundances from the APOGEE and Gaia data-sets, and can the method be used to analyze large samples of stars without the need for prior physics or Gaia parallaxes?
+Can the Gaia-ESO survey data be used to estimate the stellar parameters, distances, and velocities of 1.33 million main-sequence stars, leading to the largest and most homogeneous stellar parameter database?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the nature of the X-ray spectrum and variability of the supermassive black hole in the center of our galaxy, and can it be explained by various types of accretion scenarios?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of the Gaia catalogue in determining these properties?
+Can the use of Gaia EDR3 data with the Bayesian STREAMFINDER algorithm be used to detect and study the large stellar halo of the Milky Way, including ultra-faint and faint sub-halos, and provide a model for the galaxy's gravitational potential and associated halo distribution?
+Does the morphology of horizontal branches in Milky Way globular clusters support a dynamical contribution to the second-parameter effect?
+Can the Gaia satellite be used to identify and measure the parameters of open clusters that are obscured by foreground large-scale structures, such as the Galactic center, and provide a unique and competitive estimate of the bimetric parameters for these objects?
+Can Gaia data be used to discover new star clusters and potential ultra-faint dwarf galaxies that were previously missed by other sky surveys?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia satellite detect and provide spectroscopic measurements for millions of retrograde stars that were previously undetected in the literature, including millions of first-generation stars in very young clusters?
+Can the Gaia-ESO Public Spectroscopic Survey provide internally consistent astrophysical parameters and elemental abundances for a large representative sample of stars and open clusters, with quantified random and systematic contributions to measurement uncertainties, and provide a legacy dataset of intrinsic value and homogenisation for future stellar surveys and Gaia's astrophysical parameters?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, a system in which the outer halo star has a larger kinematics budget than the inner halo star, despite their similar metallicities?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning algorithm and photometric H-band formulae provide an accurate estimate of the absolute G magnitude of millions of stars and open clusters, and produce a catalogue of G magnitudes with associated uncertainties?
+What are the kinematic properties of Milky Way globular clusters and what is the reliability and limitations of different kinematics methods for determining the mass of the Galaxy and its components?
+Can the use of the Gaia mission's first data release combined with spectral type and distance estimates from the Gaia catalogue provide a precise and accurate distance scale for the open cluster, NGC 2419?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Is the warp structure in the Milky Way a gravitationally induced phenomenon that resulted from the transient response to a perturbation, or is it a long-lived and/or oscillating feature that needs a more comprehensive model to explain it fully?
+Can the \emph{Gaia} mission be used to identify and study the kinematics, chemistry, and astrometry of ultra-faint dwarf galaxies orbiting the Milky Way, and can these galaxies provide key insights into the properties of the Milky Way and the history of its accretion?
+What is the origin of the anomalous abundance ratios observed in a very metal-poor star, and how do they relate to known open clusters, potential stellar progenitors, and possible stellar evolution effects?
+Can the Gaia DR2 astrometry be used to detect structures in the Galactic potential and gain confidence in the accuracy of the model?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, a carbon-enhanced metal-poor star with a flat and eccentric prograde orbit, and how does it provide evidence for the dynamical destruction of an ancient stellar population in the Milky Way?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Does the metallicity of the progenitor system of the Milky Way correlate with the metallicity of the components of the merged system, and can this correlation be used to map the ancestral system of the Milky Way and identify the progenitor system of the globular cluster system?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, a carbon-enhanced metal-poor star with a flat and kinematically strange disk profile, and is it a result of incorrect assumptions in the modeling of the stellar disk or an indication of the presence of an intermediate-mass black hole in the galaxy?
+Does the metallicity of RR Lyrae stars have a correlation with their absolute magnitude and can it be used as a reliable indicator for the distance to the center of our galaxy?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the use of Gaia EDR3 data with the Bayesian Machine Learning framework provide a more accurate estimation of the age of the Milky Way and its constituent components, particularly the bulge, with less systematic uncertainty than previous methods?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia-ESO Survey data be used to provide radial velocity measurements for Trumpler 23, open clusters with similar metallicity to Trumpler 23, and possibly identify them as being part of the Galactic halo?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and provide a test-bed for methods related to spectroscopic stellar content measurements in large datasets?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does the chemical and dynamical properties of stars associated with different MDFs at different Galactocentric radii provide observational constraints on the formation scenario for the bimodality?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the Gaia DR2 $T_Z-Z_T$ space, and how does it relate to the bimodality observed in the RAVE DR4 $Z_T-Z_T$ space and the metallicity distribution function of the RA?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics information provide strong constraints on the bimodal MDF and help elucidate the origin of the bimodality?
+What are the different physical processes that drive the expansion of loose and compact massive star clusters, and how do they depend on initial cluster conditions and the star formation efficiency of the parent giant molecular cloud?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide evidence for the co-evolution of bimodal MDFs and bimodal globular clusters?
+Can the use of the STREAMFINDER algorithm with the Gaia Data Release 2 catalogue allow for the detection of new stellar streams and provide a comprehensive catalogue of the known structures?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the age and metallicity difference between the Galactic globular clusters NGC 6362 and NGC 6723, and how do they explain the horizontal branch morphology difference between the clusters?
+Can the Gaia DR3 dataset be used to detect and identify member stars in open clusters and provide information on the cluster's various parameters, such as distance, metallicity, and age?
+What is the cause of the small overdensity of stars in velocity space with a certain Galactocentric radius, and how does it relate to the density structure of the Milky Way?
+What is the nature and origin of the two distinct populations of kinematically distinct stars observed in the halo of the Milky Way in the range $[-15, 15]$ km s$^{-1}$?
+What are the possible origins of the formation of star clusters in our Galaxy and in Small Magellanic Cloud, and how do the chemical and kinematic properties of the clusters relate to the host galaxy environment and the origin of the cluster progenitor?
+What are the origins of the low-mass dwarf stars with distinct chemical fingerprints and how do they relate to the Milky Way halo and other known star clusters?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+What is the cause of the ridges and arches observed in the phase-space distribution of stars in the Milky Way, and what is the relationship between their planar and vertical directions?
+What are the possible mechanisms for accelerating old, metal-poor stars to extreme velocities and how does understanding the origin of these stars can constrain the galaxy's gravitational potential and dark matter halo?
+Is the observed asymmetry of the tidal tails in some star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+What is the cause of the ridges and arches observed in the phase-space distribution of stars in the Milky Way, and what is the relationship between their planar and vertical directions?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to some additional dynamical process?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, exponent, and location of the break)?
+ ### Background: The bimodal MDF is the signature left by a bifurcation in the formation of the thick disk, which?
+What is the nature and origin of the low-eccentricity halo population and how does it relate to the high-eccentricity population dominated by the debris of a major accretion event, as revealed by an analysis of APOGEE-DR14 element abundances and Gaia-DR2 kinematics of halo stars?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of carbon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population and how are their patterns related to the Milky Way's merger history and \emph{z}* epoch?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the Gaia mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+Can the new STREAMFINDER algorithm discover a large population of stellar streams surrounding the inner Galaxy, and can these structures confirm that they are predominantly metal-poor debris of inner-halo globular clusters?
+Can the Gaia DR3 astrometry be used to detect structures in the Galactic disc and identify spiral pattern speed variations throughout the Galaxy?
+What is the nature and origin of the two sequences observed in the Hertzsprung-Russell diagram of high transverse velocity stars in the local stellar halo of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the \textit{Cannon} data-driven method be used to effectively scale and compare models of different Galactic structures, and can it be applied to other Galactic models such as the \textit{Snail} model?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the use of Gaia EDR3 data with the new wavelet transform method provide a more accurate determination of the distance to the Galactic center, and shed light on the contribution of different types of components to the kinematics of the system?
+What is the age and metallicity distribution of the major structures of the Southern Galactic bulge, as investigated using optical photometry with a large colour baseline and the Blanco Dark Energy Camera (DECam) Bulge survey?
+Can the new machine learning algorithm, Via Machinae, effectively identify cold stellar streams in data from the Gaia telescope without relying on astrophysical assumptions?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally induced supernovae rather than neutron star mergers?
+What is the cause of the lithium enhancement in globular cluster stars, and can it be explained by fresh Li production or binary mass transfer from a red giant branch star?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to ground-based telescopes?
+Can Gaia DR2 data be used to detect and identify member stars in open clusters and constrain their distances, ages, binarity rates, and kinematics?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can Gaia EDR3 data identify candidate stars associated with hypervelocity stars and provide information on their chemical composition, age, and binarity that can help constrain the models of hypervelocity star formation and ejection?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What are the origins and evolutionary mechanisms of carbon-enhanced metal-poor stars, and what can their study tell us about the early formation of the Milky Way and the assembly history of the halo?
+Does the Milky Way have an uncommonly quiet merger history that leads to an essentially in-situ bulge and what constraints can be placed on the total mass of the galaxy based on the distribution and dynamics of young open clusters?
+Is the Galactic stellar warp a gravitationally induced phenomenon that affects both upper main sequence and giant populations across different ages?
+What is the nature and origin of the unusual kinematic properties of VVV-CL160, an extremely metal-poor system with a flat and eccentric velocity distribution, and how does it compare to predictions from cosmological hydrodynamical simulations?
+What is the origin of the anomalous abundance ratios observed in a unique sub-set of metal-poor stars, and how do they relate to known halo substructures?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its parameters (scale length, scale height, and metallicity) vary with metallicity?
+What are the possible origins of the formation of star clusters in our Galaxy and in Small Magellanic Cloud, and how do the chemical and dynamical properties of the clusters relate to the host galaxy and environment?
+Is the warp structure in the Milky Way a transient or a persistent feature, and can its vertical motions provide insight into the formation and evolution of the galaxy, as well as the effects of satellite passage and vertical resonance?
+What is the origin of the anomalous abundance ratios observed in a unique sub-population of silicon-enhanced metal-poor stars, and how do they relate to known halo substructures?
+Can the Gaia DR3 and VVVX databases be used to estimate the absolute magnitude and distance of over one million objects, including an updated catalog of open clusters, and provide a consistent and accurate chronology of the history of the Milky Way?
+Can the Gaia-ESO Survey Data Release 1 provide a homogeneous and accurate sample of the published catalogues of variable stars in the Milky Way, enabling the construction of unprecedented homogeneous comparison tools and the study of variables in different environments?
+Can the \emph{Gaia} mission be used to identify the Galactic bar's Outer Lindblad Resonance and determine its pattern speed?
+What is the origin and properties of the low-metallicity, kinematically interesting dwarf galaxy known as The Gem or NGC 5139, and how does it relate to the Milky Way and other known galaxies?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the nature and origin of the different kinematic structures and stellar streams present in the velocity distribution of stars in the Solar neighbourhood, and how do they improve our understanding of the formation and dynamical history of the Milky Way?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Is the observed kinematic substructure in the inner halo of the Milky Way galaxy a generic feature of tidal debris from older mergers, and can the properties of the stellar halo be used to map the speed distribution of the local dark-matter halo?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+Can the Gaia-ESO Survey data be used to provide radial velocity and spectroscopic metallicity measurements for Trumpler 23, isolate hyper-runaway star candidates in the cluster, and constrain the kinematics and chemical evolution models of the Galaxy?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemistry, spatial distribution, and kinematics provide insight into its origins?
+Can the Gaia satellite provide a more accurate and complete catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, allowing for better understanding of the galaxy's potential and Galactic center and providing a test bed for dynamical models of the galaxy?
+What is the origin of the bimodal metallicity distribution function (MDF) observed in the bulge of the Milky Way galaxy, and how does its chemical composition, spatial distribution, and kinematics provide evidence for the formation of the bulge through the accretion of a dwarf galaxy?
+Can the Gaia mission's science performance after one year of operations contribute to reconstructing the history of the Milky Way?
+What is the age and metallicity of Gaia 1, and how does it contribute to our understanding of the formation and structure of the Milky Way, particularly in the disk-bulge-halo interface?
+What is the origin of the \emph{r}-process elements in the Galactic thin disc population, and can it be mainly attributed to short-lived sources such as magneto-rotationally driven supernovae rather than neutron star mergers?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Can the new Galaxy Model allow for the reconstruction of the structure and history of the Milky Way using data from multiple surveys and a self-consistent global model for its gravitational potential and density profiles?
+Is the Galactic halo composed of two distinct parts, an inner and outer halo, and can the kinematics of satellite galaxies provide evidence for the existence of the outer halo and confirm the existence of the inner halo?
+What is the origin of the core in the Antlia 2 dwarf galaxy and can it be explained by aggressive feedback or alternative theories to cold dark matter?
+Is the observed asymmetry of the tidal tails in some star clusters the result of a stochastic process or due to additional dynamical processes such as kicks?
+Is the observed asymmetry of the tidal tails in certain star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?

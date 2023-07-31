@@ -14,6 +14,54 @@ import openai
 from utils import setup_openai, normalised_ngrams, compute_cosine_similarity, save_dataset_to_disk
 from steer import STEER
 
+### GENERATION CONFIGS ###
+
+# Greedy
+greedy_config = GenerationConfig(
+    do_sample=False,
+    num_beams=1,
+    temperature=0.85,
+)
+
+# Beam search
+beam_config = GenerationConfig(
+    num_beams=5,
+    early_stopping=True,
+    temperature=0.8,
+)
+
+# Top-k
+top_k_config = GenerationConfig(
+    do_sample=True,
+    top_k=10,
+    num_return_sequences=1,
+    temperature=0.85,
+)
+
+# Top-p nucleus sampling
+nucleus_config = GenerationConfig(
+    do_sample=True,
+    top_p=0.92,
+    top_k=0,
+    temperature=0.8,
+)
+
+# Contrastive search
+contrastive_config = GenerationConfig(
+    do_sample=True,
+    penalty_alpha=0.6, 
+    top_k=4,
+    temperature=0.9,
+)
+
+config_dictionary = {
+    "greedy": greedy_config,
+    "beam": beam_config,
+    "top_k": top_k_config,
+    "nucleus": nucleus_config,
+    "contrastive": contrastive_config,
+}
+
 @dataclass
 class Experiment:
     task: str
@@ -110,8 +158,7 @@ class InferencePipeline(PipelineBase):
         sequences = pipeline(
             self.prompt,
             max_length=self.max_length,
-            do_sample=True,
-            top_k=10,
+            generation_config=config_dictionary[self.method],
             num_return_sequences=1,
             eos_token_id=tokenizer.eos_token_id,
             pad_token_id=tokenizer.eos_token_id
@@ -167,12 +214,9 @@ class InferencePipeline(PipelineBase):
             else:
                 pipeline.tokenizer.pad_token_id = tokenizer.eos_token_id
                 end_token = tokenizer.eos_token_id
-            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, temperature=0.85,
-                                     do_sample=True, top_k=10, num_return_sequences=1,
-                                     eos_token_id=end_token, pad_token_id=end_token,
+            for out in tqdm(pipeline(gen_dataset, max_length=self.max_length, generation_config=config_dictionary[self.method],
+                                     num_return_sequences=1, eos_token_id=end_token, pad_token_id=end_token,
                                      batch_size=batch_size), total=len(gen_dataset)):
-                # example = self.format_example(out, batch=False)
-                # self.inf_tracker.add_synthetic_example(example)
                 dataset.append(out)
             dataset = self.format_batch(dataset)
 
@@ -280,6 +324,6 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    experiment = Experiment(task="hypotheses", method="no_steer", model="falcon-7b")
-    dataset = create_dataset(experiment, num_examples=500, save_to_disk=True, batch_size=8)
+    experiment = Experiment(task="hypotheses", method="contrastive", model="falcon-7b")
+    dataset = create_dataset(experiment, num_examples=996, save_to_disk=True, batch_size=32)
     print(dataset)

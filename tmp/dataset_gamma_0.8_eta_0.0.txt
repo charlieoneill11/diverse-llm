@@ -1,0 +1,25 @@
+Can Gaia kinematics be used to discover new star groups and even derelicts by identifying overdensities in the phase-space distribution function?
+Can Gaia DR3 data combined with metallicity and chemical abundance information be used to identify and characterize merger debris in the southern Galactic bulge, leading to theDiscovery of a new substructure, named the Hercules-Aquila Stream, andthe Revision of the previously identified structures, including Chorasma-Tanghura, Monoceros-Centaurus, and Phoceus Streams?
+Does systemic rotation in Galactic globular clusters have a primordial origin and what is the relationship between rotation strength and various kinematic and chemical substructures identified in the literature?
+Can Gaia DR3 data combined with metallicity and chemical abundance information be used to identify and characterize merger debris in the local stellar halo, leading to the discovery of new substructures and further understanding of the origins of the halo's substructure?
+Can Gaia kinematics and APOGEE elemental abundances accurately distinguish between in-situ and ex-situ globular clusters, and can these measurements be used to map the structures and phenomena that define the environment of each cluster?
+Can Patchick99, a metal-rich globular cluster in the Galactic bulge, be confirmed as a former part of the large and extended Halle Sprachglocke cluster and connected to the Reichsprachtung overdensity through shared chemical and kinematic properties?
+Is SB 796 a genuine escapee from Sela, a globular cluster in the Galactic bulge, confirming its on-going demise and providing additional constraints on the cluster's physics and demise?
+Can Patchick99, a metal-rich globular cluster with unusual chemical abundances, be confirmed as a relic of a supernova explosion in a foreign galaxy and ruled out as a accreted cluster?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can a neural network approach using photometry and parallax with isochrones accurately weigh temporally and spatiallyERIC DR5 release 2.0, which includes metallicity information?
+What is the metallicity gradient of the Galactic thick disk and is there a possible break in the gradient at a certain Galactocentric radius?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+What are the metallicity gradients ofSamsung clusters and how do they compare to Galacticmodels?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can Gaia kinematics and APOGEE elemental abundances accurately distinguish betweenalliances and solo performers among red giantbranch stars and help shed light on themass-loss history of globular clusters?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can Gaia kinematics combined with spectroscopic follow-up be used to identify and evaluateuraeus stream, and provide estimates of his Rodriguez-Barban\'{\nA}'s parameters for each progenitor system in the stream?
+What is the metallicity gradient of the Galactic thick disk and is there a possible break in the gradient at a certain Galactocentric radius?
+Can Gaia kinematics identify and provide observational constraints on previously detected stellar overdensities in the Galactic thin disc, including ORFF, BLISS, and RVphi formations, supporting the hypothesis of clumping by chemical doping?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+What are the kinematic trends and structure of the Monoceros Ring and associated sub-structure in the Galactic Anti-centre region, and can a overdensities in the number counts of mono-age populations be explained by the alternative Bagger-Childs profile for the disk or other stochastic processes?
+Can Gaia kinematics and APOGEE elemental abundances accurately distinguish between halo stars that formed in situ and those that were accreted, and can these methods be used to provide preliminary insights into the halos of the Milky Way and other systems?
+Can Gaia EDR3 astrometry and DR2 radial velocities be used to identify and characterize hyper-runaway star candidates in the Milky Way?
+Can Gaia kinematics and APOGEE elemental abundances accurately distinguish between halo stars born in the centre of the Milky Way and those ejected from the inner circle, and can these techniques be used to map the chemical and kinematical properties of the inner and outer populations in the halo and compare them with predictions from cosmological hydrodynamical simulations?
+Is HP$\,$1 a relic of the past and HP$\,$2 the present day dominating heating mechanism in the thin disc, based on the determination of the stellar interior under equilibrium and non-equilibrium conditions of the intermediate spectral type members of the Thayne dipper and their comparison with other heating mechanisms?

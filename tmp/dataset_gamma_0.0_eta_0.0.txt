@@ -1,0 +1,25 @@
+Does the metallicity of the progenitor of the Galactic halo bulge exceed the solar value and is it a result of the first major accretion event onto the Milky Way rather than the merging of a dwarf galaxy?
+Can the Gaia DR2 astrometry be used to detect structures in the solar neighborhood, particularly the co-rotating spiral modes of the Galactic bar?
+Are the kinematic and chemical properties of open clusters systematically different from those of the surrounding field and star-forming regions, and can open clusters be used to probe the chemical and dynamical history of the Milky Way?
+Does the massive Galactic cluster, Omega Centauri, harbor an intermediate mass black hole that experiences very little or no braking by the massive black hole in the center?
+Can the Gaia satellite provide a more complete and accurate catalogue of hypervelocity stars in the Milky Way, including their properties and ejection mechanisms, compared to Earth-based telescopes?
+Can the behavior of the open clusters NGC 2818 and NGC 2819 during their first 2.5 Gyr of evolution provide insights into the earlier history of the Milky Way and the assembly of its stellar halo?
+How does the contraction of the Galactic disk during the forming epoch of the Galactic thick disk affect the distribution of open clusters and dwarf spheroidals in the local neighborhood of the sun?
+Are the newly identified substructures, GR-1 and GR-2, in the nearby stellar halo accretion debris of dwarf galaxies?
+Can combining data from different astrometry sources be used to construct an extensive catalog of proper motions with improved precision and minimal systematic error?
+Can the Milky Way halo be explored by resolved stellar populations and a combination of chemical and dynamical methods to identify and quantify the effects of migration on the oldest populations, providing a blueprint for exploring other galaxies by similar approaches?
+Can a novel statistical technique based on wavelet transform and principal component analysis be used to identify and characterize the different kinetic structures present in a sample of $\sim 2\cdot 10^5$ stars, including those generated in a dynamical code?
+Does the abundance pattern of NGC 6522 provide hints on the earliest chemical enrichment in the central Galaxy and can it distinguish between universal and star formation-dependent processes?
+Can we provide a global and consistent estimate of the open clusters population and age distribution function using a large sample of open clusters identified from the Gaia Early Data Release 3?
+Can an automated approach using artificial neural networks accurately derive spectro-photometric distances of stars based on their chemical abundances?
+Can the \textit{Cannon} data science pipeline detect and characterize distant stellar streams, including those associated with the most metal-poor stars ever observed, and provide insights into the massive galaxy formation events that created them?
+Can a novel approach based on inferring the gravitational potential from the time-varying structure of a phase-space spiral in the Galaxy accurately measure the mass of the Milky Way and its variations as a function of distance?
+Can a novel approach to comparing stellar populations, using a parametrized distribution function, a global likelihood, and a catalogue of stars, accurately detect and characterize the halo and second stream in the Milky Way?
+Can the Gaia DR2 astrometry be used to detect structures in the Galactic stream environment, specifically overdensities that could be candidates for nuclear-fired shell structures?
+Does the Gaia DR2 parallax dataset have a bias that needs to be corrected, and can Bayesian distances and the statistical method of Schoenrich, Binney & Asplund (2012) be utilized to validate and test the dataset's quality?
+Can Gaia be used to identify and measure parameters of millions of old, metal-poor stars residing in small fields of view, and serve as a model for future spectroscopic surveys?
+Can the new Gaia DR3 astrometric data be used to detect structures in the Galactic disc and show evidence of recent and ancient perturbations?
+What are the properties of the satellite galaxies from which the Milky Way assembled, and how did the Milky Way grow its halo?
+Is the observed asymmetry of the tidal tails in star clusters the result of a stochastic process or due to additional dynamical processes beyond statistical evaporation?
+Can a neural network be used to accurately infer missing spectral lines from a sparse spectrum and fill in a complete wavelength domain model of the underlying continuum spectrum?
+Can a data-driven method using artificial neural networks accurately derive spectro-photometric distances of stars, and can it be used to identify interesting stellar populations and spectro-photometric anomalies?

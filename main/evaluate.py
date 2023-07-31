@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer
 from nltk.util import ngrams
+import mauve
 import json
 from scipy.spatial import ConvexHull
 from sklearn.metrics.pairwise import cosine_similarity
@@ -17,7 +18,7 @@ import re
 import openai
 
 from inference import Experiment, PipelineBase, STEERPipeline
-from utils import setup_openai, normalised_ngrams, compute_cosine_similarity
+from utils import setup_openai, normalised_ngrams, compute_cosine_similarity, diversity
 
 import numpy as np
 import torch
@@ -152,8 +153,15 @@ class EvaluationPipeline(PipelineBase):
     ### TRADITIONAL METRICS ###
 
     def normalised_ngrams(self, tokenizer, n) -> float:
-        tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
         return normalised_ngrams(self.synthetic_dataset, self.real_dataset, tokenizer, n)
+    
+    def diversity_measure(self, tokenizer):
+        return diversity(self.synthetic_dataset, self.real_dataset, tokenizer)
+
+    def mauve(self):
+        mauve_results = mauve.compute_mauve(p_features=self.real_embeddings, q_features=self.synthetic_embeddings,
+                                            verbose=False)
+        return mauve_results.mauve
 
     def convex_hull_area(self, umap_dimensions: int = 2) -> float:
         """
@@ -251,6 +259,10 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     # Normalised n-grams
     tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
     n_grams = pipeline.normalised_ngrams(tokenizer, 3)
+    # Diversity
+    diversity = pipeline.diversity()
+    # MAUVE
+    mauve_score = pipeline.mauve()
     # Alpha-precision and beta-recall
     alpha_precision, beta_recall = pipeline.alpha_precision_beta_recall()
     # Print all the results nicely
@@ -258,8 +270,10 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     print(f"Model: {experiment.model}, Task: {experiment.task}, Method: {experiment.method}")
     print("-"*80)
     print(f"Cosine similarity: {cosine_similarity:.4f}")
+    print(f"MAUVE: {mauve_score:.4f}")
     print(f"Adversarial AUROC: {auroc:.4f}, Adversarial accuracy: {accuracy:.4f}")
     print(f"Normalised n-grams: Synthetic = {n_grams['synthetic']:.4f}, Real = {n_grams['real']:.4f}")
+    print(f"Diversity: Synthetic = {diversity['synthetic']:.4f}, Real = {diversity['real']:.4f}")
     print(f"Alpha-precision: {alpha_precision:.4f}, Beta-recall: {beta_recall:.4f}")
     print("-"*80)
 
@@ -301,39 +315,49 @@ def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, 
     # Create the experiment
     experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
 
-    # Create evaluation pipeline to handle embeddings
     eval_pipe = EvaluationPipeline(experiment=experiment)
-
     real_dataset = eval_pipe.real_dataset
     sampled_indices = np.random.choice(real_dataset.shape[0], n_samples_per_run, replace=False)
     real_dataset = real_dataset[sampled_indices]
+    tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
 
     for i, gamma in enumerate(gamma_values):
         for j, eta in enumerate(eta_values):
 
             # Load the synthetic dataset from the txt file
-            file_name = f"../tmp/dataset_gamma_{gamma}_eta_{eta}"
+            file_name = f"../tmp/dataset_gamma_{gamma}_eta_{eta}.txt"
             with open(file_name, 'r') as f:
                 synthetic_dataset = f.readlines()
 
-            # Set embeddings
+            # Create evaluation pipeline to handle embeddings
+            eval_pipe = EvaluationPipeline(experiment=experiment)
             eval_pipe.set_embeddings(local_disk=False, dataset_tuple=(real_dataset, synthetic_dataset))
-            
+
+            # Normalised n-grams
+            print(len(synthetic_dataset))
+            synthetic_text = " ".join(synthetic_dataset)
+            tokens = tokenizer.tokenize(synthetic_text)
+            generated_ngrams = list(ngrams(tokens, 3))
+            unique_ngrams = len(set(generated_ngrams))
+            n_grams = unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
+            print(n_grams)
+
             # Cosine similarity
             cosine_similarity = eval_pipe.cosine_similarity()
             # Adversarial AUC
             try: auroc, accuracy = eval_pipe.authenticity_auroc()
             except: auroc = 0.0
-            # Normalised n-grams
-            tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
-            n_grams = eval_pipe.normalised_ngrams(tokenizer, 3)
 
             # print(cosine_similarity, auroc, n_grams["synthetic"])
 
             # Add to heatmaps
             cosine_similarity_heatmap[i, j] = cosine_similarity
             auroc_heatmap[i, j] = auroc
-            n_grams_heatmap[i, j] = n_grams["synthetic"]
+            n_grams_heatmap[i, j] = n_grams
+
+    print(cosine_similarity_heatmap)
+    print(auroc_heatmap)
+    print(n_grams_heatmap)
 
     fig, axs = plt.subplots(1, 3, figsize=(15, 5))
     fig.suptitle("Heatmaps for STEER")
@@ -364,8 +388,9 @@ def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, 
     plt.show()
 
 if __name__ == "__main__":
-    # experiment = Experiment(task="hypotheses", method="no_steer", model="falcon-7b")
-    # evaluate_model_dataset(experiment=experiment, local_disk=True)
-
-    generate_heatmap_datasets(n_samples_per_run = 25)
-    # calculate_metrics_and_create_heatmaps()
+    experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
+    evaluate_model_dataset(experiment=experiment, local_disk=True)
+    # gamma_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    # eta_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    # #generate_heatmap_datasets(gamma_values = gamma_lst, eta_values = eta_lst, n_samples_per_run = 25)
+    # calculate_metrics_and_create_heatmaps(gamma_values=gamma_lst, eta_values=eta_lst, n_samples_per_run=25)

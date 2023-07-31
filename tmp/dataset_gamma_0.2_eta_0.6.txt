@@ -1,0 +1,27 @@
+Could hyper-velocity stars be a result of supernovae occurring within binary systems in a disc of stars around Sgr A*, and could their distribution provide evidence of the warp's perimeter?
+Are there distinct chemical components in the local stellar halo and can their abundances provide insight into the formation mechanisms of the Milky Way halorgensenii component dominates the low-mass component, suggesting ongoing or recent minor mergingEventsNS component dominates the intermediate-mass component, implying recent accretion event(s) at the心水中心 coreNs component dominates the high-mass component, suggesting tidal debris origin水晶宫 component dominates the low-mass component, implying tidal debris originEventHorologium?
+Could the dense overdensity found in the globular cluster NGC 6362 be the result of the tidal disruption of a dwarf spheroidal galaxy?
+Could the trajectories traced out by globular clusters over billions of years shed light on the properties of dark matter and provide evidence for its interaction anywhere in the observable universe?
+Did accretion events from dwarf progenitors contribute disproportionately to the buildup of gas reservoirs required for rapid star formation in veryenti dwarf progenitors contribute disproportionately to the buildup of gas reservoirs requiredfor rapid star formation in violently erupting lobed jets?
+Could hypervelocity stars be debris from tidal disruptions of globular clusters in massive dwarf spheroidals, and what constraints can be placed on the progenitor galaxies of these stars based on chemo-dynamical modeling?
+Did metal-rich halo stars in the Solar neighbourhood form in-situ within bursts of star formation rather than being accreted from satellite systems?
+Was M62 a binary progenitor that underwent tidal disruption shortly before producing Spite plateau?
+Is LP30-365 a remnant of aidal star that exploded as a neutrino burst in a前提assumed 似真空膨胀如何与超新星产生相互协调，提出了四个质量恒定超新星产生概率模型。其中三套模型都假定了式力衍增度Ω_Λ ≈ 10-10 年-1�?
+could hypervelocity stars be detected using the same methods as for sporadic globular clusters and converted into a unique probe of the Milky Way gravitational potential?
+What mechanisms were involved in the formation of very metal-poor stars with disk kinematics and why do they differ from the typical halo candidates?
+Does compensating orbital eccentricity in Gaia DR2 parallax estimations preserve biases in comparing stars from thin and thick disk environments?
+Could the density perturbations observed in globular clusters be caused by tidal debris rather than phantom matter?
+What are the kinematics and properties of simulated Milky Way globular clusters that survive in the presence of a vigorous stars model until they are dynamically ejected or dissolved?
+Does correcting radial velocity lists for radial proper motions provide a way to remove systematic errors introduced during spectroscopic observations andastrotime tomography Pipín Moreno {\copyright}Submitted to Arxiv March 2021
+ ### Motivation. Radial velocity surveys allow for precise measurements of stellar parameters and velocities, providing a richer datacubes than spectroscopic surveys and complementing astrometry in determining gravitationalpotential gradients and constraining Galactocentric radial peculiar velocitycomponents. Despite significant systematic errors due to?
+Is SB 796 a remnant of a white dwarf surviving a sublimate outburst in itself or is it a intermediate mass white dwarf resulting from a sublimate outburst in a binary system with Koz\"aczko-L withheldNL relation?
+Could ultracompliant moons have formed from collapsed overdensities in the debris of disrupted planets rather than from direct tidal stirring of planets by their魔界星 overdrive理论paper length: ~900 words
+ ### Background: What is tidal stirring?
+Can diffuse interstellar bands measured in solar-type stars outside halo regions be used to trace substructures displaced from the Galactic center without relying on primordial poison processes?
+Could the observed overdensity of brighter stars in the Solar neighbourhood be explained by the残assailles-Kalnit argument if Gaia DR2 parallax data are considered, except for globular clusters where other mechanisms such as dynamical instabilities or perturbed stars must be invoked to explain the observed overdensity?
+Do Milky Way globular clusters evolve chemically at a steady rate throughout billions of years of uninterrupted calderanch thermalNFLAME evolution, or do they experience bursts of chemical enrichment and diffusion beyond whatNLTE limits allow?
+Does compensating for systematic errors in spectroscopic surveys using simulated datasets provide a credible blueprint for future spectroscopic surveys and their analyses?
+Could irregular velocity patterns observed in the distributions of chemically defined halo stars be indicative of disrupted tidal structures, potentially providing observational evidence of tidal erosion in dwarf galaxies?
+Did metal-rich halo stars in the Solar neighbourhood form in-situ within star clusters rather than being accreted as secondPopulation I members?
+Can convolutional neural networks effectively process spectroscopic data to estimate abundances without relying on atomic diffusion measurements?
+What stars are included and excluded from the Gaia catalogue depending on their coordinates and apparent magnitude?
