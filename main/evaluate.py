@@ -2,9 +2,6 @@ from transformers import AutoTokenizer
 from nltk.util import ngrams
 import mauve
 import json
-from scipy.spatial import ConvexHull
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
 import umap
 from sklearn.model_selection import train_test_split, KFold
@@ -19,109 +16,31 @@ import openai
 
 from inference import Experiment, PipelineBase, STEERPipeline
 from utils import setup_openai, normalised_ngrams, compute_cosine_similarity, diversity
+from utils import batch_pairwise_distances, ManifoldEstimator, knn_precision_recall_features
 
 import numpy as np
 import torch
 from time import time
 from sklearn.neighbors import NearestNeighbors
 
-# Batch pairwise distances function stays mostly the same
-# but uses PyTorch functions instead of TensorFlow
-def batch_pairwise_distances(U, V):
-    """Compute pairwise distances between two batches of feature vectors."""
-    # Squared norms of each row in U and V.
-    norm_u = torch.sum(U ** 2, dim=1)
-    norm_v = torch.sum(V ** 2, dim=1)
-
-    # norm_u as a column and norm_v as a row vectors.
-    norm_u = norm_u.view(-1, 1)
-    norm_v = norm_v.view(1, -1)
-
-    # Pairwise squared Euclidean distances.
-    D = torch.max(norm_u - 2 * torch.mm(U, V.t()) + norm_v, torch.tensor([0.0]))
-
-    return D
-
-class ManifoldEstimator():
-    """Estimates the manifold of given feature vectors."""
-
-    def __init__(self, features, nhood_sizes=[3], eps=1e-5):
-        """Estimate the manifold of given feature vectors.
-        
-            Args:
-                features (np.array/tf.Tensor): Matrix of feature vectors to estimate their manifold.
-                nhood_sizes (list): Number of neighbors used to estimate the manifold.
-                eps (float): Small number for numerical stability.
-        """
-        self.nhood_sizes = nhood_sizes
-        self.eps = eps
-        self.features = torch.Tensor(features)
-        self.nbrs = NearestNeighbors(n_neighbors=max(nhood_sizes)+1, algorithm='ball_tree').fit(features)
-
-    def evaluate(self, eval_features, return_realism=False):
-        """Evaluate if new feature vectors are at the manifold."""
-        num_eval_images = eval_features.shape[0]
-        distances, indices = self.nbrs.kneighbors(eval_features)
-        batch_predictions = np.zeros([num_eval_images, len(self.nhood_sizes)], dtype=np.int32)
-        for i, size in enumerate(self.nhood_sizes):
-            for j in range(num_eval_images):
-                D = torch.Tensor(distances[j, 1:size+1])
-                distance_batch = batch_pairwise_distances(torch.Tensor([eval_features[j]]), self.features[indices[j, 1:size+1]])
-                samples_in_manifold = distance_batch <= D
-                batch_predictions[j, i] = np.any(samples_in_manifold.numpy(), axis=1).astype(np.int32)
-        return batch_predictions
-
-def knn_precision_recall_features(ref_features, eval_features, nhood_sizes=[3]):
-    """Calculates k-NN precision and recall for two sets of feature vectors.
-    
-        Args:
-            ref_features (np.array/tf.Tensor): Feature vectors of reference images.
-            eval_features (np.array/tf.Tensor): Feature vectors of generated images.
-            nhood_sizes (list): Number of neighbors used to estimate the manifold.
-
-        Returns:
-            State (dict): Dict that contains precision and recall calculated from
-            ref_features and eval_features.
-    """
-    state = dict()
-
-    # Initialize ManifoldEstimators.
-    ref_manifold = ManifoldEstimator(ref_features, nhood_sizes) 
-    eval_manifold = ManifoldEstimator(eval_features, nhood_sizes)
-
-    # Evaluate precision and recall using k-nearest neighbors.
-    print('Evaluating k-NN precision and recall...')
-    start = time()
-
-    # Precision: How many points from eval_features are in ref_features manifold.
-    precision = ref_manifold.evaluate(eval_features)
-    state['precision'] = precision.mean(axis=0)
-
-    # Recall: How many points from ref_features are in eval_features manifold.
-    recall = eval_manifold.evaluate(ref_features)
-    state['recall'] = recall.mean(axis=0)
-
-    print('Evaluated k-NN precision and recall in: %gs' % (time() - start))
-
-    return state['precision'], state['recall']
-
 class EvaluationPipeline(PipelineBase):
 
     def __init__(self, experiment: Experiment):
         super().__init__(experiment)
-        self.synthetic_dataset, self.real_dataset = self.load_datasets()
         self.deployment_name = setup_openai()
+        self._load_datasets()
 
-    def load_datasets(self):
-        if self.task == "commonsense":
-            with open("../results/commonsense-falcon-7b-no_steer.txt") as file:
-                synthetic_dataset = np.array(["Which "+line.strip() for line in file.read().split("Which")[:-1]])
-        else:
-            with open(self.synthetic_dataset_path, "r") as file:
-                synthetic_dataset = np.array([line.strip() for line in file])
+    def _load_datasets(self):
+        with open(self.synthetic_dataset_path, "r") as file:
+            synthetic_dataset = np.array([line.strip() for line in file])
         with open(self.real_dataset_path, "r") as file:
             real_dataset = np.array([example['text'].split(f"{self.split}: ")[-1] for example in json.load(file)])
-        return synthetic_dataset, real_dataset
+            # Get random order of indices to shuffle the real dataset array
+            indices = np.arange(len(real_dataset))
+            np.random.shuffle(indices)
+            real_dataset = real_dataset[indices]
+        self.synthetic_dataset = synthetic_dataset[:1000]
+        self.real_dataset = real_dataset[:1000]
     
     def set_embeddings(self, local_disk = True, dataset_tuple = None):
         if local_disk:
@@ -131,7 +50,9 @@ class EvaluationPipeline(PipelineBase):
             self.synthetic_embeddings = self.embed_dataset(dataset_tuple[0])
             self.real_embeddings = self.embed_dataset(dataset_tuple[1])
         else:
+            print(f"Embedding synthetic data ({len(self.synthetic_dataset)} examples)...")
             self.synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+            print(f"Embedding real data ({len(self.real_dataset)} examples)...")
             self.real_embeddings = self.embed_dataset(self.real_dataset)
             # Save to ../results/embeddings with the names being the task, model and synthetic/real
             np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy", self.synthetic_embeddings)
@@ -163,38 +84,7 @@ class EvaluationPipeline(PipelineBase):
                                             verbose=False)
         return mauve_results.mauve
 
-    def convex_hull_area(self, umap_dimensions: int = 2) -> float:
-        """
-        Calculate the area ratio of the convex hulls of the embeddings of the synthetic and real examples.
-        NOTE: the number of synthetic examples should be equal to the number of real examples for constant comparison.
-        """
-        # Combine synthetic and real embeddings for UMAP fitting
-        combined_embeddings = np.vstack((self.synthetic_embeddings, self.real_embeddings))
-
-        # Standardize the embeddings
-        combined_embeddings = StandardScaler().fit_transform(combined_embeddings)
-
-        # Reduce dimensionality with UMAP
-        umap_embeddings = umap.UMAP(n_components=umap_dimensions, n_neighbors=min(combined_embeddings.shape[0]-1, 50)).fit_transform(combined_embeddings)
-
-        # Split the UMAP embeddings back into synthetic and real
-        num_synthetic = len(self.synthetic_embeddings)
-        synthetic_umap_embeddings = umap_embeddings[:num_synthetic]
-        real_umap_embeddings = umap_embeddings[num_synthetic:]
-
-        # Compute convex hulls
-        synthetic_hull = ConvexHull(synthetic_umap_embeddings)
-        real_hull = ConvexHull(real_umap_embeddings)
-
-        # Compute and return the ratio of the areas (or volumes)
-        if len(synthetic_umap_embeddings[0]) == 2:
-            return synthetic_hull.area / real_hull.area
-        elif len(synthetic_umap_embeddings[0]) > 2:
-            return synthetic_hull.volume / real_hull.volume
-        else:
-            raise ValueError("Points must have at least two dimensions.")
-
-    def cosine_similarity(self, centroid: bool = False) -> float:
+    def cosine_similarity(self, centroid: bool = True) -> float:
         return compute_cosine_similarity(self.synthetic_embeddings, self.real_embeddings, centroid)
 
     def authenticity_auroc(self):
@@ -245,11 +135,17 @@ class EvaluationPipeline(PipelineBase):
         alpha_precision, beta_recall = knn_precision_recall_features(real_umap_embeddings, synthetic_umap_embeddings, nhood_sizes=[10])
         
         return alpha_precision[0], beta_recall[0]
+    
+# def train_downstream(experiment: Experiment):
+#     if experiment.task == "comments":
+
+
+
 
 def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     pipeline = EvaluationPipeline(experiment=experiment)
     # Clear the terminal
-    os.system("clear")
+    # os.system("clear")
     # Retrieve the embeddings
     pipeline.set_embeddings(local_disk=local_disk)
     # Cosine similarity
@@ -260,11 +156,11 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-7b")
     n_grams = pipeline.normalised_ngrams(tokenizer, 3)
     # Diversity
-    diversity = pipeline.diversity()
+    diversity = pipeline.diversity_measure(tokenizer)
     # MAUVE
     mauve_score = pipeline.mauve()
     # Alpha-precision and beta-recall
-    alpha_precision, beta_recall = pipeline.alpha_precision_beta_recall()
+    # alpha_precision, beta_recall = pipeline.alpha_precision_beta_recall()
     # Print all the results nicely
     os.system("clear")
     print(f"Model: {experiment.model}, Task: {experiment.task}, Method: {experiment.method}")
@@ -274,7 +170,7 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     print(f"Adversarial AUROC: {auroc:.4f}, Adversarial accuracy: {accuracy:.4f}")
     print(f"Normalised n-grams: Synthetic = {n_grams['synthetic']:.4f}, Real = {n_grams['real']:.4f}")
     print(f"Diversity: Synthetic = {diversity['synthetic']:.4f}, Real = {diversity['real']:.4f}")
-    print(f"Alpha-precision: {alpha_precision:.4f}, Beta-recall: {beta_recall:.4f}")
+    # print(f"Alpha-precision: {alpha_precision:.4f}, Beta-recall: {beta_recall:.4f}")
     print("-"*80)
 
 def generate_heatmap_datasets(gamma_values: list, eta_values: list, n_samples_per_run: int = 10):
@@ -388,8 +284,8 @@ def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, 
     plt.show()
 
 if __name__ == "__main__":
-    experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
-    evaluate_model_dataset(experiment=experiment, local_disk=True)
+    experiment = Experiment(task="commonsense", method="greedy", model="falcon-7b")
+    evaluate_model_dataset(experiment=experiment, local_disk=False)
     # gamma_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
     # eta_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
     # #generate_heatmap_datasets(gamma_values = gamma_lst, eta_values = eta_lst, n_samples_per_run = 25)

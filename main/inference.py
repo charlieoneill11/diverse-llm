@@ -10,6 +10,7 @@ import torch
 from torch.utils.data import Dataset
 from dataclasses import dataclass
 import openai
+import re
 
 from utils import setup_openai, normalised_ngrams, compute_cosine_similarity, save_dataset_to_disk
 from steer import STEER
@@ -18,16 +19,19 @@ from steer import STEER
 
 # Greedy
 greedy_config = GenerationConfig(
-    do_sample=False,
+    do_sample=True,
     num_beams=1,
-    temperature=0.85,
+    temperature=0.80,
+    num_return_sequences=1,
 )
 
 # Beam search
 beam_config = GenerationConfig(
-    num_beams=5,
+    num_beams=3,
     early_stopping=True,
-    temperature=0.8,
+    temperature=0.9,
+    num_return_sequences=1,
+    do_sample=True,
 )
 
 # Top-k
@@ -43,7 +47,7 @@ nucleus_config = GenerationConfig(
     do_sample=True,
     top_p=0.92,
     top_k=0,
-    temperature=0.8,
+    temperature=0.90,
 )
 
 # Contrastive search
@@ -51,7 +55,7 @@ contrastive_config = GenerationConfig(
     do_sample=True,
     penalty_alpha=0.6, 
     top_k=4,
-    temperature=0.9,
+    temperature=0.93,
 )
 
 config_dictionary = {
@@ -93,7 +97,7 @@ class PipelineBase:
         elif self.task == "commonsense":
             self.prompt = "### Instruction: Generate a multiple-choice question that relies on common-sense to answer.\n ### Multiple-choice question:"
             self.split = "Multiple-choice question"
-            self.max_length = 60
+            self.max_length = 75
         else:
             pass
 
@@ -185,6 +189,13 @@ class InferencePipeline(PipelineBase):
             # Remove everything after the E. Question ... i.e. remove F. -> onwards if it exists
             text = text.split("F.")[0]
             text = text.split(">")[0]
+            pattern = r"(Answer: [A-E]\.?)(.*$)"
+            # Replace the matched pattern with the first group only (i.e., the first 'Answer: X.').
+            cleaned_line = re.sub(pattern, r'\1', text)
+            # Ensure the cleaned line ends with a period.
+            if not cleaned_line.endswith('.'):
+                cleaned_line += '.'
+            text = cleaned_line
         else:
             # Remove all newlines, put each example on one line
             text = text.replace("\n", " ")
@@ -324,6 +335,6 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    experiment = Experiment(task="hypotheses", method="contrastive", model="falcon-7b")
-    dataset = create_dataset(experiment, num_examples=996, save_to_disk=True, batch_size=32)
+    experiment = Experiment(task="commonsense", method="nucleus", model="falcon-7b")
+    dataset = create_dataset(experiment, num_examples=1000, save_to_disk=True, batch_size=32)
     print(dataset)
