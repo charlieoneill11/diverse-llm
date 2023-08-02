@@ -21,7 +21,7 @@ from steer import STEER
 greedy_config = GenerationConfig(
     do_sample=True,
     num_beams=1,
-    temperature=0.80,
+    temperature=0.5,
     num_return_sequences=1,
 )
 
@@ -29,7 +29,7 @@ greedy_config = GenerationConfig(
 beam_config = GenerationConfig(
     num_beams=3,
     early_stopping=True,
-    temperature=0.9,
+    temperature=0.94,
     num_return_sequences=1,
     do_sample=True,
 )
@@ -47,14 +47,14 @@ nucleus_config = GenerationConfig(
     do_sample=True,
     top_p=0.92,
     top_k=0,
-    temperature=0.90,
+    temperature=0.80,
 )
 
 # Contrastive search
 contrastive_config = GenerationConfig(
     do_sample=True,
-    penalty_alpha=0.6, 
-    top_k=4,
+    penalty_alpha=0.35, 
+    top_k=10,
     temperature=0.93,
 )
 
@@ -78,12 +78,12 @@ class PipelineBase:
         self.task = experiment.task
         self.method = experiment.method
         self.model = experiment.model
+        self._set_attributes()
         self.local_model_path = f"/g/data/y89/cn1951/{self.model}-{self.task}-tiny"
         self.parent_model_path = f"/g/data/y89/cn1951/{self.model}"
-        self.synthetic_dataset_path = f"../results/{self.task}-{self.model}-{self.method}.txt"
+        self.synthetic_dataset_path = f"../results/datasets/{self.task}-{self.model}-{self.method}.txt"
         self.real_dataset_path = f"../data/{self.task}.json"
-        self.output_dir = "../results"
-        self._set_attributes()
+        self.output_dir = "../results/datasets/"
     
     def _set_attributes(self):
         if self.task == "hypotheses":
@@ -250,7 +250,7 @@ class GenerationDataset(Dataset):
     
 class STEERPipeline(InferencePipeline):
 
-    def __init__(self, experiment: Experiment, gamma=0.2, eta=0.2, num_neg_prompts=5):
+    def __init__(self, experiment: Experiment, gamma=0.2, eta=0.6, num_neg_prompts=10):
         super().__init__(experiment)
         self.gamma = gamma
         self.eta = eta
@@ -335,6 +335,11 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    experiment = Experiment(task="commonsense", method="nucleus", model="falcon-7b")
-    dataset = create_dataset(experiment, num_examples=1000, save_to_disk=True, batch_size=32)
+    # experiment = Experiment(task="commonsense", method="contrastive", model="falcon-7b")
+    # dataset = create_dataset(experiment, num_examples=996, save_to_disk=True, batch_size=32)
+    # print(dataset)
+
+    experiment= Experiment(task="comments", method="steer", model="falcon-7b")
+    steer_pipe = STEERPipeline(experiment=experiment, gamma=0.2, eta=0.2, num_neg_prompts=10)
+    dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, gamma=0.2, eta=0.2, save_to_disk=True)
     print(dataset)

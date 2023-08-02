@@ -3,6 +3,7 @@ from nltk.util import ngrams
 import mauve
 import json
 import xgboost as xgb
+from collections import defaultdict
 import umap
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.metrics import roc_auc_score, accuracy_score
@@ -35,12 +36,13 @@ class EvaluationPipeline(PipelineBase):
             synthetic_dataset = np.array([line.strip() for line in file])
         with open(self.real_dataset_path, "r") as file:
             real_dataset = np.array([example['text'].split(f"{self.split}: ")[-1] for example in json.load(file)])
+            print(real_dataset[-1])
             # Get random order of indices to shuffle the real dataset array
             indices = np.arange(len(real_dataset))
             np.random.shuffle(indices)
             real_dataset = real_dataset[indices]
-        self.synthetic_dataset = synthetic_dataset[:1000]
-        self.real_dataset = real_dataset[:1000]
+        self.synthetic_dataset = synthetic_dataset
+        self.real_dataset = real_dataset[:len(synthetic_dataset)]
     
     def set_embeddings(self, local_disk = True, dataset_tuple = None):
         if local_disk:
@@ -50,9 +52,9 @@ class EvaluationPipeline(PipelineBase):
             self.synthetic_embeddings = self.embed_dataset(dataset_tuple[0])
             self.real_embeddings = self.embed_dataset(dataset_tuple[1])
         else:
-            print(f"Embedding synthetic data ({len(self.synthetic_dataset)} examples)...")
+            print(f"Embedding synthetic data ({len(self.synthetic_dataset)} examples from {self.synthetic_dataset_path})...")
             self.synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
-            print(f"Embedding real data ({len(self.real_dataset)} examples)...")
+            print(f"Embedding real data ({len(self.real_dataset)} examples from {self.real_dataset_path})...")
             self.real_embeddings = self.embed_dataset(self.real_dataset)
             # Save to ../results/embeddings with the names being the task, model and synthetic/real
             np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy", self.synthetic_embeddings)
@@ -136,16 +138,52 @@ class EvaluationPipeline(PipelineBase):
         
         return alpha_precision[0], beta_recall[0]
     
-# def train_downstream(experiment: Experiment):
-#     if experiment.task == "comments":
+    ### DOWNSTREAM EVALUATION ###
+    def parse_and_embed_data(self, dataset):
+        questions = []
+        answers = []
+        answer_map = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4}
+        for line in dataset:
+            if "Answer: " not in line:
+                continue
+            question, answer = line.split("Answer: ")
+            question = question.strip()
+            answer = answer.strip().split('.')[0]
+            answer = answer_map[answer]
+            questions.append(question)
+            answers.append(answer)
+        embeddings = self.embed_dataset(questions)
+        answers = np.array(answers)
+        return embeddings, answers
 
+    def downstream_classifier(self):
+        synthetic_data, synthetic_labels = self.parse_and_embed_data(self.synthetic_dataset[:100])
+        real_data, real_labels = self.parse_and_embed_data(self.real_dataset[:100])
+        real_data_train, real_data_val, real_labels_train, real_labels_val = train_test_split(real_data, real_labels, test_size=0.2, random_state=42)
 
+        xgb_synthetic = xgb.XGBClassifier()
+        xgb_synthetic.fit(synthetic_data, synthetic_labels)
 
+        real_val_preds_synthetic = xgb_synthetic.predict(real_data_val)
+        real_val_proba_synthetic = xgb_synthetic.predict_proba(real_data_val)
+
+        xgb_real = xgb.XGBClassifier()
+        xgb_real.fit(real_data_train, real_labels_train)
+
+        real_val_preds_real = xgb_real.predict(real_data_val)
+        real_val_proba_real = xgb_real.predict_proba(real_data_val)
+
+        print("Training accuracy on synthetic data:", accuracy_score(synthetic_labels, xgb_synthetic.predict(synthetic_data)))
+        print("Validation accuracy on real data (synthetic model):", accuracy_score(real_labels_val, real_val_preds_synthetic))
+        print("Validation AUROC on real data (synthetic model):", roc_auc_score(real_labels_val, real_val_proba_synthetic, multi_class='ovr'))
+        print("Training accuracy on real data:", accuracy_score(real_labels_train, xgb_real.predict(real_data_train)))
+        print("Validation accuracy on real data (real model):", accuracy_score(real_labels_val, real_val_preds_real))
+        print("Validation AUROC on real data (real model):", roc_auc_score(real_labels_val, real_val_proba_real, multi_class='ovr'))
 
 def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     pipeline = EvaluationPipeline(experiment=experiment)
     # Clear the terminal
-    # os.system("clear")
+    os.system("clear")
     # Retrieve the embeddings
     pipeline.set_embeddings(local_disk=local_disk)
     # Cosine similarity
@@ -172,6 +210,17 @@ def evaluate_model_dataset(experiment: Experiment, local_disk: bool = True):
     print(f"Diversity: Synthetic = {diversity['synthetic']:.4f}, Real = {diversity['real']:.4f}")
     # print(f"Alpha-precision: {alpha_precision:.4f}, Beta-recall: {beta_recall:.4f}")
     print("-"*80)
+
+def downstream_evaluation(experiment: Experiment):
+    assert experiment.task in ["comments", "commonsense"]
+    if experiment.task == "comments":
+        pass
+    elif experiment.task == "commonsense":
+        pipeline = EvaluationPipeline(experiment=experiment)
+        # Clear the terminal
+        os.system("clear")
+        pipeline.downstream_classifier()
+
 
 def generate_heatmap_datasets(gamma_values: list, eta_values: list, n_samples_per_run: int = 10):
     # Create the experiment
@@ -201,13 +250,11 @@ def generate_heatmap_datasets(gamma_values: list, eta_values: list, n_samples_pe
                 for example in synthetic_dataset:
                     f.write(f'{example}\n')
 
-def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, n_samples_per_run: int):
-
-    # Create the heatmaps
-    cosine_similarity_heatmap = np.zeros((len(gamma_values), len(eta_values)))
-    auroc_heatmap = np.zeros((len(gamma_values), len(eta_values)))
-    n_grams_heatmap = np.zeros((len(gamma_values), len(eta_values)))
-
+def calculate_metrics_and_save_heatmaps(gamma_values: list, eta_values: list, n_samples_per_run: int):
+    # Define the heatmaps and metrics
+    metrics = ['auroc', 'n_grams', 'mauve']
+    heatmaps = defaultdict(lambda: np.zeros((len(gamma_values), len(eta_values))))
+    
     # Create the experiment
     experiment = Experiment(task="hypotheses", method="steer", model="falcon-7b")
 
@@ -219,74 +266,64 @@ def calculate_metrics_and_create_heatmaps(gamma_values: list, eta_values: list, 
 
     for i, gamma in enumerate(gamma_values):
         for j, eta in enumerate(eta_values):
-
-            # Load the synthetic dataset from the txt file
-            file_name = f"../tmp/dataset_gamma_{gamma}_eta_{eta}.txt"
-            with open(file_name, 'r') as f:
-                synthetic_dataset = f.readlines()
-
-            # Create evaluation pipeline to handle embeddings
-            eval_pipe = EvaluationPipeline(experiment=experiment)
+            # Load synthetic dataset and set embeddings
+            synthetic_dataset = load_synthetic_dataset(gamma, eta)
             eval_pipe.set_embeddings(local_disk=False, dataset_tuple=(real_dataset, synthetic_dataset))
 
-            # Normalised n-grams
-            print(len(synthetic_dataset))
-            synthetic_text = " ".join(synthetic_dataset)
-            tokens = tokenizer.tokenize(synthetic_text)
-            generated_ngrams = list(ngrams(tokens, 3))
-            unique_ngrams = len(set(generated_ngrams))
-            n_grams = unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
-            print(n_grams)
+            # Compute metrics
+            try: 
+                heatmaps['auroc'][i, j], _ = eval_pipe.authenticity_auroc()
+            except: 
+                heatmaps['auroc'][i, j] = 0.0
+            heatmaps['n_grams'][i, j] = compute_n_grams(synthetic_dataset, tokenizer)
+            heatmaps['mauve'][i, j] = eval_pipe.mauve()
 
-            # Cosine similarity
-            cosine_similarity = eval_pipe.cosine_similarity()
-            # Adversarial AUC
-            try: auroc, accuracy = eval_pipe.authenticity_auroc()
-            except: auroc = 0.0
+    # Save the heatmaps
+    for metric in metrics:
+        np.save(f"../paper/{metric}_heatmap.npy", heatmaps[metric])
 
-            # print(cosine_similarity, auroc, n_grams["synthetic"])
 
-            # Add to heatmaps
-            cosine_similarity_heatmap[i, j] = cosine_similarity
-            auroc_heatmap[i, j] = auroc
-            n_grams_heatmap[i, j] = n_grams
+def load_synthetic_dataset(gamma, eta):
+    file_name = f"../tmp/dataset_gamma_{gamma}_eta_{eta}.txt"
+    with open(file_name, 'r') as f:
+        synthetic_dataset = f.readlines()
+    return synthetic_dataset
 
-    print(cosine_similarity_heatmap)
-    print(auroc_heatmap)
-    print(n_grams_heatmap)
 
-    fig, axs = plt.subplots(1, 3, figsize=(15, 5))
-    fig.suptitle("Heatmaps for STEER")
+def compute_n_grams(synthetic_dataset, tokenizer):
+    synthetic_text = " ".join(synthetic_dataset)
+    tokens = tokenizer.tokenize(synthetic_text)
+    generated_ngrams = list(ngrams(tokens, 3))
+    unique_ngrams = len(set(generated_ngrams))
+    return unique_ngrams / len(generated_ngrams) if len(generated_ngrams) > 0 else 0
 
-    # Cosine similarity
-    c1 = axs[0].imshow(cosine_similarity_heatmap, cmap="hot", interpolation="nearest", extent=[gamma_values[0], gamma_values[-1], eta_values[0], eta_values[-1]])
-    axs[0].set_title("Cosine similarity")
-    axs[0].set_xlabel("Gamma")
-    axs[0].set_ylabel("Eta")
-    fig.colorbar(c1, ax=axs[0])
 
-    # Adversarial AUROC
-    c2 = axs[1].imshow(auroc_heatmap, cmap="hot", interpolation="nearest", extent=[gamma_values[0], gamma_values[-1], eta_values[0], eta_values[-1]])
-    axs[1].set_title("Adversarial AUROC")
-    axs[1].set_xlabel("Gamma")
-    axs[1].set_ylabel("Eta")
-    fig.colorbar(c2, ax=axs[1])
+def plot_heatmaps(gamma_values: list, eta_values: list):
+    metrics = ['auroc', 'n_grams', 'mauve']
+    labels = ['AUROC', 'Norm. $n$-grams', 'Mauve']
+    cmap = ["plasma", "plasma", "plasma"]
+    fig, axs = plt.subplots(1, len(metrics), figsize=(15, 5))
 
-    # Normalised n-grams
-    c3 = axs[2].imshow(n_grams_heatmap, cmap="hot", interpolation="nearest", extent=[gamma_values[0], gamma_values[-1], eta_values[0], eta_values[-1]])
-    axs[2].set_title("Normalised n-grams")
-    axs[2].set_xlabel("Gamma")
-    axs[2].set_ylabel("Eta")
-    fig.colorbar(c3, ax=axs[2])
+    for i, metric in enumerate(metrics):
+        heatmap = np.load(f"../paper/{metric}_heatmap.npy")
+        c = axs[i].imshow(heatmap, cmap=cmap[i], interpolation="nearest", extent=[gamma_values[0], gamma_values[-1], eta_values[0], eta_values[-1]])
+        axs[i].set_title(labels[i], fontsize=20)
+        axs[i].set_xlabel("$\gamma$", fontsize=18)
+        if i == 0:
+            axs[i].set_ylabel("$\eta$", fontsize=18)
+        fig.colorbar(c, ax=axs[i])
+        # Change the tick label size
+        axs[i].tick_params(axis='both', which='major', labelsize=12)
+        axs[i].tick_params(axis='both', which='minor', labelsize=12)
 
-    # Save the figure
     plt.savefig("../paper/figures/heatmaps.pdf", dpi=250, bbox_inches='tight')
     plt.show()
 
 if __name__ == "__main__":
-    experiment = Experiment(task="commonsense", method="greedy", model="falcon-7b")
+    experiment = Experiment(task="comments", method="steer", model="falcon-7b")
+    #downstream_evaluation(experiment=experiment)
     evaluate_model_dataset(experiment=experiment, local_disk=False)
-    # gamma_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-    # eta_lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-    # #generate_heatmap_datasets(gamma_values = gamma_lst, eta_values = eta_lst, n_samples_per_run = 25)
-    # calculate_metrics_and_create_heatmaps(gamma_values=gamma_lst, eta_values=eta_lst, n_samples_per_run=25)
+    
+    # lst = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    # # calculate_metrics_and_save_heatmaps(gamma_values=lst, eta_values=lst, n_samples_per_run=25)
+    # plot_heatmaps(gamma_values=lst, eta_values=lst)
