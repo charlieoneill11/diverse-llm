@@ -54,10 +54,10 @@ class EvaluationPipeline(PipelineBase):
         else:
             print(f"Embedding synthetic data ({len(self.synthetic_dataset)} examples from {self.synthetic_dataset_path})...")
             self.synthetic_embeddings = self.embed_dataset(self.synthetic_dataset)
+            np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy", self.synthetic_embeddings)
             print(f"Embedding real data ({len(self.real_dataset)} examples from {self.real_dataset_path})...")
             self.real_embeddings = self.embed_dataset(self.real_dataset)
             # Save to ../results/embeddings with the names being the task, model and synthetic/real
-            np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-synthetic.npy", self.synthetic_embeddings)
             np.save(f"../results/embeddings/{self.task}-{self.model}-{self.method}-real.npy", self.real_embeddings)
 
     def embed_example(self, example: str):
@@ -320,7 +320,7 @@ def plot_heatmaps(gamma_values: list, eta_values: list):
     plt.show()
 
 if __name__ == "__main__":
-    experiment = Experiment(task="comments", method="steer", model="falcon-7b")
+    experiment = Experiment(task="comments", method="contrastive", model="falcon-7b")
     #downstream_evaluation(experiment=experiment)
     evaluate_model_dataset(experiment=experiment, local_disk=False)
     

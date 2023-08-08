@@ -55,7 +55,7 @@ contrastive_config = GenerationConfig(
     do_sample=True,
     penalty_alpha=0.35, 
     top_k=10,
-    temperature=0.93,
+    temperature=1.0,
 )
 
 config_dictionary = {
@@ -335,11 +335,11 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    # experiment = Experiment(task="commonsense", method="contrastive", model="falcon-7b")
-    # dataset = create_dataset(experiment, num_examples=996, save_to_disk=True, batch_size=32)
-    # print(dataset)
-
-    experiment= Experiment(task="comments", method="steer", model="falcon-7b")
-    steer_pipe = STEERPipeline(experiment=experiment, gamma=0.2, eta=0.2, num_neg_prompts=10)
-    dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, gamma=0.2, eta=0.2, save_to_disk=True)
+    experiment = Experiment(task="comments", method="contrastive", model="falcon-7b")
+    dataset = create_dataset(experiment, num_examples=500, save_to_disk=True, batch_size=32)
     print(dataset)
+
+    # experiment= Experiment(task="comments", method="steer", model="falcon-7b")
+    # steer_pipe = STEERPipeline(experiment=experiment, gamma=0.2, eta=0.2, num_neg_prompts=10)
+    # dataset = steer_pipe.generate_synthetic_dataset(num_examples=100, batch_size=0, gamma=0.2, eta=0.2, save_to_disk=True)
+    # print(dataset)
