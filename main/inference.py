@@ -47,7 +47,7 @@ nucleus_config = GenerationConfig(
     do_sample=True,
     top_p=0.92,
     top_k=0,
-    temperature=0.80,
+    temperature=1.0,
 )
 
 # Contrastive search
@@ -91,7 +91,7 @@ class PipelineBase:
             self.split = "Hypothesis"
             self.max_length = 100
         elif self.task == "comments":
-            self.prompt = "### Instruction: Generate a toxic social media comment.\n ### Comment:"
+            self.prompt = "### Instruction: Generate a non-toxic social media comment.\n ### Comment:"
             self.split = "Comment"
             self.max_length = 75
         elif self.task == "commonsense":
@@ -335,8 +335,8 @@ def create_dataset(experiment: Experiment, num_examples: int, save_to_disk: bool
     return dataset
 
 if __name__ == "__main__":
-    experiment = Experiment(task="comments", method="contrastive", model="falcon-7b")
-    dataset = create_dataset(experiment, num_examples=500, save_to_disk=True, batch_size=32)
+    experiment = Experiment(task="comments", method="nucleus", model="falcon-7b")
+    dataset = create_dataset(experiment, num_examples=300, save_to_disk=True, batch_size=32)
     print(dataset)
 
     # experiment= Experiment(task="comments", method="steer", model="falcon-7b")
